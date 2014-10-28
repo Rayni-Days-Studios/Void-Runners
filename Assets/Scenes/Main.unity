@@ -3565,14 +3565,14 @@ Transform:
   m_PrefabInternal: {fileID: 56125776}
   m_GameObject: {fileID: 210590059}
   m_LocalRotation: {x: -1.23111792e-15, y: -.708713949, z: 8.70527206e-16, w: .705496073}
-  m_LocalPosition: {x: 95.8713913, y: 1.0395546, z: 10.5101299}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 50, y: 50, z: 50}
   m_Children:
   - {fileID: 1675622008}
   - {fileID: 1449762996}
   - {fileID: 373844620}
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 1390075349}
+  m_RootOrder: 2
 --- !u!82 &210590062
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5146,7 +5146,7 @@ Transform:
   - {fileID: 351078680}
   - {fileID: 474293081}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 3
 --- !u!1 &329212364
 GameObject:
   m_ObjectHideFlags: 0
@@ -16778,7 +16778,7 @@ MonoBehaviour:
   BarrelEnd: {fileID: 965497210}
   LightGun:
     Ammo: 50
-    Force: 15
+    Force: 12
     BulletPrefab: {fileID: 5400000, guid: 0bba4c6b8ada82440a58440ff3002374, type: 2}
     Bullet: {fileID: 100000, guid: 0bba4c6b8ada82440a58440ff3002374, type: 2}
     ShootSound: {fileID: 1036338588}
@@ -21237,7 +21237,7 @@ Transform:
   - {fileID: 580270806}
   - {fileID: 1138270766}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 2
 --- !u!1 &1338052995
 GameObject:
   m_ObjectHideFlags: 0
@@ -21905,6 +21905,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1497989112}
   m_RootOrder: 4
+--- !u!1 &1390075348
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1390075349}
+  m_Layer: 0
+  m_Name: Tyrants
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1390075349
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1390075348}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 95.8713913, y: 1.0395546, z: 10.5101299}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1773296943}
+  - {fileID: 2075124251}
+  - {fileID: 210590060}
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
 --- !u!1 &1391783991
 GameObject:
   m_ObjectHideFlags: 0
@@ -22579,6 +22609,10 @@ Prefab:
     - target: {fileID: 400004, guid: 508436a3760bae941860d33899321ec1, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: 508436a3760bae941860d33899321ec1, type: 2}
+      propertyPath: LightGun.Force
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 508436a3760bae941860d33899321ec1, type: 2}
@@ -27744,14 +27778,14 @@ Transform:
   m_PrefabInternal: {fileID: 1156133238}
   m_GameObject: {fileID: 1773296942}
   m_LocalRotation: {x: 0, y: .705495477, z: 0, w: .708714485}
-  m_LocalPosition: {x: -7.38203812, y: 1.01147747, z: 75.3146362}
+  m_LocalPosition: {x: -103.253433, y: -.0280771255, z: 64.8045044}
   m_LocalScale: {x: 50, y: 50, z: 50}
   m_Children:
   - {fileID: 1509038240}
   - {fileID: 431024878}
   - {fileID: 222081889}
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_Father: {fileID: 1390075349}
+  m_RootOrder: 0
 --- !u!82 &1773296945
 AudioSource:
   m_ObjectHideFlags: 0
@@ -31917,14 +31951,14 @@ Transform:
   m_PrefabInternal: {fileID: 1864361451}
   m_GameObject: {fileID: 2075124250}
   m_LocalRotation: {x: 0, y: -.708714128, z: 0, w: .705495775}
-  m_LocalPosition: {x: 95.8713913, y: 1.03952515, z: 55.5100708}
+  m_LocalPosition: {x: 0, y: -2.94446945e-05, z: 44.999939}
   m_LocalScale: {x: 50, y: 50, z: 50}
   m_Children:
   - {fileID: 1928307742}
   - {fileID: 695041517}
   - {fileID: 302122459}
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_Father: {fileID: 1390075349}
+  m_RootOrder: 1
 --- !u!82 &2075124253
 AudioSource:
   m_ObjectHideFlags: 0
