@@ -82,10 +82,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2451aaf8b401c4343b0533422bdc8f7e, type: 3}
+  m_Script: {fileID: 11500000, guid: 2febb7fe00ec52747be9bbec35ded23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  removeTime: .0500000007
+  CollisionObject:
+  - Walls
+  TriggerObject: Enemy
+  RemoveTime: .200000003
+  RemoveAfterTime: 1
+  AmountOfTime: 1
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1
