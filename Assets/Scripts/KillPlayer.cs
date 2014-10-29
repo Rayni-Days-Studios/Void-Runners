@@ -23,9 +23,9 @@ public class KillPlayer : MonoBehaviour {
         _cam.transform.rotation = Quaternion.Lerp(_from, _to, Progress);
     }
 
-    public void Die(Vector3 to, float time, float killTime)
+    public IEnumerator Die(Vector3 to, float time, float killTime)
     {
-        if (_die) return;
+        if (_die) yield break;
 
         _die = true;
 
@@ -42,6 +42,7 @@ public class KillPlayer : MonoBehaviour {
         _cam.transform.LookAt(to);
         _to = _cam.transform.rotation;
         _cam.transform.rotation = _from;
-        Destroy(gameObject, killTime);
+        yield return new WaitForSeconds(killTime);
+        Application.LoadLevel(Application.loadedLevel);
     }
 }

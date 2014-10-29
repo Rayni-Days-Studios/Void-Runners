@@ -74,7 +74,7 @@ public class Death : MonoBehaviour
 	    }
 	    if (other.gameObject.tag != "Player") return;
 
-	    _player.GetComponent<KillPlayer>().Die(transform.position + Vector3.up * 1.8f, 0.75f, 1);
+	    _player.GetComponent<KillPlayer>().Die(transform.position + Vector3.up * 1.8f, 0.75f, 0.5f);
 	    animation.Blend("attack01", 8f, 0.8f);
     }
 }
