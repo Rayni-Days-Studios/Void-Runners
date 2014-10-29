@@ -123,11 +123,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CollisionObject:
   - Walls
-  - Enemy
-  TriggerObject: Enemy
+  TriggerObject: 
   RemoveTime: 2
   RemoveAfterTime: 1
-  AmountOfTime: 5
+  AmountOfTime: 4
+  InstantToggle: 1
+  InstantRemoval: Enemy
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1
