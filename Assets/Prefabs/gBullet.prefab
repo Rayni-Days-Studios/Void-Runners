@@ -85,12 +85,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2febb7fe00ec52747be9bbec35ded23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionObject:
-  - Walls
-  TriggerObject: Enemy
-  RemoveTime: .200000003
+  CollisionObject: []
+  TriggerObject: 
+  RemoveTime: 0
   RemoveAfterTime: 1
   AmountOfTime: 1
+  InstantToggle: 1
+  InstantRemoval: Walls
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1
