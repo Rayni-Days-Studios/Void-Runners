@@ -25,20 +25,20 @@ public class CharacterMotor : MonoBehaviour
     class ChracterMotorMovement
     {
         //The maximum horizontal speed when moving
-        internal float maxForwardSpeed = 10.0f;
-        internal float maxSidewaySpeed = 10.0f;
-        internal float maxBackwardsSpeed = 10.0f;
+        public float maxForwardSpeed = 10.0f;
+        public float maxSidewaySpeed = 10.0f;
+        public float maxBackwardsSpeed = 10.0f;
 
         // Curve for multiplying speed based on slope (negative = downwards)
-        internal AnimationCurve slopeSpeedMultiplier = new AnimationCurve(new Keyframe(-90, 1), new Keyframe(0, 1), new Keyframe(90, 0));
+        public AnimationCurve slopeSpeedMultiplier = new AnimationCurve(new Keyframe(-90, 1), new Keyframe(0, 1), new Keyframe(90, 0));
 
         // How fast does the character change speed? Higher is faster.
-        internal float maxGroundAcceleration = 30.0f;
-        internal float maxAirAcceleration = 20.0f;
+        public float maxGroundAcceleration = 30.0f;
+        public float maxAirAcceleration = 20.0f;
 
         //The gravity for the character
-        internal float gravity = 10.0f;
-        internal float maxFallSpeed = 20.0f;
+        public float gravity = 10.0f;
+        public float maxFallSpeed = 20.0f;
 
         // For the next variables, [NonSerialized] tells Unity to not serialize the variable or show it in the inspector view.
         // Very handy for organization!
