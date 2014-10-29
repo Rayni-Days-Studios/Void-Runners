@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class CharacterMotor : MonoBehaviour
@@ -22,42 +23,42 @@ public class CharacterMotor : MonoBehaviour
     [NonSerialized] internal bool _inputJump = false;
 
 
-    class ChracterMotorMovement
+    public class CharacterMotorMovement
     {
         //The maximum horizontal speed when moving
-        public float maxForwardSpeed = 10.0f;
-        public float maxSidewaySpeed = 10.0f;
-        public float maxBackwardsSpeed = 10.0f;
+        public float MaxForwardSpeed = 7.5f;
+        public float MaxSidewaySpeed = 7.5f;
+        public float MaxBackwardsSpeed = 7.5f;
 
         // Curve for multiplying speed based on slope (negative = downwards)
-        public AnimationCurve slopeSpeedMultiplier = new AnimationCurve(new Keyframe(-90, 1), new Keyframe(0, 1), new Keyframe(90, 0));
+        internal AnimationCurve SlopeSpeedMultiplier = new AnimationCurve(new Keyframe(-90, 1), new Keyframe(0, 1), new Keyframe(90, 0));
 
         // How fast does the character change speed? Higher is faster.
-        public float maxGroundAcceleration = 30.0f;
-        public float maxAirAcceleration = 20.0f;
+        public float MaxGroundAcceleration = 30.0f;
+        public float MaxAirAcceleration = 20.0f;
 
         //The gravity for the character
-        public float gravity = 10.0f;
-        public float maxFallSpeed = 20.0f;
+        public float Gravity = 10.0f;
+        public float MaxFallSpeed = 20.0f;
 
         // For the next variables, [NonSerialized] tells Unity to not serialize the variable or show it in the inspector view.
         // Very handy for organization!
 
         // The last collision flag returned from controller.Move
-        [NonSerialized] internal CollisionFlags collisionFlags;
+        [NonSerialized] internal CollisionFlags CollisionFlags;
 
         // We will keep track of the character's current velocity
-        [NonSerialized] internal Vector3 velocity;
+        [NonSerialized] internal Vector3 Velocity;
 
         // This keeps track of out current velocity while we're not grounded
-        [NonSerialized] internal Vector3 frameVelocity;
+        [NonSerialized] internal Vector3 FrameVelocity;
 
-        [NonSerialized] internal Vector3 hitPoint = Vector3.zero;
+        [NonSerialized] internal Vector3 HitPoint = Vector3.zero;
 
-        [NonSerialized] internal Vector3 lastHitPoint = new Vector3(Mathf.Infinity, 0, 0);
+        [NonSerialized] internal Vector3 LastHitPoint = new Vector3(Mathf.Infinity, 0, 0);
     }
 
-    readonly ChracterMotorMovement _movement = new ChracterMotorMovement();
+    CharacterMotorMovement _movement = new CharacterMotorMovement();
 
     enum MovementTransferOnJump
     {
@@ -68,24 +69,24 @@ public class CharacterMotor : MonoBehaviour
     }
 
     // We will contain all jumping related variables in one helper class for clarity
-    class CharacterMotorJumping
+    public class CharacterMotorJumping
     {
-        // Can the chracter jump?
-        internal bool enabled = true;
+        // Can the character jump?
+        public bool Enabled = false;
 
         // How high do we jump when pressing jump and letting go immediately
-        internal float baseHeight = 1.0f;
+        public float BaseHeight = 1.0f;
 
         // We add extraHeight units (meters) on top when holding the button down longer while jumping
-        internal float extraHeight = 4.1f;
+        public float ExtraHeight = 4.1f;
 
         // How much does the character jump out perpendicular to the sirface on walkable surfaces?
         // 0 means a fully vertical jump and 1  means fully perpendicular
-        internal float perpAmount = 0.0f;
+        public float PerpAmount = 0.0f;
 
         // How much does the character jump out perpendicular to the surface on too steep surfaces?
         // 0 means a fully vertical jump and 1 means fully perpendicular
-        internal float steepPerpAmount = 0.5f;
+        public float SteepPerpAmount = 0.5f;
 
         // For the next variables, [NonSerialized] tells Unity to not serialize the variable or show it in the inspector view.
         // Very handy for organization!
@@ -94,7 +95,7 @@ public class CharacterMotor : MonoBehaviour
         // To see if we are just in the air (initiated by jumping OR falling) see the grounded variable
         [NonSerialized] internal bool Jumping;
 
-        internal bool HoldingJumpButton;
+        public bool HoldingJumpButton;
 
         // The time we jump at (Used to determine how log to apply extra jump power after jumping.)
         [NonSerialized] internal float LastStartTime;
@@ -108,15 +109,15 @@ public class CharacterMotor : MonoBehaviour
 
     class CharacterMotorMovingPlatform
     {
-        internal bool enabled = true;
+        public bool enabled = true;
 
-        internal MovementTransferOnJump movementTransfer = MovementTransferOnJump.PermaTransfer;
+        public MovementTransferOnJump movementTransfer = MovementTransferOnJump.PermaTransfer;
 
         [NonSerialized] internal Transform HitPlatform;
 
         [NonSerialized] internal Transform ActivePlatform;
 
-        [NonSerialized] internal Vector3 activeLocalPoint;
+        [NonSerialized] internal Vector3 ActiveLocalPoint;
 
         [NonSerialized] internal Vector3 ActiveGlobalPoint;
 
@@ -171,7 +172,7 @@ public class CharacterMotor : MonoBehaviour
     private void UpdateFunction()
     {
         // We copy the actual velocity into a temporary variable that we can manipulate
-        var velocity = _movement.velocity;
+        var velocity = _movement.Velocity;
 
         // Update velocity based on input
         velocity = ApplyInputVelocityChange(velocity);
@@ -183,7 +184,7 @@ public class CharacterMotor : MonoBehaviour
         Vector3 moveDistance;
         if (MoveWithPlatform())
         {
-            var newGlobalPoint = movingPlatform.ActivePlatform.TransformPoint(movingPlatform.activeLocalPoint);
+            var newGlobalPoint = movingPlatform.ActivePlatform.TransformPoint(movingPlatform.ActiveLocalPoint);
             moveDistance = (newGlobalPoint - movingPlatform.ActiveGlobalPoint);
             if (moveDistance != Vector3.zero)
             {
@@ -221,9 +222,9 @@ public class CharacterMotor : MonoBehaviour
         _groundNormal = Vector3.zero;
 
         // Move our character!
-        _movement.collisionFlags = _controller.Move(currentMovementOffset);
+        _movement.CollisionFlags = _controller.Move(currentMovementOffset);
 
-        _movement.lastHitPoint = _movement.hitPoint;
+        _movement.LastHitPoint = _movement.HitPoint;
         _lastGroundNormal = _groundNormal;
 
         if (movingPlatform.enabled && movingPlatform.ActivePlatform != movingPlatform.HitPlatform)
@@ -239,28 +240,28 @@ public class CharacterMotor : MonoBehaviour
         // Calculate the velocity based on tthe current and previous position
         // This means our velocity will only be the amoun the character actually moved as a result of collisions.
         var oldHVelocity = new Vector3(velocity.x, 0, velocity.z);
-        _movement.velocity = (_tr.position - lastPosition)/Time.deltaTime;
-        var newHVelocity = new Vector3(_movement.velocity.x, 0, _movement.velocity.z);
+        _movement.Velocity = (_tr.position - lastPosition)/Time.deltaTime;
+        var newHVelocity = new Vector3(_movement.Velocity.x, 0, _movement.Velocity.z);
 
         // The CharacterController can be moved in unwanted directions when colliding with things.
         // We ant to prevent this from inluencing the recorded velocity.
         if (oldHVelocity == Vector3.zero)
         {
-            _movement.velocity = new Vector3(0, _movement.velocity.y, 0);
+            _movement.Velocity = new Vector3(0, _movement.Velocity.y, 0);
         }
         else
         {
             var projectedNewVelocity = Vector3.Dot(newHVelocity, oldHVelocity)/oldHVelocity.sqrMagnitude;
-            _movement.velocity = oldHVelocity*Mathf.Clamp01(projectedNewVelocity) + _movement.velocity.y*Vector3.up;
+            _movement.Velocity = oldHVelocity*Mathf.Clamp01(projectedNewVelocity) + _movement.Velocity.y*Vector3.up;
         }
 
-        if (_movement.velocity.y < velocity.y - 0.001)
+        if (_movement.Velocity.y < velocity.y - 0.001)
         {
-            if (_movement.velocity.y < 0)
+            if (_movement.Velocity.y < 0)
             {
                 // Somthing is forcing tthe CharacterController down faster than it should.
                 // Ignore this
-                _movement.velocity.y = velocity.y;
+                _movement.Velocity.y = velocity.y;
             }
             else
             {
@@ -281,8 +282,8 @@ public class CharacterMotor : MonoBehaviour
                  movingPlatform.movementTransfer == MovementTransferOnJump.PermaTransfer)
                 )
             {
-                _movement.frameVelocity = movingPlatform.PlatformVelocity;
-                _movement.velocity += movingPlatform.PlatformVelocity;
+                _movement.FrameVelocity = movingPlatform.PlatformVelocity;
+                _movement.Velocity += movingPlatform.PlatformVelocity;
             }
 
             SendMessage("OnFall", SendMessageOptions.DontRequireReceiver);
@@ -306,7 +307,7 @@ public class CharacterMotor : MonoBehaviour
             // Use the center of the lower half sphere of the capsule as reference point.
             // This works best when the character is standing on moving titlting platforms.
             movingPlatform.ActiveGlobalPoint = _tr.position + Vector3.up * (float)(_controller.center.y - _controller.height*0.5 + _controller.radius);
-            movingPlatform.activeLocalPoint = movingPlatform.ActivePlatform.InverseTransformPoint(movingPlatform.ActiveGlobalPoint);
+            movingPlatform.ActiveLocalPoint = movingPlatform.ActivePlatform.InverseTransformPoint(movingPlatform.ActiveGlobalPoint);
 
             // Support moving platform rotation as well
             movingPlatform.ActiveGlobalRotation = transform.rotation;
@@ -327,8 +328,8 @@ public class CharacterMotor : MonoBehaviour
 
                     movingPlatform.PlatformVelocity =
                         (movingPlatform.ActivePlatform.localToWorldMatrix.MultiplyPoint3x4(
-                            movingPlatform.activeLocalPoint) -
-                         movingPlatform.LastMatrix.MultiplyPoint3x4(movingPlatform.activeLocalPoint))/Time.deltaTime;
+                            movingPlatform.ActiveLocalPoint) -
+                         movingPlatform.LastMatrix.MultiplyPoint3x4(movingPlatform.ActiveLocalPoint))/Time.deltaTime;
                 }
                 movingPlatform.LastMatrix = movingPlatform.ActivePlatform.localToWorldMatrix;
                 movingPlatform.NewPlatform = false;
@@ -372,7 +373,7 @@ public class CharacterMotor : MonoBehaviour
 
         if (movingPlatform.enabled && movingPlatform.movementTransfer == MovementTransferOnJump.PermaTransfer)
         {
-            desiredVelocity += _movement.frameVelocity;
+            desiredVelocity += _movement.FrameVelocity;
             desiredVelocity.y = 0;
         }
 
@@ -422,10 +423,10 @@ public class CharacterMotor : MonoBehaviour
         }
 
         if (_grounded)
-            velocity.y = Mathf.Min(0, velocity.y) - _movement.gravity*Time.deltaTime;
+            velocity.y = Mathf.Min(0, velocity.y) - _movement.Gravity*Time.deltaTime;
         else
         {
-            velocity.y = _movement.velocity.y - _movement.gravity*Time.deltaTime;
+            velocity.y = _movement.Velocity.y - _movement.Gravity*Time.deltaTime;
 
             // When jumping up we don't apply gravity for some time when the is holding the jump button.
             // This gives more control over jump height by pressing the button longer
@@ -434,14 +435,14 @@ public class CharacterMotor : MonoBehaviour
                 // Calculate the duration that the extra jump force should have effect.
                 // If we're still less than that duration after the jumoing time, apply the force.
                 if (Time.time <
-                    jumping.LastStartTime + jumping.extraHeight/CalculateJumpVerticalSpeed(jumping.baseHeight))
+                    jumping.LastStartTime + jumping.ExtraHeight/CalculateJumpVerticalSpeed(jumping.BaseHeight))
                 {
-                    velocity += jumping.JumpDir*_movement.gravity*Time.deltaTime;
+                    velocity += jumping.JumpDir*_movement.Gravity*Time.deltaTime;
                 }
             }
 
             // Make sure we don't fall any faster than maxFallSpeed. This gives our character a terminal velocity.
-            velocity.y = Mathf.Max(velocity.y, -_movement.maxFallSpeed);
+            velocity.y = Mathf.Max(velocity.y, -_movement.MaxFallSpeed);
         }
 
         if (_grounded)
@@ -451,7 +452,7 @@ public class CharacterMotor : MonoBehaviour
             // because players will often try to jump in the exact moment when hitting the ground after a jump
             // and if they hit the button a fraction of a second too soon and no new jump happens as a consequence,
             // it's confusing and it feels like the game is buggy.
-            if (jumping.enabled && _canControl && (Time.time - jumping.LastButtonDownTime < 0.2))
+            if (jumping.Enabled && _canControl && (Time.time - jumping.LastButtonDownTime < 0.2))
             {
                 _grounded = false;
                 jumping.Jumping = true;
@@ -460,15 +461,15 @@ public class CharacterMotor : MonoBehaviour
 
                 // Calculate the jumpingg direction
                 if (TooSteep())
-                    jumping.JumpDir = Vector3.Slerp(Vector3.up, _groundNormal, jumping.steepPerpAmount);
+                    jumping.JumpDir = Vector3.Slerp(Vector3.up, _groundNormal, jumping.SteepPerpAmount);
                 else
                 {
-                    jumping.JumpDir = Vector3.Slerp(Vector3.up, _groundNormal, jumping.perpAmount);
+                    jumping.JumpDir = Vector3.Slerp(Vector3.up, _groundNormal, jumping.PerpAmount);
                 }
 
                 // Apply the jumping force to the velocity. Cancel any vertical velocity first.
                 velocity.y = 0;
-                velocity += jumping.JumpDir*CalculateJumpVerticalSpeed(jumping.baseHeight);
+                velocity += jumping.JumpDir*CalculateJumpVerticalSpeed(jumping.BaseHeight);
 
                 // Apply inertia from platform
                 if (movingPlatform.enabled &&
@@ -476,7 +477,7 @@ public class CharacterMotor : MonoBehaviour
                      movingPlatform.movementTransfer == MovementTransferOnJump.PermaTransfer)
                     )
                 {
-                    _movement.frameVelocity = movingPlatform.PlatformVelocity;
+                    _movement.FrameVelocity = movingPlatform.PlatformVelocity;
                     velocity += movingPlatform.PlatformVelocity;
                 }
 
@@ -494,7 +495,7 @@ public class CharacterMotor : MonoBehaviour
     {
         if (!(hit.normal.y > 0) || !(hit.normal.y > _groundNormal.y) || !(hit.moveDirection.y < 0)) return;
 
-        if ((hit.point - _movement.lastHitPoint).sqrMagnitude > 0.001 || _lastGroundNormal == Vector3.zero)
+        if ((hit.point - _movement.LastHitPoint).sqrMagnitude > 0.001 || _lastGroundNormal == Vector3.zero)
             _groundNormal = hit.normal;
         else
         {
@@ -502,8 +503,8 @@ public class CharacterMotor : MonoBehaviour
         }
 
         movingPlatform.HitPlatform = hit.collider.transform;
-        _movement.hitPoint = hit.point;
-        _movement.frameVelocity = Vector3.zero;
+        _movement.HitPoint = hit.point;
+        _movement.FrameVelocity = Vector3.zero;
     }
 
     private IEnumerator<WaitForFixedUpdate> SubtractNewPlatformVelocity()
@@ -524,7 +525,7 @@ public class CharacterMotor : MonoBehaviour
             if (_grounded && platform == movingPlatform.ActivePlatform)
                 yield return new WaitForFixedUpdate();
         }
-        _movement.velocity -= movingPlatform.PlatformVelocity;
+        _movement.Velocity -= movingPlatform.PlatformVelocity;
     }
 
     private bool MoveWithPlatform()
@@ -543,8 +544,8 @@ public class CharacterMotor : MonoBehaviour
         if (!_grounded) return _tr.TransformDirection(desiredLocalDirection*maxSpeed);
 
         // Modify max speed on slopes based on slope speed multiplayer curve
-        var movementSlopeAngle = Mathf.Asin(_movement.velocity.normalized.y)*Mathf.Rad2Deg;
-        maxSpeed *= _movement.slopeSpeedMultiplier.Evaluate(movementSlopeAngle);
+        var movementSlopeAngle = Mathf.Asin(_movement.Velocity.normalized.y)*Mathf.Rad2Deg;
+        maxSpeed *= _movement.SlopeSpeedMultiplier.Evaluate(movementSlopeAngle);
         return _tr.TransformDirection(desiredLocalDirection*maxSpeed);
     }
 
@@ -562,14 +563,14 @@ public class CharacterMotor : MonoBehaviour
     float GetMaxAcceleration(bool grounded)
     {
         // Maximum acceleration on ground and in air
-        return grounded ? _movement.maxGroundAcceleration : _movement.maxAirAcceleration;
+        return grounded ? _movement.MaxGroundAcceleration : _movement.MaxAirAcceleration;
     }
 
     float CalculateJumpVerticalSpeed(float targetJumpHeight)
     {
         // From the jump height and gravity we deduce the upwards speed 
 	    // for the character to reach at the apex.
-        return Mathf.Sqrt(2*targetJumpHeight*_movement.gravity);
+        return Mathf.Sqrt(2*targetJumpHeight*_movement.Gravity);
     }
 
     bool IsJumping()
@@ -584,7 +585,7 @@ public class CharacterMotor : MonoBehaviour
 
     bool IsTouchingCeiling()
     {
-        return (_movement.collisionFlags & CollisionFlags.CollidedAbove) != 0;
+        return (_movement.CollisionFlags & CollisionFlags.CollidedAbove) != 0;
     }
 
     bool IsGrounded()
@@ -615,19 +616,19 @@ public class CharacterMotor : MonoBehaviour
             return 0;
 
         var zAxisEllipseMultiplier = (desiredMovementDirection.z > 0
-            ? _movement.maxForwardSpeed
-            : _movement.maxBackwardsSpeed)/_movement.maxSidewaySpeed;
+            ? _movement.MaxForwardSpeed
+            : _movement.MaxBackwardsSpeed)/_movement.MaxSidewaySpeed;
         var temp =
             new Vector3(desiredMovementDirection.x, 0, desiredMovementDirection.z/zAxisEllipseMultiplier).normalized;
-        var length = new Vector3(temp.x, 0, temp.z * zAxisEllipseMultiplier).magnitude * _movement.maxSidewaySpeed;
+        var length = new Vector3(temp.x, 0, temp.z * zAxisEllipseMultiplier).magnitude * _movement.MaxSidewaySpeed;
         return length;
     }
 
     void SetVelocity(Vector3 velocity)
     {
         _grounded = false;
-        _movement.velocity = velocity;
-        _movement.frameVelocity = Vector3.zero;
+        _movement.Velocity = velocity;
+        _movement.FrameVelocity = Vector3.zero;
         SendMessage("OnExternalVelocity");
     }
 }

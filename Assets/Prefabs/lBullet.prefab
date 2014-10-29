@@ -85,8 +85,8 @@ Light:
   serializedVersion: 3
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 4.17000008
-  m_Range: 7.69999981
+  m_Intensity: 4
+  m_Range: 7
   m_SpotAngle: 67
   m_CookieSize: 10
   m_Shadows:
@@ -123,11 +123,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CollisionObject:
   - Walls
-  - Enemy
-  TriggerObject: Enemy
+  TriggerObject: 
   RemoveTime: 2
   RemoveAfterTime: 1
-  AmountOfTime: 5
+  AmountOfTime: 4
+  InstantToggle: 1
+  InstantRemoval: Enemy
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

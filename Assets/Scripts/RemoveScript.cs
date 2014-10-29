@@ -8,6 +8,8 @@ public class RemoveScript : MonoBehaviour
     public float RemoveTime;
     public bool RemoveAfterTime;
     public float AmountOfTime;
+    public bool InstantToggle;
+    public string InstantRemoval;
 
     void Update()
     {
@@ -24,6 +26,12 @@ public class RemoveScript : MonoBehaviour
 	    {
 	        Destroy(gameObject, RemoveTime);
 	    }
+
+	    if (!InstantToggle) return;
+	        if (other.gameObject.tag == InstantRemoval)
+	        {
+	            Destroy(gameObject);
+	        }
 	}
 
     //Remove object on trigger
