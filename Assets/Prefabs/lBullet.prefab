@@ -39,7 +39,7 @@ Renderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -126,8 +126,8 @@ MonoBehaviour:
   - Enemy
   TriggerObject: Enemy
   RemoveTime: 2
-  RemoveAfterTime: 0
-  AmountOfTime: 0
+  RemoveAfterTime: 1
+  AmountOfTime: 5
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1
