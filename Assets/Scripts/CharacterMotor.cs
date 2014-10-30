@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterMotor : MonoBehaviour
+public class CharacterMotor : Photon.MonoBehaviour
 {
     [AddComponentMenu("Character/Character Motor")]
 
     // Does this script currently respond to input?
-    private bool _canControl = true;
+    public bool CanControl = true;
 
-    private bool _useFixedUpdate = true;
+    public bool UseFixedUpdate = true;
 
     // For the next variables, [NonSerialized] tells Unity to not serialize the variable or show it in the inspector view.
     // Very handy for organization!
 
     // The current global direction we want the character to move in.
-    [NonSerialized] internal Vector3 _inputMoveDirection = Vector3.zero;
+    [NonSerialized] internal Vector3 InputMoveDirection = Vector3.zero;
 
     // Is the jump button held down? We use this interface instead of checking
     // for the jump button directly so this script can also be used by AIs.
@@ -30,7 +30,7 @@ public class CharacterMotor : MonoBehaviour
         public float MaxBackwardsSpeed = 6f;
 
         // Curve for multiplying speed based on slope (negative = downwards)
-        internal AnimationCurve SlopeSpeedMultiplier = new AnimationCurve(new Keyframe(-90, 1), new Keyframe(0, 1), new Keyframe(90, 0));
+        public AnimationCurve SlopeSpeedMultiplier = new AnimationCurve(new Keyframe(-90, 1), new Keyframe(0, 1), new Keyframe(90, 0));
 
         // How fast does the character change speed? Higher is faster.
         public float MaxGroundAcceleration = 50.0f;
@@ -162,10 +162,17 @@ public class CharacterMotor : MonoBehaviour
 
     private CharacterController _controller;
 
-    void Awake()
+    private void Awake()
     {
         _controller = GetComponent<CharacterController>();
         _tr = transform;
+
+        if (!photonView.isMine)
+        {
+            //We aren't the photonView owner, disable this script
+            //RPC's and OnPhotonSerializeView will STILL get trough but we prevent Update from running
+            enabled = false;
+        }
     }
 
     private void UpdateFunction()
@@ -336,20 +343,20 @@ public class CharacterMotor : MonoBehaviour
             else { movingPlatform.PlatformVelocity = Vector3.zero; }
         }
 
-        if (_useFixedUpdate)
+        if (UseFixedUpdate)
             UpdateFunction();
     }
 
     void Update()
     {
-        if(!_useFixedUpdate)
+        if(!UseFixedUpdate)
             UpdateFunction();
     }
 
     private Vector3 ApplyInputVelocityChange(Vector3 velocity)
     {
-        if(!_canControl)
-            _inputMoveDirection = Vector3.zero;
+        if(!CanControl)
+            InputMoveDirection = Vector3.zero;
 
         //Find desired velocity
         Vector3 desiredVelocity;
@@ -358,10 +365,10 @@ public class CharacterMotor : MonoBehaviour
             // the direction we're sliding in
             desiredVelocity = new Vector3(_groundNormal.x, 0, _groundNormal.z).normalized;
             // Find the input movement direction projected onto the sliding direction
-            var projectedMoveDir = Vector3.Project(_inputMoveDirection, desiredVelocity);
+            var projectedMoveDir = Vector3.Project(InputMoveDirection, desiredVelocity);
             // Add the sliding direction, the speed control, and the sideways control vectors
             desiredVelocity = desiredVelocity + projectedMoveDir*sliding.speedControl +
-                              (_inputMoveDirection - projectedMoveDir)*sliding.sidewaysControl;
+                              (InputMoveDirection - projectedMoveDir)*sliding.sidewaysControl;
             // Multiplay with the slidding speed
             desiredVelocity *= sliding.slidingSpeed;
         }
@@ -392,7 +399,7 @@ public class CharacterMotor : MonoBehaviour
         }
         // If we're in the air and don't have control, don't apply any velocity change at all.
         // If we're on the grounnd and don''t have control we do apply it - it will corresponf to friction.
-        if (_grounded || _canControl)
+        if (_grounded || CanControl)
         {
             velocity += velocityChangeVector;
         }
@@ -410,13 +417,13 @@ public class CharacterMotor : MonoBehaviour
 
     private Vector3 ApplyGravityAndJumping(Vector3 velocity)
     {
-        if (!_inputJump || !_canControl)
+        if (!_inputJump || !CanControl)
         {
             jumping.HoldingJumpButton = false;
             jumping.LastButtonDownTime = -100;
         }
 
-        if (_inputJump && jumping.LastButtonDownTime < 0 && _canControl)
+        if (_inputJump && jumping.LastButtonDownTime < 0 && CanControl)
         {
             jumping.LastButtonDownTime = Time.time;
         }
@@ -451,7 +458,7 @@ public class CharacterMotor : MonoBehaviour
             // because players will often try to jump in the exact moment when hitting the ground after a jump
             // and if they hit the button a fraction of a second too soon and no new jump happens as a consequence,
             // it's confusing and it feels like the game is buggy.
-            if (jumping.Enabled && _canControl && (Time.time - jumping.LastButtonDownTime < 0.2))
+            if (jumping.Enabled && CanControl && (Time.time - jumping.LastButtonDownTime < 0.2))
             {
                 _grounded = false;
                 jumping.Jumping = true;
@@ -537,7 +544,7 @@ public class CharacterMotor : MonoBehaviour
     private Vector3 GetDesiredHorizontalVelocity()
     {
         // Find desired velocity
-        var desiredLocalDirection = _tr.InverseTransformDirection(_inputMoveDirection);
+        var desiredLocalDirection = _tr.InverseTransformDirection(InputMoveDirection);
         var maxSpeed = MaxSpeedInDirection(desiredLocalDirection);
 
         if (!_grounded) return _tr.TransformDirection(desiredLocalDirection*maxSpeed);
@@ -599,12 +606,12 @@ public class CharacterMotor : MonoBehaviour
 
     Vector3 GetDirection()
     {
-        return _inputMoveDirection;
+        return InputMoveDirection;
     }
 
     void SetControllable(bool controllable)
     {
-        _canControl = controllable;
+        CanControl = controllable;
     }
 
     // Project a direction onto elliptical quater seqments based on forward, sideways, and backwards speed.

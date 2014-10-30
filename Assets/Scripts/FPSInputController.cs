@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class FPSInputController : MonoBehaviour
+public class FPSInputController : Photon.MonoBehaviour
 {
     [AddComponentMenu("Character/FPS Input Controller")]
 
@@ -9,6 +9,12 @@ public class FPSInputController : MonoBehaviour
 	// Use this for initialization
 	void Awake ()
 	{
+        if (!photonView.isMine)
+        {
+            //We aren't the photonView owner, disable this script
+            //RPC's and OnPhotonSerializeView will STILL get trough but we prevent Update from running
+            enabled = false;
+        }
 	    _motor = GetComponent<CharacterMotor>();
 	}
 	
@@ -29,7 +35,7 @@ public class FPSInputController : MonoBehaviour
 	        directionVector = directionLength*directionVector;
 	    }
 
-	    _motor._inputMoveDirection = transform.rotation*directionVector;
+	    _motor.InputMoveDirection = transform.rotation*directionVector;
 	    _motor._inputJump = Input.GetButton("Jump");
 	}
 }

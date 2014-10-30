@@ -14,7 +14,7 @@ Platform assembly: C:\Users\math6426\Dev\Void-Runners\Builds\MPTest_Data\Managed
 Loading C:\Users\math6426\Dev\Void-Runners\Builds\MPTest_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
 Platform assembly: C:\Users\math6426\Dev\Void-Runners\Builds\MPTest_Data\Managed\Photon3Unity3D.dll (this message is harmless)
 Loading C:\Users\math6426\Dev\Void-Runners\Builds\MPTest_Data\Managed\Photon3Unity3D.dll into Unity Child Domain
-- Completed reload, in  0.057 seconds
+- Completed reload, in  0.108 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
@@ -24,7 +24,7 @@ We received a room list update, total rooms now: 0
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Clean up a bit after server quit
+Eden
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
