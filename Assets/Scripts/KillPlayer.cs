@@ -1,25 +1,24 @@
 ﻿using System.Linq;
 using UnityEngine;
-using System.Collections;
 
-public class KillPlayer : MonoBehaviour {
-    Camera _cam;
-    Quaternion _from;
-    Quaternion _to;
+public class KillPlayer : MonoBehaviour
+{
+    private Camera _cam;
+    private Quaternion _from;
+    private Quaternion _to;
     public float Progress = 0;
-    float _time;
-    bool _die;
+    private float _time;
+    private bool _die;
 
-    void Start()
+    private void Start()
     {
         _cam = GetComponentInChildren<Camera>();
     }
 
-    void Update()
+    private void Update()
     {
         if (!_die) return;
-
-        Progress += Time.deltaTime / _time;
+        Progress += Time.deltaTime/_time;
         _cam.transform.rotation = Quaternion.Lerp(_from, _to, Progress);
     }
 
@@ -27,27 +26,21 @@ public class KillPlayer : MonoBehaviour {
     {
         if (_die) return;
 
-        _die = true;
+            _die = true;
 
-        foreach (var comp in GetComponents<Behaviour>().Where(comp => comp != this))
-        {
-            comp.enabled = false;
-        }
-        foreach (var comp in GetComponentsInChildren<MouseLook>())
-        {
-            comp.enabled = false;
-        }
-        _time = time;
-        _from = _cam.transform.rotation;
-        _cam.transform.LookAt(to);
-        _to = _cam.transform.rotation;
-        _cam.transform.rotation = _from;
-        Destroy(this, killTime);
-        Application.LoadLevel(Application.loadedLevel);
-    }
-
-    void OnDestroy()
-    {
-        Application.LoadLevel(Application.loadedLevel);
+            foreach (var comp in GetComponents<Behaviour>().Where(comp => comp != this))
+            {
+                comp.enabled = false;
+            }
+            foreach (var comp in GetComponentsInChildren<MouseLook>())
+            {
+                comp.enabled = false;
+            }
+            _time = time;
+            _from = _cam.transform.rotation;
+            _cam.transform.LookAt(to);
+            _to = _cam.transform.rotation;
+            _cam.transform.rotation = _from;
+            Destroy(gameObject, killTime);
     }
 }

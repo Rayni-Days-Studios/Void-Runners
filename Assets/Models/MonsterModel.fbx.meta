@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b97e0b502d6925143964fe83800d4fdf
+guid: dd0b629a9feb1554eb92a8de4bb41bc0
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
@@ -162,7 +162,7 @@ ModelImporter:
       takeName: attck01
       firstFrame: -1
       lastFrame: 43
-      wrapMode: 0
+      wrapMode: 1
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
@@ -266,7 +266,7 @@ ModelImporter:
       takeName: death
       firstFrame: -1
       lastFrame: 37
-      wrapMode: 0
+      wrapMode: 1
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
@@ -292,7 +292,7 @@ ModelImporter:
       takeName: idle
       firstFrame: -1
       lastFrame: 64
-      wrapMode: 0
+      wrapMode: 2
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
@@ -394,14 +394,14 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: .00999999978
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 0
+    optimizeMeshForGPU: 1
     weldVertices: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
