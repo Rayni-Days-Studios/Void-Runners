@@ -26,19 +26,19 @@ public class CharacterMotor : MonoBehaviour
     public class CharacterMotorMovement
     {
         //The maximum horizontal speed when moving
-        public float MaxForwardSpeed = 7.5f;
-        public float MaxSidewaySpeed = 7.5f;
-        public float MaxBackwardsSpeed = 7.5f;
+        public float MaxForwardSpeed = 8f;
+        public float MaxSidewaySpeed = 8f;
+        public float MaxBackwardsSpeed = 6f;
 
         // Curve for multiplying speed based on slope (negative = downwards)
         internal AnimationCurve SlopeSpeedMultiplier = new AnimationCurve(new Keyframe(-90, 1), new Keyframe(0, 1), new Keyframe(90, 0));
 
         // How fast does the character change speed? Higher is faster.
-        public float MaxGroundAcceleration = 30.0f;
+        public float MaxGroundAcceleration = 50.0f;
         public float MaxAirAcceleration = 20.0f;
 
         //The gravity for the character
-        public float Gravity = 10.0f;
+        public float Gravity = 20.0f;
         public float MaxFallSpeed = 20.0f;
 
         // For the next variables, [NonSerialized] tells Unity to not serialize the variable or show it in the inspector view.
@@ -72,10 +72,10 @@ public class CharacterMotor : MonoBehaviour
     public class CharacterMotorJumping
     {
         // Can the character jump?
-        public bool Enabled = false;
+        public bool Enabled = true;
 
         // How high do we jump when pressing jump and letting go immediately
-        public float BaseHeight = 1.0f;
+        public float BaseHeight = 1f;
 
         // We add extraHeight units (meters) on top when holding the button down longer while jumping
         public float ExtraHeight = 4.1f;
@@ -134,21 +134,21 @@ public class CharacterMotor : MonoBehaviour
 
     CharacterMotorMovingPlatform movingPlatform = new CharacterMotorMovingPlatform();
 
-    class CharacterMotorSliding
+    public class CharacterMotorSliding
     {
         // Does character slide on too steep surfaces?
-        internal bool enabled = true;
+        public bool enabled = true;
 
         // How fast does the character slide on steep surfaces?
-        internal float slidingSpeed = 15;
+        public  float slidingSpeed = 15;
 
         // How much can the playyer control the sliding direction?
         // If the value is 0.5 the player can slideways with half the speed of the downwards sliding speed.
-        internal float sidewaysControl = 1.0f;
+        public  float sidewaysControl = 1.0f;
 
         // How much can the player influence the sliding speed?
         // If the value is 0.5 the player can speed the slding up to 150 % or slow it down to 50%.
-        internal float speedControl = 0.4f;
+        public  float speedControl = 0.4f;
     }
 
     CharacterMotorSliding sliding = new CharacterMotorSliding();
