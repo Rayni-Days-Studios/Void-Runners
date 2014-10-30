@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using System.Collections;
 
@@ -66,11 +67,6 @@ public class Connect1C : Photon.MonoBehaviour
         receivedRoomList = false;
     }
 
-   
-
-
-
-    
     /// <summary>
     /// Helper function to speed up our testing: 
     /// - after connecting to Photon, check for active rooms and join the first if possible
@@ -85,15 +81,13 @@ public class Connect1C : Photon.MonoBehaviour
             yield return 0;
         }
         //We still didn't join any room: create one
-        if (PhotonNetwork.room == null){
-            string roomName = "TestRoom"+Application.loadedLevelName;
+        if (PhotonNetwork.room == null)
+        {
+            string roomName = "TestRoom" + Application.loadedLevelName;
             PhotonNetwork.CreateRoom(roomName, new RoomOptions() {maxPlayers = 4}, null);
         }
     }
-    
-    /// <summary>
-    /// Not used in this script, just to show how list updates are handled.
-    /// </summary>
+
     void OnReceivedRoomListUpdate()
     {
         Debug.Log("We received a room list update, total rooms now: " + PhotonNetwork.GetRoomList().Length);
