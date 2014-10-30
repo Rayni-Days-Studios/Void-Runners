@@ -8,7 +8,7 @@ public class AmmoGUI : MonoBehaviour {
  
     void Awake()
     {
-        _spawnPoint = GameObject.Find("Player").GetComponent<ShootingScript>();
+        _spawnPoint = GameObject.FindGameObjectWithTag("Player").GetComponent<ShootingScript>();
     }
     
     void OnGUI()

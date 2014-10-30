@@ -49,10 +49,10 @@ public class Death : MonoBehaviour
             }
         }
         if (_collision != true) return;
-        if (_player.gameObject == null) return;
-            transform.LookAt(_player.transform);
-            transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
-            rigidbody.velocity = transform.forward * Speed;
+            if (_player.gameObject == null) return;
+                transform.LookAt(_player.transform);
+                transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
+                rigidbody.velocity = transform.forward * Speed;
     }
 
     void OnCollisionEnter(Collision other)
@@ -76,9 +76,6 @@ public class Death : MonoBehaviour
             {
                 _killPlayerRef.Die(transform.position + Vector3.up*1.8f, 0.75f, 1);
                 animation.Blend("attack01", 8f, 0.8f);
-                if (_killPlayerRef.gameObject != null) return;
-                    print("hel");
-                    Application.LoadLevel(Application.loadedLevel);
             }
             if (_player.gameObject != null) return;
                 Application.LoadLevel(Application.loadedLevel);
