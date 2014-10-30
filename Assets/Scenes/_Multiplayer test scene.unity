@@ -6722,51 +6722,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 502049552}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &502362435
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 100000, guid: 46dde39f0342dbf4181c99e5d1119fc1, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 502362436}
-  - 114: {fileID: 502362437}
-  m_Layer: 0
-  m_Name: Spawnscript
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &502362436
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 400000, guid: 46dde39f0342dbf4181c99e5d1119fc1, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 502362435}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 691223551}
-  m_RootOrder: 0
---- !u!114 &502362437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400000, guid: 46dde39f0342dbf4181c99e5d1119fc1,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 502362435}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bbb97435ff354341870258864abfe5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EdenPrefab: {fileID: 400002, guid: a4b203d15bde38a4386c59f0ace415ca, type: 2}
-  GunnerPrefab: {fileID: 400002, guid: a4b203d15bde38a4386c59f0ace415ca, type: 2}
-  ScoutPrefab: {fileID: 400002, guid: a4b203d15bde38a4386c59f0ace415ca, type: 2}
-  MonsterPrefab: {fileID: 400002, guid: a4b203d15bde38a4386c59f0ace415ca, type: 2}
-  PlayerID: 0
 --- !u!1 &505705008
 GameObject:
   m_ObjectHideFlags: 0
@@ -9061,8 +9016,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 502362436}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!114 &691223552

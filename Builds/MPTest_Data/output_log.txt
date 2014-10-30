@@ -14,17 +14,21 @@ Platform assembly: C:\Users\math6426\Dev\Void-Runners\Builds\MPTest_Data\Managed
 Loading C:\Users\math6426\Dev\Void-Runners\Builds\MPTest_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
 Platform assembly: C:\Users\math6426\Dev\Void-Runners\Builds\MPTest_Data\Managed\Photon3Unity3D.dll (this message is harmless)
 Loading C:\Users\math6426\Dev\Void-Runners\Builds\MPTest_Data\Managed\Photon3Unity3D.dll into Unity Child Domain
-- Completed reload, in  0.108 seconds
+- Completed reload, in  0.087 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 Platform assembly: C:\Users\math6426\Dev\Void-Runners\Builds\MPTest_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\math6426\Dev\Void-Runners\Builds\MPTest_Data\Managed\System.dll (this message is harmless)
-We received a room list update, total rooms now: 0
+We received a room list update, total rooms now: 1
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Eden
+We received a room list update, total rooms now: 1
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Gunner
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
