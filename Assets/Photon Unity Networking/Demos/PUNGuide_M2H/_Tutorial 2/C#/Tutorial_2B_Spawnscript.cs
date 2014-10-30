@@ -8,7 +8,7 @@ public class Tutorial_2B_Spawnscript : Photon.MonoBehaviour
     public Transform GunnerPrefab;
     public Transform ScoutPrefab;
     public Transform MonsterPrefab;
-    static public int PlayerID;
+    public int PlayerID;
     private Transform _playerPrefab;
 
     void OnJoinedRoom()
