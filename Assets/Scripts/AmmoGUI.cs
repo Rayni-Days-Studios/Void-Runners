@@ -1,18 +1,21 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using Assets.Scripts.Player;
+using UnityEngine;
 
-[ExecuteInEditMode]
-public class AmmoGUI : MonoBehaviour {
-    private ShootingScript _spawnPoint;
-    public GUIStyle AmmoCount;
+namespace Assets.Scripts
+{
+    [ExecuteInEditMode]
+    public class AmmoGUI : MonoBehaviour {
+        private ShootingScript _spawnPoint;
+        public GUIStyle AmmoCount;
  
-    void Awake()
-    {
-        _spawnPoint = GameObject.FindGameObjectWithTag("Player").GetComponent<ShootingScript>();
-    }
+        void Awake()
+        {
+            _spawnPoint = GameObject.FindGameObjectWithTag("Player").GetComponent<ShootingScript>();
+        }
     
-    void OnGUI()
-    {
-        GUI.Label(new Rect(0, 0, 0, 0), "" + _spawnPoint.gun.Ammo + "  " + _spawnPoint.LightGun.Ammo, AmmoCount);
+        void OnGUI()
+        {
+            GUI.Label(new Rect(0, 0, 0, 0), "" + _spawnPoint.gun.Ammo + "  " + _spawnPoint.LightGun.Ammo, AmmoCount);
+        }
     }
 }

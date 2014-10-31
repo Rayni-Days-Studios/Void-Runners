@@ -1,42 +1,44 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class ShootingScript : MonoBehaviour 
+namespace Assets.Scripts.Player
 {
-    public Transform BarrelEnd;
-         public Gun LightGun;
-    public Gun gun;
-
-    [System.Serializable]
-    public struct Gun
+    public class ShootingScript : MonoBehaviour 
     {
-        public int Ammo;
-        public float Force;
-        public Rigidbody BulletPrefab;
-        public GameObject Bullet;
-        public AudioSource ShootSound;
+        public Transform BarrelEnd;
+        public Gun LightGun;
+        public Gun gun;
 
-        public void Shoot(Transform spawnPoint)
+        [System.Serializable]
+        public struct Gun
         {
-            Ammo -= 1;
-            ShootSound.Play();
-            //Shoot
-            var bulletInstance = Instantiate(BulletPrefab, spawnPoint.position, spawnPoint.rotation) as Rigidbody;
-            if (bulletInstance != null) bulletInstance.AddForce(spawnPoint.forward * Time.deltaTime * Force * 1000f);
+            public int Ammo;
+            public float Force;
+            public Rigidbody BulletPrefab;
+            public GameObject Bullet;
+            public AudioSource ShootSound;
+
+            public void Shoot(Transform spawnPoint)
+            {
+                Ammo -= 1;
+                ShootSound.Play();
+                //Shoot
+                var bulletInstance = Instantiate(BulletPrefab, spawnPoint.position, spawnPoint.rotation) as Rigidbody;
+                if (bulletInstance != null) bulletInstance.AddForce(spawnPoint.forward * Time.deltaTime * Force * 1000f);
+            }
+        }
+
+        void Update () 
+        {
+            //If left click
+            if (Input.GetButtonDown("Fire1") && gun.Ammo > 0)
+            {
+                gun.Shoot(BarrelEnd);
+            }
+            //If right click
+            if(Input.GetButtonDown("Fire2") && LightGun.Ammo > 0)
+            {
+                LightGun.Shoot(BarrelEnd);
+            }
         }
     }
-
-	void Update () 
-	{
-        //If left click
-        if (Input.GetButtonDown("Fire1") && gun.Ammo > 0)
-        {
-            gun.Shoot(BarrelEnd);
-        }
-        //If right click
-		if(Input.GetButtonDown("Fire2") && LightGun.Ammo > 0)
-		{
-            LightGun.Shoot(BarrelEnd);
-        }
-	}
 }

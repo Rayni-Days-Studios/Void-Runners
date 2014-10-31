@@ -2,10 +2,11 @@
 using System.Linq;
 using Assets.Scripts.Player;
 using UnityEngine;
+using MonoBehaviour = Photon.MonoBehaviour;
 
 namespace Assets.Scripts.Networking
 {
-    public class NetworkScript : Photon.MonoBehaviour
+    public class NetworkScript : MonoBehaviour
     {
         public string BuildVersion = "1.0";
 
@@ -79,7 +80,7 @@ namespace Assets.Scripts.Networking
             //We still didn't join any room: create one
             if (PhotonNetwork.room != null) yield break;
             var roomName = "TestRoom" + Application.loadedLevelName;
-            PhotonNetwork.CreateRoom(roomName, new RoomOptions() { maxPlayers = 4 }, null);
+            PhotonNetwork.CreateRoom(roomName, new RoomOptions { maxPlayers = 4 }, null);
         }
 
         void OnJoinedRoom()
@@ -89,7 +90,7 @@ namespace Assets.Scripts.Networking
 
         void PlayerRoleActivator(string playerRole, int playerSpawn)
         {
-            _myPlayerGo = (GameObject)PhotonNetwork.Instantiate(playerRole, _spawnSpots[playerSpawn].transform.position, _spawnSpots[playerSpawn].transform.rotation, 0);
+            _myPlayerGo = PhotonNetwork.Instantiate(playerRole, _spawnSpots[playerSpawn].transform.position, _spawnSpots[playerSpawn].transform.rotation, 0);
             _myPlayerGo.GetComponent<FPSInputController>().enabled = true;
             _myPlayerGo.GetComponent<ShootingScript>().enabled = true;
             _myPlayerGo.GetComponent<MouseLook>().enabled = true;

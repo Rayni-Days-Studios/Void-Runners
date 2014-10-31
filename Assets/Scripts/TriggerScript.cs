@@ -1,18 +1,21 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
-public class TriggerScript : MonoBehaviour 
+namespace Assets.Scripts
 {
-
-    public List<GameObject> List = new List<GameObject>();
-
-    void OnTriggerEnter(Collider other)
+    public class TriggerScript : MonoBehaviour 
     {
-        List.Add(other.gameObject);
-    }
 
-    void OnTriggerExit(Collider other)
-    {
-        List.Remove(other.gameObject);
+        public List<GameObject> List = new List<GameObject>();
+
+        void OnTriggerEnter(Collider other)
+        {
+            List.Add(other.gameObject);
+        }
+
+        void OnTriggerExit(Collider other)
+        {
+            List.Remove(other.gameObject);
+        }
     }
 }

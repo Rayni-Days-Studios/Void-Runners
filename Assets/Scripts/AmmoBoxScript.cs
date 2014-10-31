@@ -1,32 +1,36 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Player;
+using UnityEngine;
 
-public class AmmoBoxScript : MonoBehaviour 
+namespace Assets.Scripts
 {
-    public GUIText Target;
-    public int GBullets;
-    public int LBullets;
-
-    void FixedUpdate()
+    public class AmmoBoxScript : MonoBehaviour 
     {
-        Target.text = "";
-    }
+        public GUIText Target;
+        public int GBullets;
+        public int LBullets;
 
-    public void OnLookEnter()
-    {
-        Target.text = "Press E";
-        if (!Input.GetKeyDown("e")) return;
+        void FixedUpdate()
+        {
+            Target.text = "";
+        }
 
-        Destroy(gameObject);
-        Destroy(Target);
-    }
+        public void OnLookEnter()
+        {
+            Target.text = "Press E";
+            if (!Input.GetKeyDown("e")) return;
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag != "Player") return;
+            Destroy(gameObject);
+            Destroy(Target);
+        }
 
-        var shootingScript = other.gameObject.GetComponent<ShootingScript>();
-        shootingScript.gun.Ammo += GBullets;
-        shootingScript.LightGun.Ammo += LBullets;
-        Destroy(gameObject);
+        void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.tag != "Player") return;
+
+            var shootingScript = other.gameObject.GetComponent<ShootingScript>();
+            shootingScript.gun.Ammo += GBullets;
+            shootingScript.LightGun.Ammo += LBullets;
+            Destroy(gameObject);
+        }
     }
 }

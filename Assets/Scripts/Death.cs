@@ -1,63 +1,66 @@
 ﻿using System.Linq;
+using Assets.Scripts.Player;
 using UnityEngine;
 
-public class Death : MonoBehaviour
+namespace Assets.Scripts
 {
-    public TriggerScript Trigger;
-
-    public Light RedLight;
-    public AudioSource Activation;
-    public AudioSource DeathSound;
-    public float Speed;
-    private static GameObject _player;
-    private KillPlayer _killPlayerRef;
-
-
-    bool _dead;
-    bool _audioPlayed;
-    bool _audioPlayed2;
-    bool _collision;
-
-    // Use this for initialization
-    void Start()
+    public class Death : MonoBehaviour
     {
-        _player = GameObject.FindGameObjectWithTag("Player");
-        _killPlayerRef = _player.GetComponent<KillPlayer>();
-        RedLight.enabled = false;
-        animation["idle"].wrapMode = WrapMode.Loop;
-        animation.Play("idle");
-    }
+        public TriggerScript Trigger;
 
-    void Update()
-    {
-        if (Trigger != null)
+        public Light RedLight;
+        public AudioSource Activation;
+        public AudioSource DeathSound;
+        public float Speed;
+        private static GameObject _player;
+        private KillPlayer _killPlayerRef;
+
+
+        bool _dead;
+        bool _audioPlayed;
+        bool _audioPlayed2;
+        bool _collision;
+
+        // Use this for initialization
+        void Start()
         {
-            if (Trigger.List.Any(obj => obj != null && obj.gameObject.tag == "Bullet"))
-            {
-                _collision = true;
-                Destroy(Trigger.gameObject);
-                Trigger = null;
-
-                if (_audioPlayed2 == false)
-                {
-                    _audioPlayed2 = true;
-                    Activation.Play();
-                }
-                RedLight.enabled = true;
-                animation["run"].wrapMode = WrapMode.Loop;
-                animation.Play("run");
-            }
+            _player = GameObject.FindGameObjectWithTag("Player");
+            _killPlayerRef = _player.GetComponent<KillPlayer>();
+            RedLight.enabled = false;
+            animation["idle"].wrapMode = WrapMode.Loop;
+            animation.Play("idle");
         }
-        if (_collision != true) return;
-            if (_player.gameObject == null) return;
-                transform.LookAt(_player.transform);
-                transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
-                rigidbody.velocity = transform.forward * Speed;
-    }
 
-    void OnCollisionEnter(Collision other)
-    {
-        if (_dead) return;
+        void Update()
+        {
+            if (Trigger != null)
+            {
+                if (Trigger.List.Any(obj => obj != null && obj.gameObject.tag == "Bullet"))
+                {
+                    _collision = true;
+                    Destroy(Trigger.gameObject);
+                    Trigger = null;
+
+                    if (_audioPlayed2 == false)
+                    {
+                        _audioPlayed2 = true;
+                        Activation.Play();
+                    }
+                    RedLight.enabled = true;
+                    animation["run"].wrapMode = WrapMode.Loop;
+                    animation.Play("run");
+                }
+            }
+            if (_collision != true) return;
+            if (_player.gameObject == null) return;
+            transform.LookAt(_player.transform);
+            transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
+            rigidbody.velocity = transform.forward * Speed;
+        }
+
+        void OnCollisionEnter(Collision other)
+        {
+            if (_dead) return;
 
             if (other.gameObject.tag == "Bullet2")
             {
@@ -78,6 +81,7 @@ public class Death : MonoBehaviour
                 animation.Blend("attack01", 8f, 0.8f);
             }
             if (_player.gameObject != null) return;
-                Application.LoadLevel(Application.loadedLevel);
+            Application.LoadLevel(Application.loadedLevel);
+        }
     }
 }

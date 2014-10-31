@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class SpawnSpot : MonoBehaviour
+namespace Assets.Scripts.Networking
 {
-    public int TeamID = 1;
+    public class SpawnSpot : MonoBehaviour
+    {
+        public int TeSamId = 1;
+    }
 }
