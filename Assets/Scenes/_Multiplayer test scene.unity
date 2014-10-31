@@ -9030,10 +9030,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5c422630a3588c4fa8a93c6d9061a11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Eden: {fileID: 100002, guid: 7e4c67489960ae442afa5327b03f3812, type: 2}
-  Gunner: {fileID: 100004, guid: 3123aa77b1cb0bc4b94d9624c12a370a, type: 2}
-  Scout: {fileID: 100004, guid: 63feb8a0e2375c24094cdd2805b337d7, type: 2}
-  Monster: {fileID: 100122, guid: 00ae3354ade35ef4b9247cef948992ee, type: 2}
   BuildVersion: 1.0
 --- !u!1 &711752236
 GameObject:

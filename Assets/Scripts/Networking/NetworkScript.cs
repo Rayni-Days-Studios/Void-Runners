@@ -4,21 +4,18 @@ using System.Collections;
 
 public class NetworkScript : Photon.MonoBehaviour
 {
-    public GameObject Eden;
-    public GameObject Gunner;
-    public GameObject Scout;
-    public GameObject Monster;
     public string BuildVersion = "1.0";
 
     private SpawnSpot[] _spawnSpots;
-    private GameObject myPlayerGO;
+    private GameObject _myPlayerGO;
 
     void Awake()
     {
         //PhotonNetwork.offlineMode = true;
         //StartCoroutine(JoinOrCreateRoom());
         PhotonNetwork.ConnectUsingSettings(BuildVersion);
-        _spawnSpots = GameObject.FindObjectsOfType<SpawnSpot>();
+        _spawnSpots = FindObjectsOfType<SpawnSpot>();
+        //_spawnSpots = GameObject.FindObjectsOfType<SpawnSpot>();
     }
 
     void OnGUI()
@@ -89,13 +86,13 @@ public class NetworkScript : Photon.MonoBehaviour
 
     void PlayerRoleActivator(string playerRole, int playerSpawn)
     {
-        myPlayerGO = (GameObject)PhotonNetwork.Instantiate(playerRole, _spawnSpots[playerSpawn].transform.position, _spawnSpots[playerSpawn].transform.rotation, 0);
-        myPlayerGO.GetComponent<FPSInputController>().enabled = true;
-        myPlayerGO.GetComponent<ShootingScript>().enabled = true;
-        myPlayerGO.GetComponent<MouseLook>().enabled = true;
-        myPlayerGO.GetComponent<CharacterMotor>().enabled = true;
-        myPlayerGO.GetComponent<NetworkCharacter>().enabled = false;
-        myPlayerGO.transform.FindChild("MainCamera").gameObject.SetActive(true);
+        _myPlayerGO = (GameObject)PhotonNetwork.Instantiate(playerRole, _spawnSpots[playerSpawn].transform.position, _spawnSpots[playerSpawn].transform.rotation, 0);
+        _myPlayerGO.GetComponent<FPSInputController>().enabled = true;
+        _myPlayerGO.GetComponent<ShootingScript>().enabled = true;
+        _myPlayerGO.GetComponent<MouseLook>().enabled = true;
+        _myPlayerGO.GetComponent<CharacterMotor>().enabled = true;
+        _myPlayerGO.GetComponent<NetworkCharacter>().enabled = false;
+        _myPlayerGO.transform.FindChild("MainCamera").gameObject.SetActive(true);
         print(playerRole);
     }
 
