@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using UnityEngine;
 
-namespace Assets.Scripts
+namespace Essential
 {
     public class RemoveScript : MonoBehaviour 
     {

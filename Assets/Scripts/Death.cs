@@ -1,8 +1,9 @@
 ﻿using System.Linq;
-using Assets.Scripts.Player;
+using Essential;
+using Player;
 using UnityEngine;
 
-namespace Assets.Scripts
+namespace Monster
 {
     public class Death : MonoBehaviour
     {

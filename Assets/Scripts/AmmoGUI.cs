@@ -1,10 +1,12 @@
-﻿using Assets.Scripts.Player;
+﻿using Player;
 using UnityEngine;
 
-namespace Assets.Scripts
+namespace _GUI
 {
     [ExecuteInEditMode]
+
     public class AmmoGUI : MonoBehaviour {
+
         private ShootingScript _spawnPoint;
         public GUIStyle AmmoCount;
  

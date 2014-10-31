@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using MonoBehaviour = Photon.MonoBehaviour;
 
-namespace Assets.Scripts.Player
+namespace Player
 {
-    public class CharacterMotor : MonoBehaviour
+    public class CharacterMotor : Photon.MonoBehaviour
     {
         // Does this script currently respond to input?
         public bool CanControl = true;

@@ -1,12 +1,11 @@
 ﻿using System.Collections;
 using System.Linq;
-using Assets.Scripts.Player;
+using Player;
 using UnityEngine;
-using MonoBehaviour = Photon.MonoBehaviour;
 
-namespace Assets.Scripts.Networking
+namespace Networking
 {
-    public class NetworkScript : MonoBehaviour
+    public class NetworkScript : Photon.MonoBehaviour
     {
         //This is used to set the build version
         public string BuildVersion = "1.0";
@@ -17,7 +16,6 @@ namespace Assets.Scripts.Networking
 
         void Awake()
         {
-            //OfflineMode();
             //Connects to the server with the settings from "PhotonServerSettings" and has the variable BuildVersion as the required string
             PhotonNetwork.ConnectUsingSettings(BuildVersion);
             //Finds gameobjects with the SpawnSpot script attached and adds them to the spawnspots array
@@ -26,7 +24,7 @@ namespace Assets.Scripts.Networking
 
         void OfflineMode()
         {
-            //Call this function for offline mode
+            //Call this function in Awake for offline mode
             //Good for testing on local PC without latency
             PhotonNetwork.offlineMode = true;
             //ConnectUsingSettings won't work in offline mode
@@ -101,11 +99,13 @@ namespace Assets.Scripts.Networking
 
         void OnJoinedRoom()
         {
+            //Calls the SpawnPlayer function
             SpawnPlayer();
         }
 
         void PlayerRoleActivator(string playerRole, int playerSpawn)
         {
+            //Instantiates player at relevant spawnspot
             _myPlayerGo = PhotonNetwork.Instantiate(playerRole, _spawnSpots[playerSpawn].transform.position, _spawnSpots[playerSpawn].transform.rotation, 0);
             _myPlayerGo.GetComponent<FPSInputController>().enabled = true;
             _myPlayerGo.GetComponent<ShootingScript>().enabled = true;
@@ -118,6 +118,7 @@ namespace Assets.Scripts.Networking
 
         void SpawnPlayer()
         {
+            //This spawns the player, and gives it a role based on how many players are in the room
             switch (PhotonNetwork.countOfPlayers)
             {
                 case(1):
@@ -133,15 +134,15 @@ namespace Assets.Scripts.Networking
                     PlayerRoleActivator("Scout", 3);
                     break;
             }
-        
+
             ////Random spawn
             //SpawnSpot mySpawnSpot = _spawnSpots[Random.Range(0, _spawnSpots.Length)];
-
         }
 
         void OnReceivedRoomListUpdate()
         {
-            Debug.Log("We received a room list update, total rooms now: " + PhotonNetwork.GetRoomList().Length);
+            print("We received a room list update, total rooms now: " + PhotonNetwork.GetRoomList().Length);
+
 
             var wantedRoomName = "TestRoom" + Application.loadedLevelName;
             foreach (var room in PhotonNetwork.GetRoomList().Where(room => room.name == wantedRoomName))
