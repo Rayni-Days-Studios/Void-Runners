@@ -8,18 +8,30 @@ namespace Assets.Scripts.Networking
 {
     public class NetworkScript : MonoBehaviour
     {
+        //This is used to set the build version
         public string BuildVersion = "1.0";
-
+        //Array to hold the spawnspots
         private SpawnSpot[] _spawnSpots;
+        //Holds the local player gameobject
         private GameObject _myPlayerGo;
 
         void Awake()
         {
-            //PhotonNetwork.offlineMode = true;
-            //StartCoroutine(JoinOrCreateRoom());
+            //OfflineMode();
+            //Connects to the server with the settings from "PhotonServerSettings" and has the variable BuildVersion as the required string
             PhotonNetwork.ConnectUsingSettings(BuildVersion);
+            //Finds gameobjects with the SpawnSpot script attached and adds them to the spawnspots array
             _spawnSpots = FindObjectsOfType<SpawnSpot>();
-            //_spawnSpots = GameObject.FindObjectsOfType<SpawnSpot>();
+        }
+
+        void OfflineMode()
+        {
+            //Call this function for offline mode
+            //Good for testing on local PC without latency
+            PhotonNetwork.offlineMode = true;
+            //ConnectUsingSettings won't work in offline mode
+            //So we're manually calling the JoinOrCreateRoom function
+            StartCoroutine(JoinOrCreateRoom());
         }
 
         void OnGUI()
@@ -62,19 +74,23 @@ namespace Assets.Scripts.Networking
 
         void OnConnectedToPhoton()
         {
+            //Starts the function when connected
             StartCoroutine(JoinOrCreateRoom());
         }
 
         void OnDisconnectedFromPhoton()
         {
+            //When disconnected, make sure the room list gets received again
             _receivedRoomList = false;
         }
 
         IEnumerator JoinOrCreateRoom()
         {
+            //If the room list isn't received within 2 seconds, timeout
             var timeOut = Time.time + 2;
             while (Time.time < timeOut && !_receivedRoomList)
             {
+                //Makes sure it checks rooms for 2 seconds, so it doesn't instantly create a room
                 yield return 0;
             }
             //We still didn't join any room: create one
