@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Networking
+namespace Assets.Scripts.Networking
 {
     public class NetworkCharacter : Photon.MonoBehaviour
     {

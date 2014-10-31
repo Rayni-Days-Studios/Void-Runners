@@ -1,7 +1,7 @@
-﻿using Player;
+﻿using Assets.Scripts.Player;
 using UnityEngine;
 
-namespace _GUI
+namespace Assets.Scripts
 {
     [ExecuteInEditMode]
 

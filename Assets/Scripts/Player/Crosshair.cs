@@ -1,7 +1,6 @@
-﻿using AmmoBox;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Player
+namespace Assets.Scripts.Player
 {
     public class Crosshair : MonoBehaviour 
     {

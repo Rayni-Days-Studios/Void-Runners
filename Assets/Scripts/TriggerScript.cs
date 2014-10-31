@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Essential
+namespace Assets.Scripts
 {
     public class TriggerScript : MonoBehaviour 
     {

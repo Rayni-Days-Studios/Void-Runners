@@ -1,7 +1,7 @@
-﻿using Player;
+﻿using Assets.Scripts.Player;
 using UnityEngine;
 
-namespace AmmoBox
+namespace Assets.Scripts
 {
     public class AmmoBoxScript : MonoBehaviour 
     {

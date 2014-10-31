@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace _GUI
+namespace Assets.Scripts
 {
     [ExecuteInEditMode]
     public class CrosshairGUI : MonoBehaviour 

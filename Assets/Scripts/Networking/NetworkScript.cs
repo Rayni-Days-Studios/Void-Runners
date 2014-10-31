@@ -1,16 +1,19 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
-using Player;
+using Assets.Scripts.Player;
 using UnityEngine;
 
-namespace Networking
+namespace Assets.Scripts.Networking
 {
     public class NetworkScript : Photon.MonoBehaviour
     {
+        /* Why is BuildVersion important? */
         //This is used to set the build version
         public string BuildVersion = "1.0";
-        //Array to hold the spawnspots
-        private SpawnSpot[] _spawnSpots;
+
+        //Array to hold the spots that can be spawned in
+        private List<SpawnSpot> _spawnSpots;
         //Holds the local player gameobject
         private GameObject _myPlayerGo;
 
@@ -19,7 +22,7 @@ namespace Networking
             //Connects to the server with the settings from "PhotonServerSettings" and has the variable BuildVersion as the required string
             PhotonNetwork.ConnectUsingSettings(BuildVersion);
             //Finds gameobjects with the SpawnSpot script attached and adds them to the spawnspots array
-            _spawnSpots = FindObjectsOfType<SpawnSpot>();
+            _spawnSpots = FindObjectsOfType<SpawnSpot>().ToList();
         }
 
         void OfflineMode()
@@ -104,7 +107,8 @@ namespace Networking
         }
 
         void PlayerRoleActivator(string playerRole, int playerSpawn)
-        {
+        { 
+            /* Why enable all those components? */
             //Instantiates player at relevant spawnspot
             _myPlayerGo = PhotonNetwork.Instantiate(playerRole, _spawnSpots[playerSpawn].transform.position, _spawnSpots[playerSpawn].transform.rotation, 0);
             _myPlayerGo.GetComponent<FPSInputController>().enabled = true;

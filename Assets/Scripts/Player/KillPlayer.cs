@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using UnityEngine;
 
-namespace Player
+namespace Assets.Scripts.Player
 {
     public class KillPlayer : MonoBehaviour
     {
