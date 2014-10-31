@@ -1,16 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
+using MonoBehaviour = Photon.MonoBehaviour;
 
-public class NetworkCharacter : Photon.MonoBehaviour
+public class NetworkCharacter : MonoBehaviour
 {
 
     private Vector3 _realPosition;
     private Quaternion _realRotation;
-
-    void Start()
-    {
-        
-    }
 
     void Update()
     {
@@ -30,9 +25,9 @@ public class NetworkCharacter : Photon.MonoBehaviour
     {
         if (stream.isWriting)
         {
-            //Executed on the owner of this PhotonView; 
-            //The server sends it's position over the network
-            //"Encode" it, and send it
+            // Executed on the owner of this PhotonView; 
+            // The server sends it's position over the network
+            // "Encode" it, and send it
 
             stream.SendNext(transform.position);
             stream.SendNext(transform.rotation);
@@ -40,8 +35,8 @@ public class NetworkCharacter : Photon.MonoBehaviour
         }
         else
         {
-            //Executed on the others; 
-            //receive a position and set the object to it
+            // Executed on the others; 
+            // receive a position and set the object to it
             _realPosition = (Vector3)stream.ReceiveNext();
             _realRotation = (Quaternion)stream.ReceiveNext();
         }

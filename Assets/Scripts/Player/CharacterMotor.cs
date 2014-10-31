@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using MonoBehaviour = Photon.MonoBehaviour;
 
-public class CharacterMotor : Photon.MonoBehaviour
+public class CharacterMotor : MonoBehaviour
 {
     [AddComponentMenu("Character/Character Motor")]
 
