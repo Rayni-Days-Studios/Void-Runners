@@ -1,48 +1,45 @@
 ﻿using System.Linq;
 using UnityEngine;
 
-namespace Assets.Scripts
+public class RemoveScript : MonoBehaviour 
 {
-    public class RemoveScript : MonoBehaviour 
-    {
-        public string[] CollisionObject;
-        public string TriggerObject;
-        public float RemoveTime;
-        public bool RemoveAfterTime;
-        public float AmountOfTime;
-        public bool InstantToggle;
-        public string InstantRemoval;
+    public string[] CollisionObject;
+    public string TriggerObject;
+    public float RemoveTime;
+    public bool RemoveAfterTime;
+    public float AmountOfTime;
+    public bool InstantToggle;
+    public string InstantRemoval;
 
-        void Update()
+    void Update()
+    {
+        if (RemoveAfterTime)
         {
-            if (RemoveAfterTime)
-            {
-                Destroy(gameObject, AmountOfTime);
-            }
+            Destroy(gameObject, AmountOfTime);
+        }
+    }
+
+    //Remove object on collision
+    void OnCollisionEnter (Collision other)
+    {
+        foreach (var str in CollisionObject.Where(str => other.gameObject.tag == str))
+        {
+            Destroy(gameObject, RemoveTime);
         }
 
-        //Remove object on collision
-        void OnCollisionEnter (Collision other)
-        {
-            foreach (var str in CollisionObject.Where(str => other.gameObject.tag == str))
-            {
-                Destroy(gameObject, RemoveTime);
-            }
-
-            if (!InstantToggle) return;
+        if (!InstantToggle) return;
             if (other.gameObject.tag == InstantRemoval)
             {
                 Destroy(gameObject);
             }
-        }
+    }
 
-        //Remove object on trigger
-        void OnTriggerEnter(Collider other)
+    //Remove object on trigger
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == TriggerObject)
         {
-            if (other.gameObject.tag == TriggerObject)
-            {
-                Destroy(gameObject, RemoveTime);
-            }
+            Destroy(gameObject, RemoveTime);
         }
     }
 }

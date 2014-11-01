@@ -1,12 +1,9 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Networking
+public class SpawnSpot : MonoBehaviour
 {
-    public class SpawnSpot : MonoBehaviour
-    {
-        //Used for finding spawnspot gameobjects that contains this script
+    //Used for finding spawnspot gameobjects that contains this script
 
-        //This will be used later for multiple teams
-        public int TeamID = 1;
-    }
+    //This will be used later for multiple teams
+    public int TeamID = 1;
 }
