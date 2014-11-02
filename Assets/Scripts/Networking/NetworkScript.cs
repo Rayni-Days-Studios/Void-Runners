@@ -5,13 +5,12 @@ using UnityEngine;
 
 public class NetworkScript : Photon.MonoBehaviour
 {
-    /* Why is BuildVersion important? */
-    //This is used to set the build version
+    // This is used to set the build version
     public string BuildVersion = "1.0";
 
-    //Array to hold the spots that can be spawned in
+    // Array to hold the spots that can be spawned in
     private List<SpawnSpot> _spawnSpots;
-    //Holds the local player gameobject
+    // Holds the local player gameobject
     private GameObject _myPlayerGo;
 
     void Awake()
@@ -19,7 +18,7 @@ public class NetworkScript : Photon.MonoBehaviour
         //Connects to the server with the settings from "PhotonServerSettings" and has the variable BuildVersion as the required string
         PhotonNetwork.ConnectUsingSettings(BuildVersion);
         //Finds gameobjects with the SpawnSpot script attached and adds them to the spawnspots array
-        _spawnSpots = FindObjectsOfType<SpawnSpot>().ToList();
+
     }
 
     void OfflineMode()
@@ -105,7 +104,6 @@ public class NetworkScript : Photon.MonoBehaviour
 
     void PlayerRoleActivator(string playerRole, int playerSpawn)
     { 
-        /* Why enable all those components? */
         //Instantiates player at relevant spawnspot
         _myPlayerGo = PhotonNetwork.Instantiate(playerRole, _spawnSpots[playerSpawn].transform.position, _spawnSpots[playerSpawn].transform.rotation, 0);
         _myPlayerGo.GetComponent<FPSInputController>().enabled = true;
