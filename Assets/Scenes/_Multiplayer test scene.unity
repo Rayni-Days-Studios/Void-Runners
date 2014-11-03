@@ -3439,7 +3439,7 @@ GameObject:
   - 114: {fileID: 278820671}
   m_Layer: 0
   m_Name: GunnerSpawn
-  m_TagString: Untagged
+  m_TagString: SpawnSpot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4105,7 +4105,7 @@ GameObject:
   - 23: {fileID: 351078677}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Walls
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4161,7 +4161,7 @@ Transform:
   m_LocalScale: {x: 20, y: 1, z: 20}
   m_Children: []
   m_Father: {fileID: 1642611795}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!1 &352555195
 GameObject:
   m_ObjectHideFlags: 0
@@ -13149,7 +13149,7 @@ GameObject:
   - 114: {fileID: 1013338315}
   m_Layer: 0
   m_Name: MonsterSpawn
-  m_TagString: Untagged
+  m_TagString: SpawnSpot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15389,7 +15389,7 @@ GameObject:
   - 114: {fileID: 1172344044}
   m_Layer: 0
   m_Name: EdenSpawn
-  m_TagString: Untagged
+  m_TagString: SpawnSpot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16772,7 +16772,7 @@ Transform:
   - {fileID: 580270806}
   - {fileID: 1138270766}
   m_Father: {fileID: 1642611795}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!1 &1338876066
 GameObject:
   m_ObjectHideFlags: 0
@@ -20388,8 +20388,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 474293081}
-  - {fileID: 1337602448}
   - {fileID: 351078680}
+  - {fileID: 1337602448}
   m_Father: {fileID: 0}
   m_RootOrder: 2
 --- !u!1 &1642807769
@@ -21093,7 +21093,7 @@ GameObject:
   - 114: {fileID: 1692444675}
   m_Layer: 0
   m_Name: ScoutSpawn
-  m_TagString: Untagged
+  m_TagString: SpawnSpot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -5,6 +5,18 @@ using UnityEngine;
 
 public class NetworkScript : Photon.MonoBehaviour
 {
+    /* Work on a better spawn system instead, not just the spawnspots. 
+     * Right now the spawn system is broken. If someone joins, they get the first role. 
+     * Now say someone else joins, that person gets the second role. 
+     * Now, the first player leaves, and another person joins. 
+     * What role does this third person get? 
+     * The third role?
+     * Nope. The second one.
+     * Why? Because the roles are based on how many players are in the room.
+     * Work on fixing this instead.
+     * Also, don't use 4 tags for one thing. Bad move!
+     */
+
     // This is used to set the build version
     public string BuildVersion = "1.0";
 
@@ -15,41 +27,41 @@ public class NetworkScript : Photon.MonoBehaviour
 
     void Awake()
     {
-        //Connects to the server with the settings from "PhotonServerSettings" and has the variable BuildVersion as the required string
+        // Connects to the server with the settings from "PhotonServerSettings" and has the variable BuildVersion as the required string
         PhotonNetwork.ConnectUsingSettings(BuildVersion);
-        //Finds gameobjects with the SpawnSpot script attached and adds them to the spawnspots array
-
+        // Finds gameobjects with the SpawnSpot script attached and adds them to the spawnspots array
+        _spawnSpots = FindObjectsOfType<SpawnSpot>().ToList();
     }
 
     void OfflineMode()
     {
-        //Call this function in Awake for offline mode
-        //Good for testing on local PC without latency
+        // Call this function in Awake for offline mode
+        // Good for testing on local PC without latency
         PhotonNetwork.offlineMode = true;
-        //ConnectUsingSettings won't work in offline mode
-        //So we're manually calling the JoinOrCreateRoom function
+        // ConnectUsingSettings won't work in offline mode
+        // So we're manually calling the JoinOrCreateRoom function
         StartCoroutine(JoinOrCreateRoom());
     }
 
     void OnGUI()
     {
-        //Check connection state..
+        // Check connection state..
         if (!PhotonNetwork.connected && !PhotonNetwork.connecting)
         {
-            //We are currently disconnected
+            // We are currently disconnected
             GUILayout.Label("Connection status: " + PhotonNetwork.connectionStateDetailed);
 
             GUILayout.BeginVertical();
             if (GUILayout.Button("Connect"))
             {
-                //Connect using the PUN wizard settings (Self-hosted server or Photon cloud)
+                // Connect using the PUN wizard settings (Self-hosted server or Photon cloud)
                 PhotonNetwork.ConnectUsingSettings(BuildVersion);
             }
             GUILayout.EndVertical();
         }
         else
         {
-            //We're connected!
+            // We're connected!
             GUILayout.Label("Connection status: " + PhotonNetwork.connectionStateDetailed);
             if (PhotonNetwork.room != null)
             {
@@ -71,26 +83,26 @@ public class NetworkScript : Photon.MonoBehaviour
 
     void OnConnectedToPhoton()
     {
-        //Starts the function when connected
+        // Starts the function when connected
         StartCoroutine(JoinOrCreateRoom());
     }
 
     void OnDisconnectedFromPhoton()
     {
-        //When disconnected, make sure the room list gets received again
+        // When disconnected, make sure the room list gets received again
         _receivedRoomList = false;
     }
 
     IEnumerator JoinOrCreateRoom()
     {
-        //If the room list isn't received within 2 seconds, timeout
+        // If the room list isn't received within 2 seconds, timeout
         var timeOut = Time.time + 2;
         while (Time.time < timeOut && !_receivedRoomList)
         {
-            //Makes sure it checks rooms for 2 seconds, so it doesn't instantly create a room
+            // Makes sure it checks rooms for 2 seconds, so it doesn't instantly create a room
             yield return 0;
         }
-        //We still didn't join any room: create one
+        // We still didn't join any room: create one
         if (PhotonNetwork.room != null) yield break;
         var roomName = "TestRoom" + Application.loadedLevelName;
         PhotonNetwork.CreateRoom(roomName, new RoomOptions { maxPlayers = 4 }, null);
@@ -98,13 +110,13 @@ public class NetworkScript : Photon.MonoBehaviour
 
     void OnJoinedRoom()
     {
-        //Calls the SpawnPlayer function
+        // Calls the SpawnPlayer function
         SpawnPlayer();
     }
 
     void PlayerRoleActivator(string playerRole, int playerSpawn)
     { 
-        //Instantiates player at relevant spawnspot
+        // Instantiates player at relevant spawnspot
         _myPlayerGo = PhotonNetwork.Instantiate(playerRole, _spawnSpots[playerSpawn].transform.position, _spawnSpots[playerSpawn].transform.rotation, 0);
         _myPlayerGo.GetComponent<FPSInputController>().enabled = true;
         _myPlayerGo.GetComponent<ShootingScript>().enabled = true;
@@ -117,7 +129,7 @@ public class NetworkScript : Photon.MonoBehaviour
 
     void SpawnPlayer()
     {
-        //This spawns the player, and gives it a role based on how many players are in the room
+        // This spawns the player, and gives it a role based on how many players are in the room
         switch (PhotonNetwork.countOfPlayers)
         {
             case(1):
@@ -134,7 +146,7 @@ public class NetworkScript : Photon.MonoBehaviour
                 break;
         }
 
-        ////Random spawn
+        //// Random spawn
         //SpawnSpot mySpawnSpot = _spawnSpots[Random.Range(0, _spawnSpots.Length)];
     }
 

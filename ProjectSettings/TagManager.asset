@@ -3,15 +3,11 @@
 --- !u!78 &1
 TagManager:
   tags:
-  - 
+  - Bullet
   - Bullet2
   - Enemy
-  - Bullet
   - Walls
-  - EdenSpawn
-  - GunnerSpawn
-  - ScoutSpawn
-  - MonsterSpawn
+  - SpawnSpot
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
