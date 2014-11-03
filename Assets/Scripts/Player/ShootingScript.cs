@@ -21,7 +21,7 @@ public class ShootingScript : MonoBehaviour
             Ammo -= 1;
             ShootSound.Play();
             //Shoot
-            Rigidbody bulletInstance = Instantiate(BulletPrefab, spawnPoint.position, spawnPoint.rotation) as Rigidbody;
+            var bulletInstance = Instantiate(BulletPrefab, spawnPoint.position, spawnPoint.rotation) as Rigidbody;
             if (bulletInstance != null) bulletInstance.AddForce(spawnPoint.forward * Time.deltaTime * Force * 1000f);
         }
     }
