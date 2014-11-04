@@ -285,8 +285,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa85db935cd4cb3429f9188e00003138, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Crosshair: {fileID: 2800000, guid: 13c06d8fbac529a4fbc8a890ed4b7fec, type: 3}
-  NoGuiStyle:
+  crosshair: {fileID: 2800000, guid: 13c06d8fbac529a4fbc8a890ed4b7fec, type: 3}
+  noGuiStyle:
     m_Name: 
     m_Normal:
       m_Background: {fileID: 0}
@@ -345,7 +345,7 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
-  GuiColor: {r: 1, g: 1, b: 1, a: 1}
+  guiColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -357,7 +357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dba3ceb2b0a3d984bad39bfae5ff8edf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AmmoCount:
+  ammoCount:
     m_Name: 
     m_Normal:
       m_Background: {fileID: 0}
@@ -457,8 +457,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30a853ad8c54ccf49824681a63f4bc7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanControl: 1
-  UseFixedUpdate: 1
+  movement:
+    maxForwardSpeed: 3
+    maxSidewaysSpeed: 2
+    maxBackwardsSpeed: 2
+    slopeSpeedMultiplier:
+      serializedVersion: 2
+      m_Curve:
+      - time: -90
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 90
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    maxGroundAcceleration: 30
+    maxAirAcceleration: 20
+    gravity: 9.81000042
+    maxFallSpeed: 20
+  jumping:
+    enabled: 1
+    baseHeight: 1
+    extraHeight: 4.0999999
+    perpAmount: 0
+    steepPerpAmount: .5
+  movingPlatform:
+    enabled: 1
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -481,19 +515,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e1450c5831f7344c818ca0674b23f40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BarrelEnd: {fileID: 400006}
-  LightGun:
+  barrelEnd: {fileID: 0}
+  lightGun:
     Ammo: 0
-    Force: 10
-    BulletPrefab: {fileID: 5400000, guid: 0bba4c6b8ada82440a58440ff3002374, type: 2}
-    Bullet: {fileID: 100000, guid: 0bba4c6b8ada82440a58440ff3002374, type: 2}
-    ShootSound: {fileID: 8200000}
-  gun:
+    Force: 0
+    BulletPrefab: {fileID: 0}
+    Bullet: {fileID: 0}
+    ShootSound: {fileID: 0}
+  bulletGun:
     Ammo: 0
-    Force: 30
-    BulletPrefab: {fileID: 5400000, guid: 06aac4a6e4a03d7478d9f1d0407c56bb, type: 2}
-    Bullet: {fileID: 100000, guid: 06aac4a6e4a03d7478d9f1d0407c56bb, type: 2}
-    ShootSound: {fileID: 8200000}
+    Force: 0
+    BulletPrefab: {fileID: 0}
+    Bullet: {fileID: 0}
+    ShootSound: {fileID: 0}
 --- !u!114 &11400014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -505,7 +539,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94233478a2d817b4a92f365ec010a16f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Progress: 0
+  progress: 0
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1
