@@ -3666,10 +3666,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Trigger: {fileID: 1675622009}
-  RedLight: {fileID: 210590063}
-  Activation: {fileID: 210590062}
-  DeathSound: {fileID: 210590062}
-  Speed: 10
+  redLight: {fileID: 0}
+  activation: {fileID: 0}
+  deathSound: {fileID: 0}
+  speed: 0
 --- !u!65 &210590066
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22355,6 +22355,7 @@ GameObject:
   - 114: {fileID: 1448373979}
   - 114: {fileID: 1448373978}
   - 114: {fileID: 1448373977}
+  - 114: {fileID: 1448373985}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -22387,8 +22388,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa85db935cd4cb3429f9188e00003138, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Crosshair: {fileID: 2800000, guid: 13c06d8fbac529a4fbc8a890ed4b7fec, type: 3}
-  NoGuiStyle:
+  crosshair: {fileID: 2800000, guid: 13c06d8fbac529a4fbc8a890ed4b7fec, type: 3}
+  noGuiStyle:
     m_Name: 
     m_Normal:
       m_Background: {fileID: 0}
@@ -22447,7 +22448,7 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
-  GuiColor: {r: 1, g: 1, b: 1, a: 1}
+  guiColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1448373978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22460,7 +22461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dba3ceb2b0a3d984bad39bfae5ff8edf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AmmoCount:
+  ammoCount:
     m_Name: 
     m_Normal:
       m_Background: {fileID: 0}
@@ -22531,7 +22532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6309f910855856479ca62c5256db4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Range: 300
+  range: 300
 --- !u!81 &1448373980
 AudioListener:
   m_ObjectHideFlags: 0
@@ -22608,6 +22609,17 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: .0219999999
+--- !u!114 &1448373985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1448373975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 354e491c1f4307c49ac143646bdc63b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1449137147
 GameObject:
   m_ObjectHideFlags: 0
@@ -23359,7 +23371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1000626b464a34a47ba4a0be0751eeb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  List: []
+  list: []
 --- !u!65 &1509038242
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26151,7 +26163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1000626b464a34a47ba4a0be0751eeb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  List: []
+  list: []
 --- !u!65 &1675622010
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26678,12 +26690,6 @@ MonoBehaviour:
     steepPerpAmount: .5
   movingPlatform:
     enabled: 1
-    movementTransfer: 2
-  sliding:
-    enabled: 1
-    slidingSpeed: 15
-    sidewaysControl: 1
-    speedControl: .400000006
 --- !u!114 &1710307923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26767,19 +26773,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e1450c5831f7344c818ca0674b23f40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BarrelEnd: {fileID: 209904437}
-  LightGun:
-    Ammo: 50
-    Force: 15
-    BulletPrefab: {fileID: 5400000, guid: 0bba4c6b8ada82440a58440ff3002374, type: 2}
-    Bullet: {fileID: 100000, guid: 0bba4c6b8ada82440a58440ff3002374, type: 2}
-    ShootSound: {fileID: 1710307925}
-  gun:
-    Ammo: 10
-    Force: 40
-    BulletPrefab: {fileID: 5400000, guid: 06aac4a6e4a03d7478d9f1d0407c56bb, type: 2}
-    Bullet: {fileID: 100000, guid: 06aac4a6e4a03d7478d9f1d0407c56bb, type: 2}
-    ShootSound: {fileID: 1710307925}
+  barrelEnd: {fileID: 0}
+  lightGun:
+    Ammo: 0
+    Force: 0
+    BulletPrefab: {fileID: 0}
+    Bullet: {fileID: 0}
+    ShootSound: {fileID: 0}
+  bulletGun:
+    Ammo: 0
+    Force: 0
+    BulletPrefab: {fileID: 0}
+    Bullet: {fileID: 0}
+    ShootSound: {fileID: 0}
 --- !u!114 &1710307927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26792,7 +26798,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94233478a2d817b4a92f365ec010a16f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Progress: 0
+  progress: 0
 --- !u!65 &1710307928
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27754,10 +27760,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Trigger: {fileID: 1509038241}
-  RedLight: {fileID: 1773296946}
-  Activation: {fileID: 1773296945}
-  DeathSound: {fileID: 1773296945}
-  Speed: 10
+  redLight: {fileID: 0}
+  activation: {fileID: 0}
+  deathSound: {fileID: 0}
+  speed: 0
 --- !u!65 &1773296949
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29464,7 +29470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1000626b464a34a47ba4a0be0751eeb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  List: []
+  list: []
 --- !u!65 &1928307744
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31927,10 +31933,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Trigger: {fileID: 1928307743}
-  RedLight: {fileID: 2075124254}
-  Activation: {fileID: 2075124253}
-  DeathSound: {fileID: 2075124253}
-  Speed: 10
+  redLight: {fileID: 0}
+  activation: {fileID: 0}
+  deathSound: {fileID: 0}
+  speed: 0
 --- !u!65 &2075124257
 BoxCollider:
   m_ObjectHideFlags: 0
