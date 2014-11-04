@@ -19,5 +19,10 @@ public class LockMouse : MonoBehaviour {
 	    {
 	        Screen.lockCursor = !Screen.lockCursor;
 	    }
+
+	    if (Input.GetMouseButton(0))
+	    {
+	        Screen.lockCursor = true;
+	    }
 	}
 }
