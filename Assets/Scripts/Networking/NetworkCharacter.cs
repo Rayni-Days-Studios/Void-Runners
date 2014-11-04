@@ -3,16 +3,16 @@
 public class NetworkCharacter : Photon.MonoBehaviour
 {
     //Stores the actual position and rotation
-    private Vector3 _realPosition;
-    private Quaternion _realRotation;
+    private Vector3 realPosition;
+    private Quaternion realRotation;
 
     void Update()
     {
         if (photonView.isMine) return;
             //Lerps the character from the local position to their actual position
             //This smooths the local movement; reduces jitter
-            transform.position = Vector3.Lerp(transform.position, _realPosition, 0.1f);
-            transform.rotation = Quaternion.Lerp(transform.rotation, _realRotation, 0.1f);
+            transform.position = Vector3.Lerp(transform.position, realPosition, 0.1f);
+            transform.rotation = Quaternion.Lerp(transform.rotation, realRotation, 0.1f);
     }
 
     void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -29,8 +29,8 @@ public class NetworkCharacter : Photon.MonoBehaviour
         else
         {
             //This receives the actual location of the object
-            _realPosition = (Vector3)stream.ReceiveNext();
-            _realRotation = (Quaternion)stream.ReceiveNext();
+            realPosition = (Vector3)stream.ReceiveNext();
+            realRotation = (Quaternion)stream.ReceiveNext();
         }
     }
 }

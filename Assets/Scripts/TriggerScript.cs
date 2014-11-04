@@ -4,15 +4,15 @@ using UnityEngine;
 public class TriggerScript : MonoBehaviour 
 {
 
-    public List<GameObject> List = new List<GameObject>();
+    public List<GameObject> list = new List<GameObject>();
 
     void OnTriggerEnter(Collider other)
     {
-        List.Add(other.gameObject);
+        list.Add(other.gameObject);
     }
 
     void OnTriggerExit(Collider other)
     {
-        List.Remove(other.gameObject);
+        list.Remove(other.gameObject);
     }
 }

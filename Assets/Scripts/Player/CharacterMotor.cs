@@ -3,15 +3,14 @@ using System.Collections;
 using UnityEngine;
 
 // Require a character controller to be attached to the same game object
-[RequireComponent(typeof(CharacterController))]
-[AddComponentMenu("Character/Character Motor")]
+[AddComponentMenu("Character Motor")]
 
 
 public class CharacterMotor : MonoBehaviour
 {
     // Does this script currently respond to input?
-    bool canControl = true;
-    bool useFixedUpdate = true;
+    private bool canControl = true;
+    private bool useFixedUpdate = true;
 
     // For the next variables, [System.NonSerialized] tells Unity to not serialize the variable or show it in the inspector view.
     // Very handy for organization!
@@ -48,22 +47,17 @@ public class CharacterMotor : MonoBehaviour
         // Very handy for organization!
 
         // The last collision flags returned from controller.Move
-        [NonSerialized]
-        public CollisionFlags collisionFlags;
+        internal CollisionFlags collisionFlags;
 
         // We will keep track of the character's current velocity,
-        [NonSerialized]
-        public Vector3 velocity;
+        internal Vector3 velocity;
 
         // This keeps track of our current velocity while we're not grounded
-        [NonSerialized]
-        public Vector3 frameVelocity = Vector3.zero;
+        internal Vector3 frameVelocity = Vector3.zero;
 
-        [NonSerialized]
-        public Vector3 hitPoint = Vector3.zero;
+        internal Vector3 hitPoint = Vector3.zero;
 
-        [NonSerialized]
-        public Vector3 lastHitPoint = new Vector3(Mathf.Infinity, 0, 0);
+        internal Vector3 lastHitPoint = new Vector3(Mathf.Infinity, 0, 0);
     }
 
     public CharacterMotorMovement movement = new CharacterMotorMovement();
@@ -102,21 +96,16 @@ public class CharacterMotor : MonoBehaviour
 
         // Are we jumping?(Initiated with jump button and not grounded yet)
         // To see ifwe are just in the air(initiated by jumping OR falling) see the grounded variable.
-        [NonSerialized]
-        public bool jumping = false;
+        internal bool jumping = false;
 
-        [NonSerialized]
-        public bool holdingJumpButton = false;
+        internal bool holdingJumpButton = false;
 
         // the time we jumped at(Used to determine for how long to apply extra jump power after jumping.)
-        [NonSerialized]
-        public float lastStartTime = 0.0f;
+        internal float lastStartTime = 0.0f;
 
-        [NonSerialized]
-        public float lastButtonDownTime = -100.0f;
+        internal float lastButtonDownTime = -100.0f;
 
-        [NonSerialized]
-        public Vector3 jumpDir = Vector3.up;
+        internal Vector3 jumpDir = Vector3.up;
     }
 
     public CharacterMotorJumping jumping = new CharacterMotorJumping();
@@ -126,34 +115,25 @@ public class CharacterMotor : MonoBehaviour
     {
         public bool enabled = true;
 
-        public MovementTransferOnJump movementTransfer = MovementTransferOnJump.PermaTransfer;
+        internal MovementTransferOnJump movementTransfer = MovementTransferOnJump.PermaTransfer;
 
-        [NonSerialized]
-        public Transform hitPlatform;
+        internal Transform hitPlatform;
 
-        [NonSerialized]
-        public Transform activePlatform;
+        internal Transform activePlatform;
 
-        [NonSerialized]
-        public Vector3 activeLocalPoint;
+        internal Vector3 activeLocalPoint;
 
-        [NonSerialized]
-        public Vector3 activeGlobalPoint;
+        internal Vector3 activeGlobalPoint;
 
-        [NonSerialized]
-        public Quaternion activeLocalRotation;
+        internal Quaternion activeLocalRotation;
 
-        [NonSerialized]
-        public Quaternion activeGlobalRotation;
+        internal Quaternion activeGlobalRotation;
 
-        [NonSerialized]
-        public Matrix4x4 lastMatrix;
+        internal Matrix4x4 lastMatrix;
 
-        [NonSerialized]
-        public Vector3 platformVelocity;
+        internal Vector3 platformVelocity;
 
-        [NonSerialized]
-        public bool newPlatform;
+        internal bool newPlatform;
     }
 
     public CharacterMotorMovingPlatform movingPlatform = new CharacterMotorMovingPlatform();
@@ -176,13 +156,11 @@ public class CharacterMotor : MonoBehaviour
         public float speedControl = 0.4f;
     }
 
-    public CharacterMotorSliding sliding = new CharacterMotorSliding();
+    private CharacterMotorSliding sliding = new CharacterMotorSliding();
 
-    [NonSerialized]
-    public bool grounded = true;
+    private bool grounded = true;
 
-    [NonSerialized]
-    public Vector3 groundNormal = Vector3.zero;
+    private Vector3 groundNormal = Vector3.zero;
 
     private Vector3 lastGroundNormal = Vector3.zero;
 

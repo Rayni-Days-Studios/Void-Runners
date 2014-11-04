@@ -2,7 +2,7 @@
 
 public class Crosshair : MonoBehaviour 
 {
-    public float Range = 300;
+    public float range = 300;
 
     void Update()
     {
@@ -11,7 +11,7 @@ public class Crosshair : MonoBehaviour
         RaycastHit hit;
         Debug.DrawRay(ray.origin, ray.direction, Color.green);
 
-        if (!Physics.Raycast(ray, out hit, Range)) return;
+        if (!Physics.Raycast(ray, out hit, range)) return;
 
         if (hit.collider.gameObject.GetComponent<AmmoBoxScript>() != null)
         {

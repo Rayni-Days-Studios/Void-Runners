@@ -2,22 +2,22 @@
 
 public class AmmoBoxScript : MonoBehaviour 
 {
-    public GUIText Target;
-    public int GBullets;
-    public int LBullets;
+    public GUIText target;
+    public int gBullets;
+    public int lBullets;
 
     void FixedUpdate()
     {
-        Target.text = "";
+        target.text = "";
     }
 
     public void OnLookEnter()
     {
-        Target.text = "Press E";
+        target.text = "Press E";
         if (!Input.GetKeyDown("e")) return;
 
         Destroy(gameObject);
-        Destroy(Target);
+        Destroy(target);
     }
 
     void OnTriggerEnter(Collider other)
@@ -25,8 +25,8 @@ public class AmmoBoxScript : MonoBehaviour
         if (other.gameObject.tag != "Player") return;
 
         var shootingScript = other.gameObject.GetComponent<ShootingScript>();
-        shootingScript.gun.Ammo += GBullets;
-        shootingScript.LightGun.Ammo += LBullets;
+        shootingScript.bulletGun.Ammo += gBullets;
+        shootingScript.lightGun.Ammo += lBullets;
         Destroy(gameObject);
     }
 }

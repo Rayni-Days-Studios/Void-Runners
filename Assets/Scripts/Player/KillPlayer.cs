@@ -4,30 +4,30 @@ using UnityEngine;
 
 public class KillPlayer : MonoBehaviour
 {
-    private Camera _cam;
-    private Quaternion _from;
-    private Quaternion _to;
-    public float Progress = 0;
-    private float _time;
-    private bool _die;
+    private Camera cam;
+    private Quaternion fromQuaternion;
+    private Quaternion toPoint;
+    private float timer;
+    private bool die;
+    public float progress = 0;
 
     private void Start()
     {
-        _cam = GetComponentInChildren<Camera>();
+        cam = GetComponentInChildren<Camera>();
     }
 
     private void Update()
     {
-        if (!_die) return;
-        Progress += Time.deltaTime/_time;
-        _cam.transform.rotation = Quaternion.Lerp(_from, _to, Progress);
+        if (!die) return;
+            progress += Time.deltaTime/timer;
+            cam.transform.rotation = Quaternion.Lerp(fromQuaternion, toPoint, progress);
     }
 
     public void Die(Vector3 to, float time, float killTime)
     {
-        if (_die) return;
+        if (die) return;
 
-        _die = true;
+        die = true;
 
         foreach (var comp in GetComponents<Behaviour>().Where(comp => comp != this))
         {
@@ -37,11 +37,12 @@ public class KillPlayer : MonoBehaviour
         {
             comp.enabled = false;
         }
-        _time = time;
-        _from = _cam.transform.rotation;
-        _cam.transform.LookAt(to);
-        _to = _cam.transform.rotation;
-        _cam.transform.rotation = _from;
+
+        this.timer = time;
+        fromQuaternion = cam.transform.rotation;
+        cam.transform.LookAt(to);
+        this.toPoint = cam.transform.rotation;
+        cam.transform.rotation = fromQuaternion;
         Destroy(gameObject, killTime);
     }
 }

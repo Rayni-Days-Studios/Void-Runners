@@ -18,19 +18,20 @@ public class NetworkScript : Photon.MonoBehaviour
      */
 
     // This is used to set the build version
-    public string BuildVersion = "1.0";
+    public string buildVersion = "1.0";
 
     // Array to hold the spots that can be spawned in
-    private List<SpawnSpot> _spawnSpots;
+    private List<SpawnSpot> spawnSpots;
+
     // Holds the local player gameobject
-    private GameObject _myPlayerGo;
+    private GameObject myPlayerGo;
 
     void Awake()
     {
         // Connects to the server with the settings from "PhotonServerSettings" and has the variable BuildVersion as the required string
-        PhotonNetwork.ConnectUsingSettings(BuildVersion);
+        PhotonNetwork.ConnectUsingSettings(buildVersion);
         // Finds gameobjects with the SpawnSpot script attached and adds them to the spawnspots array
-        _spawnSpots = FindObjectsOfType<SpawnSpot>().ToList();
+        spawnSpots = FindObjectsOfType<SpawnSpot>().ToList();
     }
 
     void OfflineMode()
@@ -38,6 +39,7 @@ public class NetworkScript : Photon.MonoBehaviour
         // Call this function in Awake for offline mode
         // Good for testing on local PC without latency
         PhotonNetwork.offlineMode = true;
+
         // ConnectUsingSettings won't work in offline mode
         // So we're manually calling the JoinOrCreateRoom function
         StartCoroutine(JoinOrCreateRoom());
@@ -55,7 +57,7 @@ public class NetworkScript : Photon.MonoBehaviour
             if (GUILayout.Button("Connect"))
             {
                 // Connect using the PUN wizard settings (Self-hosted server or Photon cloud)
-                PhotonNetwork.ConnectUsingSettings(BuildVersion);
+                PhotonNetwork.ConnectUsingSettings(buildVersion);
             }
             GUILayout.EndVertical();
         }
@@ -117,13 +119,13 @@ public class NetworkScript : Photon.MonoBehaviour
     void PlayerRoleActivator(string playerRole, int playerSpawn)
     { 
         // Instantiates player at relevant spawnspot
-        _myPlayerGo = PhotonNetwork.Instantiate(playerRole, _spawnSpots[playerSpawn].transform.position, _spawnSpots[playerSpawn].transform.rotation, 0);
-        _myPlayerGo.GetComponent<FPSInputController>().enabled = true;
-        _myPlayerGo.GetComponent<ShootingScript>().enabled = true;
-        _myPlayerGo.GetComponent<MouseLook>().enabled = true;
-        _myPlayerGo.GetComponent<CharacterMotor>().enabled = true;
-        _myPlayerGo.GetComponent<NetworkCharacter>().enabled = false;
-        _myPlayerGo.transform.FindChild("MainCamera").gameObject.SetActive(true);
+        myPlayerGo = PhotonNetwork.Instantiate(playerRole, spawnSpots[playerSpawn].transform.position, spawnSpots[playerSpawn].transform.rotation, 0);
+        myPlayerGo.GetComponent<FPSInputController>().enabled = true;
+        myPlayerGo.GetComponent<ShootingScript>().enabled = true;
+        myPlayerGo.GetComponent<MouseLook>().enabled = true;
+        myPlayerGo.GetComponent<CharacterMotor>().enabled = true;
+        myPlayerGo.GetComponent<NetworkCharacter>().enabled = false;
+        myPlayerGo.transform.FindChild("MainCamera").gameObject.SetActive(true);
         print(playerRole);
     }
 

@@ -3,16 +3,16 @@
 [ExecuteInEditMode]
 public class AmmoGUI : MonoBehaviour {
 
-    private ShootingScript _spawnPoint;
-    public GUIStyle AmmoCount;
+    private ShootingScript spawnPoint;
+    public GUIStyle ammoCount;
  
     void Awake()
     {
-        _spawnPoint = GameObject.FindGameObjectWithTag("Player").GetComponent<ShootingScript>();
+        spawnPoint = GameObject.FindGameObjectWithTag("Player").GetComponent<ShootingScript>();
     }
     
     void OnGUI()
     {
-        GUI.Label(new Rect(0, 0, 0, 0), "" + _spawnPoint.gun.Ammo + "  " + _spawnPoint.LightGun.Ammo, AmmoCount);
+        GUI.Label(new Rect(0, 0, 0, 0), "" + spawnPoint.bulletGun.Ammo + "  " + spawnPoint.lightGun.Ammo, ammoCount);
     }
 }

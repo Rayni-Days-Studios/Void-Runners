@@ -702,7 +702,7 @@ public class ParameterCode
     public const byte Position = 223;
     /// <summary>(223) Modifies the matchmaking algorithm used for OpJoinRandom. Allowed parameter values are defined in enum MatchmakingMode.</summary>
     public const byte MatchMakingType = 223;
-    /// <summary>(222) List of RoomInfos about open / listed rooms</summary>
+    /// <summary>(222) rist of RoomInfos about open / listed rooms</summary>
     public const byte GameList = 222;
     /// <summary>(221) Internally used to establish encryption</summary>
     public const byte Secret = 221;

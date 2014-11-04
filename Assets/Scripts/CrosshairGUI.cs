@@ -3,9 +3,9 @@
 [ExecuteInEditMode]
 public class CrosshairGUI : MonoBehaviour 
 {
-    public Texture2D Crosshair;
-    public GUIStyle NoGuiStyle;
-    public Color GuiColor = Color.white;
+    public Texture2D crosshair;
+    public GUIStyle noGuiStyle;
+    public Color guiColor = Color.white;
 
     // Use this for initialization
     void Start () 
@@ -16,10 +16,10 @@ public class CrosshairGUI : MonoBehaviour
     // Update is called once per frame
     void OnGUI () 
     {
-        GUI.color = GuiColor;
-        GUI.Box(new Rect((Screen.width / 2) - (Crosshair.width / 2), 
-            (Screen.height / 2) - (Crosshair.height / 2), 
-            Crosshair.width, Crosshair.height), 
-            Crosshair, NoGuiStyle);
+        GUI.color = guiColor;
+        GUI.Box(new Rect((Screen.width / 2) - (crosshair.width / 2), 
+            (Screen.height / 2) - (crosshair.height / 2), 
+            crosshair.width, crosshair.height), 
+            crosshair, noGuiStyle);
     }
 }

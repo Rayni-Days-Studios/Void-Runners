@@ -97,7 +97,7 @@ public class ServerSettingsInspector : Editor
         }
         if (GUILayout.Button("Log HashCode"))
         {
-            Debug.Log("RPC-List HashCode: " + RpcListHashCode() + ". Make sure clients that send each other RPCs have the same RPC-List.");
+            Debug.Log("RPC-rist HashCode: " + RpcListHashCode() + ". Make sure clients that send each other RPCs have the same RPC-rist.");
         }
         GUILayout.Space(20);
         GUILayout.EndHorizontal();
@@ -113,7 +113,7 @@ public class ServerSettingsInspector : Editor
 
     private int RpcListHashCode()
     {
-        // this is a hashcode generated to (more) easily compare this Editor's RPC List with some other
+        // this is a hashcode generated to (more) easily compare this Editor's RPC rist with some other
         int hashCode = PhotonEditor.Current.RpcList.Count + 1;
         foreach (string s in PhotonEditor.Current.RpcList)
         {

@@ -3,32 +3,32 @@ using UnityEngine;
 
 public class RemoveScript : MonoBehaviour 
 {
-    public string[] CollisionObject;
-    public string TriggerObject;
-    public float RemoveTime;
-    public bool RemoveAfterTime;
-    public float AmountOfTime;
-    public bool InstantToggle;
-    public string InstantRemoval;
+    public string[] collisionObject;
+    public string triggerObject;
+    public float removeTime;
+    public bool removeAfterTime;
+    public float remountOfTime;
+    public bool instantToggle;
+    public string instantRemoval;
 
     void Update()
     {
-        if (RemoveAfterTime)
+        if (removeAfterTime)
         {
-            Destroy(gameObject, AmountOfTime);
+            Destroy(gameObject, remountOfTime);
         }
     }
 
     //Remove object on collision
     void OnCollisionEnter (Collision other)
     {
-        foreach (var str in CollisionObject.Where(str => other.gameObject.tag == str))
+        foreach (string str in collisionObject.Where(str => other.gameObject.tag == str))
         {
-            Destroy(gameObject, RemoveTime);
+            Destroy(gameObject, removeTime);
         }
 
-        if (!InstantToggle) return;
-            if (other.gameObject.tag == InstantRemoval)
+        if (!instantToggle) return;
+            if (other.gameObject.tag == instantRemoval)
             {
                 Destroy(gameObject);
             }
@@ -37,9 +37,9 @@ public class RemoveScript : MonoBehaviour
     //Remove object on trigger
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == TriggerObject)
+        if (other.gameObject.tag == triggerObject)
         {
-            Destroy(gameObject, RemoveTime);
+            Destroy(gameObject, removeTime);
         }
     }
 }
