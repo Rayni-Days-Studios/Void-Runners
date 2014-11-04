@@ -3438,7 +3438,7 @@ GameObject:
   - 4: {fileID: 278820672}
   - 114: {fileID: 278820671}
   m_Layer: 0
-  m_Name: GunnerSpawn
+  m_Name: EdenSpawn
   m_TagString: SpawnSpot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3455,7 +3455,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65be026cde83e7a48818acac7d223c9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TeamID: 1
+  role: Eden
+  teamID: 1
 --- !u!4 &278820672
 Transform:
   m_ObjectHideFlags: 0
@@ -3463,7 +3464,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 278820670}
   m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106829}
-  m_LocalPosition: {x: -15, y: 0, z: -22.5}
+  m_LocalPosition: {x: 28.9430008, y: 2.77080011, z: -15.3999996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 79100257}
@@ -6053,7 +6054,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &474293080
 Light:
   m_ObjectHideFlags: 0
@@ -9030,7 +9031,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5c422630a3588c4fa8a93c6d9061a11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BuildVersion: 1.0
+  buildVersion: 1.0
 --- !u!1 &711752236
 GameObject:
   m_ObjectHideFlags: 0
@@ -13177,7 +13178,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65be026cde83e7a48818acac7d223c9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TeamID: 1
+  role: Monster
+  teamID: 1
 --- !u!1 &1020744925
 GameObject:
   m_ObjectHideFlags: 0
@@ -15388,7 +15390,7 @@ GameObject:
   - 4: {fileID: 1172344043}
   - 114: {fileID: 1172344044}
   m_Layer: 0
-  m_Name: EdenSpawn
+  m_Name: GunnerSpawn
   m_TagString: SpawnSpot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15417,7 +15419,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65be026cde83e7a48818acac7d223c9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TeamID: 1
+  role: Gunner
+  teamID: 1
 --- !u!1 &1182095994
 GameObject:
   m_ObjectHideFlags: 0
@@ -16757,7 +16760,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1337602448
 Transform:
   m_ObjectHideFlags: 0
@@ -21121,7 +21124,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65be026cde83e7a48818acac7d223c9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TeamID: 1
+  role: Scout
+  teamID: 1
 --- !u!1 &1695692073
 GameObject:
   m_ObjectHideFlags: 0

@@ -81,7 +81,7 @@ public class NetworkScript : Photon.MonoBehaviour
         }
     }
 
-    private bool _receivedRoomList;
+    private bool receivedRoomList;
 
     void OnConnectedToPhoton()
     {
@@ -92,21 +92,21 @@ public class NetworkScript : Photon.MonoBehaviour
     void OnDisconnectedFromPhoton()
     {
         // When disconnected, make sure the room list gets received again
-        _receivedRoomList = false;
+        receivedRoomList = false;
     }
 
     IEnumerator JoinOrCreateRoom()
     {
         // If the room list isn't received within 2 seconds, timeout
-        var timeOut = Time.time + 2;
-        while (Time.time < timeOut && !_receivedRoomList)
+        float timeOut = Time.time + 2;
+        while (Time.time < timeOut && !receivedRoomList)
         {
             // Makes sure it checks rooms for 2 seconds, so it doesn't instantly create a room
             yield return 0;
         }
         // We still didn't join any room: create one
         if (PhotonNetwork.room != null) yield break;
-        var roomName = "TestRoom" + Application.loadedLevelName;
+        string roomName = "TestRoom" + Application.loadedLevelName;
         PhotonNetwork.CreateRoom(roomName, new RoomOptions { maxPlayers = 4 }, null);
     }
 
@@ -158,11 +158,11 @@ public class NetworkScript : Photon.MonoBehaviour
 
 
         string wantedRoomName = "TestRoom" + Application.loadedLevelName;
-        foreach (var room in PhotonNetwork.GetRoomList().Where(room => room.name == wantedRoomName))
+        foreach (RoomInfo room in PhotonNetwork.GetRoomList().Where(room => room.name == wantedRoomName))
         {
             PhotonNetwork.JoinRoom(room.name);
             break;
         }
-        _receivedRoomList = true;
+        receivedRoomList = true;
     }
 }

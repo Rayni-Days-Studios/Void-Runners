@@ -121,14 +121,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2febb7fe00ec52747be9bbec35ded23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionObject:
+  collisionObject:
   - Walls
-  TriggerObject: 
-  RemoveTime: 2
-  RemoveAfterTime: 1
-  AmountOfTime: 4
-  InstantToggle: 1
-  InstantRemoval: Enemy
+  triggerObject: Enemy
+  removeTime: 5
+  removeAfterTime: 1
+  remountOfTime: 4
+  instantToggle: 1
+  instantRemoval: Enemy
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

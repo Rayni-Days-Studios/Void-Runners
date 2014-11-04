@@ -87,7 +87,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .00813924614, y: -.149557114, z: 1.10608685}
+  m_LocalPosition: {x: -.0515399985, y: 2.47079992, z: 1.10609996}
   m_LocalScale: {x: 1.13290524, y: 1.02223265, z: 1.15655553}
   m_Children: []
   m_Father: {fileID: 400004}
@@ -315,19 +315,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e1450c5831f7344c818ca0674b23f40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barrelEnd: {fileID: 0}
+  barrelEnd: {fileID: 400000}
   lightGun:
-    Ammo: 0
-    Force: 0
-    BulletPrefab: {fileID: 0}
-    Bullet: {fileID: 0}
-    ShootSound: {fileID: 0}
+    Ammo: 50
+    Force: 10
+    BulletPrefab: {fileID: 5400000, guid: 0bba4c6b8ada82440a58440ff3002374, type: 2}
+    Bullet: {fileID: 100000, guid: 0bba4c6b8ada82440a58440ff3002374, type: 2}
+    ShootSound: {fileID: 8200000}
   bulletGun:
     Ammo: 0
     Force: 0
-    BulletPrefab: {fileID: 0}
-    Bullet: {fileID: 0}
-    ShootSound: {fileID: 0}
+    BulletPrefab: {fileID: 5400000, guid: 06aac4a6e4a03d7478d9f1d0407c56bb, type: 2}
+    Bullet: {fileID: 100000, guid: 06aac4a6e4a03d7478d9f1d0407c56bb, type: 2}
+    ShootSound: {fileID: 8200000}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -515,18 +515,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e1450c5831f7344c818ca0674b23f40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barrelEnd: {fileID: 0}
+  barrelEnd: {fileID: 400006}
   lightGun:
     Ammo: 0
-    Force: 0
-    BulletPrefab: {fileID: 0}
-    Bullet: {fileID: 0}
+    Force: 10
+    BulletPrefab: {fileID: 5400000, guid: 0bba4c6b8ada82440a58440ff3002374, type: 2}
+    Bullet: {fileID: 100000, guid: 0bba4c6b8ada82440a58440ff3002374, type: 2}
     ShootSound: {fileID: 0}
   bulletGun:
     Ammo: 0
-    Force: 0
-    BulletPrefab: {fileID: 0}
-    Bullet: {fileID: 0}
+    Force: 30
+    BulletPrefab: {fileID: 5400000, guid: 06aac4a6e4a03d7478d9f1d0407c56bb, type: 2}
+    Bullet: {fileID: 100000, guid: 06aac4a6e4a03d7478d9f1d0407c56bb, type: 2}
     ShootSound: {fileID: 0}
 --- !u!114 &11400014
 MonoBehaviour:
