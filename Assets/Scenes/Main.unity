@@ -6377,6 +6377,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 508436a3760bae941860d33899321ec1, type: 2}
+      propertyPath: movement.maxForwardSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 508436a3760bae941860d33899321ec1, type: 2}
+      propertyPath: movement.maxSidewaysSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 508436a3760bae941860d33899321ec1, type: 2}
+      propertyPath: movement.maxBackwardsSpeed
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 508436a3760bae941860d33899321ec1, type: 2}
   m_RootGameObject: {fileID: 1710307919}
@@ -22519,7 +22531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6309f910855856479ca62c5256db4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 300
+  Range: 300
 --- !u!81 &1448373980
 AudioListener:
   m_ObjectHideFlags: 0
@@ -26630,8 +26642,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30a853ad8c54ccf49824681a63f4bc7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanControl: 1
-  UseFixedUpdate: 1
+  movement:
+    maxForwardSpeed: 6
+    maxSidewaysSpeed: 6
+    maxBackwardsSpeed: 6
+    slopeSpeedMultiplier:
+      serializedVersion: 2
+      m_Curve:
+      - time: -90
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 90
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    maxGroundAcceleration: 30
+    maxAirAcceleration: 20
+    gravity: 9.81000042
+    maxFallSpeed: 20
+  jumping:
+    enabled: 1
+    baseHeight: 1
+    extraHeight: 4.0999999
+    perpAmount: 0
+    steepPerpAmount: .5
+  movingPlatform:
+    enabled: 1
+    movementTransfer: 2
+  sliding:
+    enabled: 1
+    slidingSpeed: 15
+    sidewaysControl: 1
+    speedControl: .400000006
 --- !u!114 &1710307923
 MonoBehaviour:
   m_ObjectHideFlags: 0
