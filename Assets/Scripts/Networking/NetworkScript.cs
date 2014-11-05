@@ -121,11 +121,12 @@ public class NetworkScript : Photon.MonoBehaviour
         // Instantiates player at relevant spawnspot
         myPlayerGo = PhotonNetwork.Instantiate(playerRole, spawnSpots[playerSpawn].transform.position, spawnSpots[playerSpawn].transform.rotation, 0);
         myPlayerGo.GetComponent<FPSInputController>().enabled = true;
-        myPlayerGo.GetComponent<PlayerRole>().enabled = true;
         myPlayerGo.GetComponent<MouseLook>().enabled = true;
         myPlayerGo.GetComponent<CharacterMotor>().enabled = true;
         myPlayerGo.GetComponent<NetworkCharacter>().enabled = false;
         myPlayerGo.transform.FindChild("MainCamera").gameObject.SetActive(true);
+        // We should not search for PlayerRole, but the specific class name.
+        myPlayerGo.GetComponent<PlayerRole>().enabled = true;
         print(playerRole);
     }
 
