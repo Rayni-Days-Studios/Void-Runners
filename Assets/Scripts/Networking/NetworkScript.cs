@@ -24,7 +24,7 @@ public class NetworkScript : Photon.MonoBehaviour
     private List<SpawnSpot> spawnSpots;
 
     // Holds the local player gameobject
-    private GameObject myPlayerGo;
+    public GameObject myPlayerGo;
 
     void Awake()
     {
