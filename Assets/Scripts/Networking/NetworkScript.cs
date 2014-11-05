@@ -147,9 +147,6 @@ public class NetworkScript : Photon.MonoBehaviour
                 PlayerRoleActivator("Scout", 3);
                 break;
         }
-
-        //// Random spawn
-        //SpawnSpot mySpawnSpot = _spawnSpots[Random.Range(0, _spawnSpots.Length)];
     }
 
     void OnReceivedRoomListUpdate()

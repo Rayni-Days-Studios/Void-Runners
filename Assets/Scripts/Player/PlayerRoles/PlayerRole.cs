@@ -10,14 +10,11 @@ public class PlayerRole : MonoBehaviour {
 	void Update () 
     {
         //If left click
-        if (Input.GetButtonDown("Fire1") && SecondaryGun.Ammo > 0)
+        if (Input.GetButtonDown("Fire1"))
         {
             SecondaryGun.Shoot(BarrelEnd);
         }
-        else
-        {
-            Debug.Log("No more bullets, reload!");
-        }
+
         //If right click
         if (Input.GetButtonDown("Fire2"))
         {
