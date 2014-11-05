@@ -24,7 +24,7 @@ public class NetworkScript : Photon.MonoBehaviour
     private List<SpawnSpot> spawnSpots;
 
     // Holds the local player gameobject
-    private GameObject myPlayerGo;
+    public GameObject myPlayerGo;
 
     void Awake()
     {
@@ -147,9 +147,6 @@ public class NetworkScript : Photon.MonoBehaviour
                 PlayerRoleActivator("Scout", 3);
                 break;
         }
-
-        //// Random spawn
-        //SpawnSpot mySpawnSpot = _spawnSpots[Random.Range(0, _spawnSpots.Length)];
     }
 
     void OnReceivedRoomListUpdate()
