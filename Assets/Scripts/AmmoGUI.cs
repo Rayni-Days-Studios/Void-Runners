@@ -14,6 +14,5 @@ public class AmmoGUI : MonoBehaviour
 
     private void OnGUI()
     {
-        GUI.Label(new Rect(0, 0, 0, 0), "" + spawnPoint.bulletGun.Ammo + "  " + spawnPoint.lightGun.Ammo, ammoCount);
     }
 }

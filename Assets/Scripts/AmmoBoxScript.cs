@@ -24,9 +24,8 @@ public class AmmoBoxScript : MonoBehaviour
     {
         if (other.gameObject.tag != "Player") return;
 
-        var shootingScript = other.gameObject.GetComponent<ShootingScript>();
-        shootingScript.bulletGun.Ammo += gBullets;
-        shootingScript.lightGun.Ammo += lBullets;
+        other.GetComponent<PlayerRole>().SecondaryGun.Ammo += gBullets;
+        other.GetComponent<PlayerRole>().PrimaryGun.Ammo += lBullets;
         Destroy(gameObject);
     }
 }
