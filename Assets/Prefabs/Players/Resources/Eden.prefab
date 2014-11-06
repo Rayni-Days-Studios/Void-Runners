@@ -317,13 +317,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   barrelEnd: {fileID: 400000}
   lightGun:
-    Ammo: 50
+    TotalAmmo: 100
+    LoadedAmmo: 10
+    AmmoCap: 10
     Force: 10
     BulletPrefab: {fileID: 5400000, guid: 0bba4c6b8ada82440a58440ff3002374, type: 2}
     Bullet: {fileID: 100000, guid: 0bba4c6b8ada82440a58440ff3002374, type: 2}
     ShootSound: {fileID: 8200000}
   bulletGun:
-    Ammo: 0
+    TotalAmmo: 0
+    LoadedAmmo: 0
+    AmmoCap: 0
     Force: 0
     BulletPrefab: {fileID: 5400000, guid: 06aac4a6e4a03d7478d9f1d0407c56bb, type: 2}
     Bullet: {fileID: 100000, guid: 06aac4a6e4a03d7478d9f1d0407c56bb, type: 2}
@@ -351,9 +355,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movement:
-    maxForwardSpeed: 3
-    maxSidewaysSpeed: 2
-    maxBackwardsSpeed: 2
+    maxForwardSpeed: 7.5
+    maxSidewaysSpeed: 7.5
+    maxBackwardsSpeed: 7.5
     slopeSpeedMultiplier:
       serializedVersion: 2
       m_Curve:
@@ -374,9 +378,9 @@ MonoBehaviour:
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
-    maxGroundAcceleration: 30
+    maxGroundAcceleration: 50
     maxAirAcceleration: 20
-    gravity: 9.81000042
+    gravity: 30
     maxFallSpeed: 20
   jumping:
     enabled: 1
@@ -385,7 +389,7 @@ MonoBehaviour:
     perpAmount: 0
     steepPerpAmount: .5
   movingPlatform:
-    enabled: 1
+    enabled: 0
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -424,14 +428,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 100004}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dba3ceb2b0a3d984bad39bfae5ff8edf, type: 3}
+  m_Script: {fileID: 11500000, guid: 801b08a3f41bd8244a2dceb16d7dcf33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ammoCount:
     m_Name: 
     m_Normal:
       m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+      m_TextColor: {r: 1, g: 1, b: 1, a: 1}
     m_Hover:
       m_Background: {fileID: 0}
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
@@ -473,15 +477,15 @@ MonoBehaviour:
       m_Right: 0
       m_Top: 0
       m_Bottom: 0
-    m_Font: {fileID: 0}
-    m_FontSize: 0
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 20
     m_FontStyle: 0
     m_Alignment: 0
     m_WordWrap: 0
     m_RichText: 1
     m_TextClipping: 0
     m_ImagePosition: 0
-    m_ContentOffset: {x: 0, y: 0}
+    m_ContentOffset: {x: 0, y: 192.649994}
     m_FixedWidth: 0
     m_FixedHeight: 0
     m_StretchWidth: 1

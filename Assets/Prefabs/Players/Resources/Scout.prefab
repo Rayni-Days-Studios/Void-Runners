@@ -52,12 +52,10 @@ GameObject:
   - 65: {fileID: 6500000}
   - 114: {fileID: 11400016}
   - 114: {fileID: 11400014}
-  - 114: {fileID: 11400012}
   - 114: {fileID: 11400010}
   - 114: {fileID: 11400008}
   - 114: {fileID: 11400018}
   - 114: {fileID: 11400020}
-  - 82: {fileID: 8200000}
   m_Layer: 0
   m_Name: Scout
   m_TagString: Player
@@ -209,64 +207,6 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_Enabled: 1
---- !u!82 &8200000
-AudioSource:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: e130e368391e69e4488b81cdd4a162e5, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
 --- !u!92 &9200000
 Behaviour:
   m_ObjectHideFlags: 1
@@ -458,9 +398,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movement:
-    maxForwardSpeed: 3
-    maxSidewaysSpeed: 2
-    maxBackwardsSpeed: 2
+    maxForwardSpeed: 7.5
+    maxSidewaysSpeed: 7.5
+    maxBackwardsSpeed: 7.5
     slopeSpeedMultiplier:
       serializedVersion: 2
       m_Curve:
@@ -481,9 +421,9 @@ MonoBehaviour:
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
-    maxGroundAcceleration: 30
+    maxGroundAcceleration: 50
     maxAirAcceleration: 20
-    gravity: 9.81000042
+    gravity: 30
     maxFallSpeed: 20
   jumping:
     enabled: 1
@@ -492,7 +432,7 @@ MonoBehaviour:
     perpAmount: 0
     steepPerpAmount: .5
   movingPlatform:
-    enabled: 1
+    enabled: 0
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -504,30 +444,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76809218b4962ad47965085549fa3738, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11400012
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e1450c5831f7344c818ca0674b23f40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  barrelEnd: {fileID: 400006}
-  lightGun:
-    Ammo: 0
-    Force: 10
-    BulletPrefab: {fileID: 5400000, guid: 0bba4c6b8ada82440a58440ff3002374, type: 2}
-    Bullet: {fileID: 100000, guid: 0bba4c6b8ada82440a58440ff3002374, type: 2}
-    ShootSound: {fileID: 8200000}
-  bulletGun:
-    Ammo: 0
-    Force: 30
-    BulletPrefab: {fileID: 5400000, guid: 06aac4a6e4a03d7478d9f1d0407c56bb, type: 2}
-    Bullet: {fileID: 100000, guid: 06aac4a6e4a03d7478d9f1d0407c56bb, type: 2}
-    ShootSound: {fileID: 8200000}
 --- !u!114 &11400014
 MonoBehaviour:
   m_ObjectHideFlags: 1

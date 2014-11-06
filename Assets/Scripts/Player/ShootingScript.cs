@@ -10,9 +10,9 @@ public class ShootingScript : MonoBehaviour
     [Serializable]
     public struct Gun
     {
-        public int Ammo;
-        public int ammoClip;             //Amount of bullets not currently in gun
-        public int ammoCap;                 //Ammo capacity
+        public int TotalAmmo;
+        public int LoadedAmmo;             //Amount of bullets not currently in gun
+        public int AmmoCap;                 //Ammo capacity
         public float Force;
         public Rigidbody BulletPrefab;
         public GameObject Bullet;
@@ -20,7 +20,7 @@ public class ShootingScript : MonoBehaviour
 
         public void Shoot(Transform spawnPoint)
         {
-            Ammo -= 1;
+            LoadedAmmo -= 1;
             ShootSound.Play();
             //Shoot
             Rigidbody bulletInstance =
@@ -28,19 +28,26 @@ public class ShootingScript : MonoBehaviour
             if (bulletInstance != null) bulletInstance.AddForce(spawnPoint.forward*Time.deltaTime*Force*1000f);
         }
 
+
         public void Reload()
         {
-            //If there is more than 1 in clip.
-            if (ammoClip > 1)
+            // If there is more outside the gun than missing inside.
+            if (TotalAmmo > AmmoCap - LoadedAmmo)
             {
-                ammoClip -= ammoCap - Ammo;
-                Ammo += ammoCap - Ammo;
+                TotalAmmo -= AmmoCap - LoadedAmmo;
+                LoadedAmmo += AmmoCap - LoadedAmmo;
             }
-            else
+            // There's still ammo outside the gun, but not enough to fill it up
+            else if (TotalAmmo > 1 && TotalAmmo < AmmoCap - LoadedAmmo)
             {
-                Ammo += ammoClip;
-                ammoClip = 0;
-                Debug.Log("No more clips");
+                // We know that AmmoClip can't fill Ammo, so we don't do a check here.
+                LoadedAmmo += TotalAmmo;
+                TotalAmmo = 0;
+            }
+            else if(TotalAmmo < 1)
+            {
+                // Theres no more clips left, so we can't reload
+                Debug.Log("Out of ammo");
             }
         }
     }
@@ -48,7 +55,7 @@ public class ShootingScript : MonoBehaviour
     void Update () 
     {
         //If left click
-        if (Input.GetButtonDown("Fire1") && bulletGun.Ammo > 0)
+        if (Input.GetButtonDown("Fire1") && bulletGun.TotalAmmo > 0)
         {
             bulletGun.Shoot(barrelEnd);
         }
@@ -57,7 +64,7 @@ public class ShootingScript : MonoBehaviour
             Debug.Log("No more bullets, reload!");
         }
         //If right click
-        if(Input.GetButtonDown("Fire2") && lightGun.Ammo > 0)
+        if(Input.GetButtonDown("Fire2") && lightGun.TotalAmmo > 0)
         {
             lightGun.Shoot(barrelEnd);
         }

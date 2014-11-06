@@ -115,7 +115,7 @@ public class NetworkScript : Photon.MonoBehaviour
         // Calls the SpawnPlayer function
         SpawnPlayer();
     }
-
+ 
     void PlayerRoleActivator(string playerRole, int playerSpawn)
     { 
         // Instantiates player at relevant spawnspot

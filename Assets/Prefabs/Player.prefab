@@ -356,9 +356,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movement:
-    maxForwardSpeed: 6
-    maxSidewaysSpeed: 6
-    maxBackwardsSpeed: 6
+    maxForwardSpeed: 7.5
+    maxSidewaysSpeed: 7.5
+    maxBackwardsSpeed: 7.5
     slopeSpeedMultiplier:
       serializedVersion: 2
       m_Curve:
@@ -379,9 +379,9 @@ MonoBehaviour:
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
-    maxGroundAcceleration: 30
+    maxGroundAcceleration: 50
     maxAirAcceleration: 20
-    gravity: 9.81000042
+    gravity: 30
     maxFallSpeed: 20
   jumping:
     enabled: 1
@@ -390,7 +390,7 @@ MonoBehaviour:
     perpAmount: 0
     steepPerpAmount: .5
   movingPlatform:
-    enabled: 1
+    enabled: 0
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -422,13 +422,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   barrelEnd: {fileID: 400002}
   lightGun:
-    Ammo: 50
+    TotalAmmo: 0
+    LoadedAmmo: 0
+    AmmoCap: 0
     Force: 10
     BulletPrefab: {fileID: 5400000, guid: 0bba4c6b8ada82440a58440ff3002374, type: 2}
     Bullet: {fileID: 100000, guid: 0bba4c6b8ada82440a58440ff3002374, type: 2}
     ShootSound: {fileID: 8200000}
   bulletGun:
-    Ammo: 50
+    TotalAmmo: 0
+    LoadedAmmo: 0
+    AmmoCap: 0
     Force: 30
     BulletPrefab: {fileID: 5400000, guid: 06aac4a6e4a03d7478d9f1d0407c56bb, type: 2}
     Bullet: {fileID: 100000, guid: 06aac4a6e4a03d7478d9f1d0407c56bb, type: 2}
