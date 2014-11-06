@@ -2,17 +2,16 @@
 
 public class UI : MonoBehaviour
 {
-    private GameObject player;
-    private GameManager manager;
+    private PlayerRole player;
 
     void Awake()
     {
-        manager = GameObject.Find("_GameManager").GetComponent<GameManager>();
-        player = manager.FindActivePlayer();
+        
     }
 
     // ReSharper disable once UnusedMember.Local
     void OnGUI()
     {
+
     }
 }
