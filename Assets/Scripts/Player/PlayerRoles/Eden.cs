@@ -1,7 +1,3 @@
-﻿public class Eden : PlayerRole
-{
-    public Eden() : base()
-    {
-        
-    }
+﻿public class Eden : PlayerRole {
+
 }
