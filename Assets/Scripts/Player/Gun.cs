@@ -2,9 +2,9 @@
 
 public class Gun {
 
-    public int LoadedAmmo;
+    public int Ammo;
     public int AmmoClip;                    // Amount of bullets not currently in gun
-    public int AmmoCap;                     // LoadedAmmo capacity in the gun
+    public int AmmoCap;                     // Ammo capacity in the gun
     public float Force;
     public Rigidbody BulletPrefab;
     public GameObject Bullet;
@@ -13,9 +13,9 @@ public class Gun {
     public void Shoot(Transform spawnPoint)
     {
         // Only shoot if theres bullets left
-        if (LoadedAmmo > 0)
+        if (Ammo > 0)
         {
-            LoadedAmmo -= 1;
+            Ammo -= 1;
             ShootSound.Play();
             // Bullets are handled as RigidBodies as of right now.
             Rigidbody bulletInstance = Object.Instantiate(BulletPrefab, spawnPoint.position, spawnPoint.rotation) as Rigidbody;
@@ -26,16 +26,16 @@ public class Gun {
     public void Reload()
     {
         // If there is more outside the gun than missing inside.
-        if (AmmoClip > AmmoCap-LoadedAmmo)
+        if (AmmoClip > AmmoCap-Ammo)
         {
-            AmmoClip -= AmmoCap - LoadedAmmo;
-            LoadedAmmo += AmmoCap - LoadedAmmo;
+            AmmoClip -= AmmoCap - Ammo;
+            Ammo += AmmoCap - Ammo;
         }
-        // There's still LoadedAmmo outside the gun, but not enough to fill it up
-        else if (AmmoClip > 1 && AmmoClip < AmmoCap-LoadedAmmo)
+        // There's still ammo outside the gun, but not enough to fill it up
+        else if (AmmoClip > 1 && AmmoClip < AmmoCap-Ammo)
         {
-            // We know that AmmoClip can't fill LoadedAmmo, so we don't do a check here.
-            LoadedAmmo += AmmoClip;
+            // We know that AmmoClip can't fill Ammo, so we don't do a check here.
+            Ammo += AmmoClip;
             AmmoClip = 0;
         }
         else if(AmmoClip < 1)
@@ -45,16 +45,16 @@ public class Gun {
         }
     }
 
-    public Gun(int loadedAmmo, int ammoCap, int ammoClip)
+    public Gun(int ammo, int ammoCap, int ammoClip)
     {
-        LoadedAmmo = loadedAmmo;
+        Ammo = ammo;
         AmmoCap = ammoCap;
         AmmoClip = ammoClip;
     }
 
     public Gun()
     {
-        LoadedAmmo = 0;
+        Ammo = 0;
         AmmoCap = 0;
         AmmoClip = 0;
     }
