@@ -31,6 +31,7 @@ public class NetworkCharacter : Photon.MonoBehaviour
             //This receives the actual location of the object
             realPosition = (Vector3)stream.ReceiveNext();
             realRotation = (Quaternion)stream.ReceiveNext();
+
         }
     }
 }
