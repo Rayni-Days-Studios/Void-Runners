@@ -21,12 +21,15 @@ public class ShootingScript : MonoBehaviour
 
         public void Shoot(Transform spawnPoint)
         {
+            print("shoot");
             LoadedAmmo -= 1;
             ShootSound.Play();
             //Shoot
             Rigidbody bulletInstance =
                 Instantiate(BulletPrefab, spawnPoint.position, spawnPoint.rotation) as Rigidbody;
-            if (bulletInstance != null) bulletInstance.AddForce(spawnPoint.forward*Time.deltaTime*Force*1000f);
+
+            if (bulletInstance != null) 
+                bulletInstance.AddForce(spawnPoint.forward*Time.deltaTime*Force*1000f);
         }
 
         public void Reload()
