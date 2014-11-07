@@ -7,12 +7,11 @@ public class Gun {
     public int AmmoCap;                     // LoadedAmmo capacity in the gun
     public float Force;
     public Rigidbody BulletPrefab;
-    public GameObject Bullet;
     public AudioSource ShootSound;
 
     public void Shoot(Transform spawnPoint)
     {
-        // Only shoot if theres bullets left
+        // Only shoot if theres at least one bullet left
         if (LoadedAmmo > 0)
         {
             LoadedAmmo -= 1;
@@ -45,11 +44,12 @@ public class Gun {
         }
     }
 
-    public Gun(int loadedAmmo, int ammoCap, int ammoClip)
+    public Gun(int loadedAmmo, int ammoCap, int ammoClip, Rigidbody bulletPrefab)
     {
         LoadedAmmo = loadedAmmo;
         AmmoCap = ammoCap;
         AmmoClip = ammoClip;
+        BulletPrefab = bulletPrefab;
     }
 
     public Gun()

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -126,24 +127,8 @@ public class NetworkScript : Photon.MonoBehaviour
         myPlayerGo.GetComponent<NetworkCharacter>().enabled = false;
         myPlayerGo.transform.FindChild("MainCamera").gameObject.SetActive(true);
         // We should not search for PlayerRole, but the specific class name.
-        switch (playerRole)
-        {
-            case "Eden":
-                myPlayerGo.GetComponent<Eden>().enabled = true;
-                break;
-            case "Scout":
-                myPlayerGo.GetComponent<Scout>().enabled = true;
-                break;
-            case "Gunner":
-                myPlayerGo.GetComponent<Gunner>().enabled = true;
-                break;
-            case "Monster":
-                myPlayerGo.GetComponent<Monster>().enabled = true;
-                break;
-            default:
-                myPlayerGo.GetComponent<PlayerRole>().enabled = true;
-                break;
-        }
+        myPlayerGo.GetComponent<Player>().enabled = true;
+        myPlayerGo.GetComponent<Player>().UpdateRole(playerRole);
         print(playerRole);
     }
 

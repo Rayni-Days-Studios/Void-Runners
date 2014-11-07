@@ -1,17 +1,28 @@
 ﻿using UnityEngine;
 
-public class Player : MonoBehaviour 
+public class Player : MonoBehaviour
 {
+    private PlayerRole role;
 
-	// Use this for initialization
-	void Start () 
+    public void UpdateRole(string roleString)
     {
-	
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-	
-	}
+        switch (roleString)
+        {
+            case "Eden":
+                role = new Eden();
+                break;
+            case "Scout":
+                role = new Scout();
+                break;
+            case "Gunner":
+                role = new Gunner();
+                break;
+            case "Monster":
+                role = new Monster();
+                break;
+            default:
+                role = new PlayerRole();
+                break;
+        }
+    }
 }
