@@ -17,32 +17,33 @@ public class NetworkScript : Photon.MonoBehaviour
      * Also, don't use 4 tags for one thing. Bad move!
      */
 
+    // Tick this in the inspector to turn on offline mode
+    public bool OfflineOn; 
+
     // This is used to set the build version
-    public string buildVersion = "1.0";
+    public string BuildVersion = "1.0";
 
     // Array to hold the spots that can be spawned in
     private List<SpawnSpot> spawnSpots;
 
     // Holds the local player gameobject
-    private GameObject myPlayerGo;
+    public GameObject MyPlayerGo;
 
     void Awake()
     {
-        // Connects to the server with the settings from "PhotonServerSettings" and has the variable BuildVersion as the required string
-        PhotonNetwork.ConnectUsingSettings(buildVersion);
         // Finds gameobjects with the SpawnSpot script attached and adds them to the spawnspots array
         spawnSpots = FindObjectsOfType<SpawnSpot>().ToList();
-    }
 
-    void OfflineMode()
-    {
-        // Call this function in Awake for offline mode
-        // Good for testing on local PC without latency
-        PhotonNetwork.offlineMode = true;
-
-        // ConnectUsingSettings won't work in offline mode
-        // So we're manually calling the JoinOrCreateRoom function
-        StartCoroutine(JoinOrCreateRoom());
+        if (OfflineOn)
+        {
+            PhotonNetwork.offlineMode = true;
+            // ConnectUsingSettings won't work in offline mode
+            // So we're manually calling the JoinOrCreateRoom function
+            StartCoroutine(JoinOrCreateRoom());
+        }
+        else
+            // Connects to the server with the settings from "PhotonServerSettings" and has the variable BuildVersion as the required string
+            PhotonNetwork.ConnectUsingSettings(BuildVersion);
     }
 
     void OnGUI()
@@ -57,7 +58,7 @@ public class NetworkScript : Photon.MonoBehaviour
             if (GUILayout.Button("Connect"))
             {
                 // Connect using the PUN wizard settings (Self-hosted server or Photon cloud)
-                PhotonNetwork.ConnectUsingSettings(buildVersion);
+                PhotonNetwork.ConnectUsingSettings(BuildVersion);
             }
             GUILayout.EndVertical();
         }
@@ -119,13 +120,13 @@ public class NetworkScript : Photon.MonoBehaviour
     void PlayerRoleActivator(string playerRole, int playerSpawn)
     { 
         // Instantiates player at relevant spawnspot
-        myPlayerGo = PhotonNetwork.Instantiate(playerRole, spawnSpots[playerSpawn].transform.position, spawnSpots[playerSpawn].transform.rotation, 0);
-        myPlayerGo.GetComponent<FPSInputController>().enabled = true;
-        myPlayerGo.GetComponent<ShootingScript>().enabled = true;
-        myPlayerGo.GetComponent<MouseLook>().enabled = true;
-        myPlayerGo.GetComponent<CharacterMotor>().enabled = true;
-        myPlayerGo.GetComponent<NetworkCharacter>().enabled = false;
-        myPlayerGo.transform.FindChild("MainCamera").gameObject.SetActive(true);
+        MyPlayerGo = PhotonNetwork.Instantiate(playerRole, spawnSpots[playerSpawn].transform.position, spawnSpots[playerSpawn].transform.rotation, 0);
+        MyPlayerGo.GetComponent<FPSInputController>().enabled = true;
+        MyPlayerGo.GetComponent<ShootingScript>().enabled = true;
+        MyPlayerGo.GetComponent<MouseLook>().enabled = true;
+        MyPlayerGo.GetComponent<CharacterMotor>().enabled = true;
+        MyPlayerGo.GetComponent<NetworkCharacter>().enabled = false;
+        MyPlayerGo.transform.FindChild("MainCamera").gameObject.SetActive(true);
         print(playerRole);
     }
 

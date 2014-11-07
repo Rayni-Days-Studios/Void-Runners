@@ -9031,7 +9031,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5c422630a3588c4fa8a93c6d9061a11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildVersion: 1.0
+  OfflineOn: 0
+  BuildVersion: 1.0
+  MyPlayerGo: {fileID: 0}
 --- !u!1 &711752236
 GameObject:
   m_ObjectHideFlags: 0

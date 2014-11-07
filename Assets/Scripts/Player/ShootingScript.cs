@@ -3,9 +3,10 @@ using UnityEngine;
 
 public class ShootingScript : MonoBehaviour 
 {
-    public Transform barrelEnd;
-    public Gun lightGun;
-    public Gun bulletGun;
+    public Transform BarrelEnd;
+    public bool WhichGun; // True = LightGun, False = BulletGun
+    public Gun LightGun;
+    public Gun BulletGun;
 
     [Serializable]
     public struct Gun
@@ -27,7 +28,6 @@ public class ShootingScript : MonoBehaviour
                 Instantiate(BulletPrefab, spawnPoint.position, spawnPoint.rotation) as Rigidbody;
             if (bulletInstance != null) bulletInstance.AddForce(spawnPoint.forward*Time.deltaTime*Force*1000f);
         }
-
 
         public void Reload()
         {
@@ -54,25 +54,25 @@ public class ShootingScript : MonoBehaviour
 
     void Update () 
     {
+
         //If left click
-        if (Input.GetButtonDown("Fire1") && bulletGun.TotalAmmo > 0)
+        if (Input.GetButtonDown("Fire1"))
         {
-            bulletGun.Shoot(barrelEnd);
-        }
-        else
-        {
-            Debug.Log("No more bullets, reload!");
-        }
-        //If right click
-        if(Input.GetButtonDown("Fire2") && lightGun.TotalAmmo > 0)
-        {
-            lightGun.Shoot(barrelEnd);
+            if(WhichGun && LightGun.LoadedAmmo > 0)
+                LightGun.Shoot(BarrelEnd);
+            else
+                print("No more energy left, reload!");
+            if (!WhichGun && BulletGun.LoadedAmmo > 0)
+                BulletGun.Shoot(BarrelEnd);
+            else
+                print("No more bullets, reload!");
         }
 
         //If pressing R
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            bulletGun.Reload();
-        }
+        if (!Input.GetKeyDown(KeyCode.R)) return;
+            if (WhichGun)
+                LightGun.Reload();
+            else
+                BulletGun.Reload();
     }
 }

@@ -56,6 +56,7 @@ GameObject:
   - 114: {fileID: 11400012}
   - 114: {fileID: 11400014}
   - 114: {fileID: 11400016}
+  - 114: {fileID: 11400022}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -87,7 +88,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.0515399985, y: 2.47079992, z: 1.10609996}
+  m_LocalPosition: {x: -.0515399985, y: -.059781, z: 1.10609996}
   m_LocalScale: {x: 1.13290524, y: 1.02223265, z: 1.15655553}
   m_Children: []
   m_Father: {fileID: 400004}
@@ -315,23 +316,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e1450c5831f7344c818ca0674b23f40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barrelEnd: {fileID: 400000}
-  lightGun:
+  BarrelEnd: {fileID: 400000}
+  WhichGun: 1
+  LightGun:
     TotalAmmo: 100
-    LoadedAmmo: 10
-    AmmoCap: 10
+    LoadedAmmo: 15
+    AmmoCap: 15
     Force: 10
     BulletPrefab: {fileID: 5400000, guid: 0bba4c6b8ada82440a58440ff3002374, type: 2}
     Bullet: {fileID: 100000, guid: 0bba4c6b8ada82440a58440ff3002374, type: 2}
     ShootSound: {fileID: 8200000}
-  bulletGun:
-    TotalAmmo: 0
-    LoadedAmmo: 0
-    AmmoCap: 0
+  BulletGun:
+    TotalAmmo: 1
+    LoadedAmmo: 1
+    AmmoCap: 1
     Force: 0
-    BulletPrefab: {fileID: 5400000, guid: 06aac4a6e4a03d7478d9f1d0407c56bb, type: 2}
-    Bullet: {fileID: 100000, guid: 06aac4a6e4a03d7478d9f1d0407c56bb, type: 2}
-    ShootSound: {fileID: 8200000}
+    BulletPrefab: {fileID: 0}
+    Bullet: {fileID: 0}
+    ShootSound: {fileID: 0}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -355,9 +357,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movement:
-    maxForwardSpeed: 7.5
-    maxSidewaysSpeed: 7.5
-    maxBackwardsSpeed: 7.5
+    maxForwardSpeed: 8
+    maxSidewaysSpeed: 8
+    maxBackwardsSpeed: 6
     slopeSpeedMultiplier:
       serializedVersion: 2
       m_Curve:
@@ -380,12 +382,12 @@ MonoBehaviour:
       m_PostInfinity: 2
     maxGroundAcceleration: 50
     maxAirAcceleration: 20
-    gravity: 30
+    gravity: 20
     maxFallSpeed: 20
   jumping:
     enabled: 1
     baseHeight: 1
-    extraHeight: 4.0999999
+    extraHeight: .200000003
     perpAmount: 0
     steepPerpAmount: .5
   movingPlatform:
@@ -431,11 +433,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 801b08a3f41bd8244a2dceb16d7dcf33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoCount:
+  AmmoCount:
     m_Name: 
     m_Normal:
       m_Background: {fileID: 0}
-      m_TextColor: {r: 1, g: 1, b: 1, a: 1}
+      m_TextColor: {r: 1, g: 0, b: 0, a: 1}
     m_Hover:
       m_Background: {fileID: 0}
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
@@ -478,14 +480,14 @@ MonoBehaviour:
       m_Top: 0
       m_Bottom: 0
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_FontSize: 14
     m_FontStyle: 0
     m_Alignment: 0
     m_WordWrap: 0
     m_RichText: 1
     m_TextClipping: 0
     m_ImagePosition: 0
-    m_ContentOffset: {x: 0, y: 192.649994}
+    m_ContentOffset: {x: 0, y: 108}
     m_FixedWidth: 0
     m_FixedHeight: 0
     m_StretchWidth: 1
@@ -501,7 +503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa85db935cd4cb3429f9188e00003138, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crosshair: {fileID: 2800000, guid: 13c06d8fbac529a4fbc8a890ed4b7fec, type: 3}
+  crosshair: {fileID: 2800000, guid: 51e8b9e0548200f4e91a8c0a2aa301c1, type: 3}
   noGuiStyle:
     m_Name: 
     m_Normal:
@@ -561,7 +563,7 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
-  guiColor: {r: 1, g: 1, b: 1, a: 1}
+  guiColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &11400018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -591,6 +593,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4cc5f9dc7579c884ebeb3066aafeb5ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11400022
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 354e491c1f4307c49ac143646bdc63b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!124 &12400000
