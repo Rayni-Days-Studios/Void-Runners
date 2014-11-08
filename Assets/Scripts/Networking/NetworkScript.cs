@@ -24,6 +24,8 @@ public class NetworkScript : Photon.MonoBehaviour
     // Array to hold the spots that can be spawned in
     private List<SpawnSpot> spawnSpots;
 
+    public string[] PlayerRoles;
+
     // Holds the local player gameobject
     [NonSerialized]
     public GameObject MyPlayerGo;
@@ -141,16 +143,16 @@ public class NetworkScript : Photon.MonoBehaviour
         switch (PhotonNetwork.countOfPlayers)
         {
             case (1):
-                PlayerRoleActivator("Eden", 0);
+                PlayerRoleActivator(PlayerRoles[0], 0);
                 break;
             case (2):
-                PlayerRoleActivator("Gunner", 1);
+                PlayerRoleActivator(PlayerRoles[1], 1);
                 break;
             case (3):
-                PlayerRoleActivator("Monster", 2);
+                PlayerRoleActivator(PlayerRoles[2], 2);
                 break;
             case (4):
-                PlayerRoleActivator("Scout", 3);
+                PlayerRoleActivator(PlayerRoles[3], 3);
                 break;
         }
     }

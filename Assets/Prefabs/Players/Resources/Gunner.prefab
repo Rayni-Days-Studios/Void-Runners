@@ -39,7 +39,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &100004
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,7 +153,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: -.0491340086, y: -.0371110067, z: .00165600039, w: .998101175}
-  m_LocalPosition: {x: .54768002, y: -.159309998, z: .303160012}
+  m_LocalPosition: {x: .357169986, y: -.152840003, z: .368059993}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400008}
@@ -194,8 +194,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .00813924614, y: -.149557114, z: 1.10608685}
-  m_LocalScale: {x: 1.13290524, y: 1.02223265, z: 1.15655553}
+  m_LocalPosition: {x: .336129993, y: -.0402919985, z: .784430027}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400002}
   m_RootOrder: 0
@@ -258,7 +258,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: .19166474, g: .301966369, b: .474509805, a: 1}
+  m_BackGroundColor: {r: .00784313772, g: .00784313772, b: .00784313772, a: 1}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -555,7 +555,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 801b08a3f41bd8244a2dceb16d7dcf33, type: 3}
   m_Name: 
