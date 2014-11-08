@@ -115,6 +115,7 @@ ModelImporter:
     400108: //RootNode
     4300000: Body_01
     9500000: //RootNode
+    11100000: //RootNode
     13700000: Body_01
   materials:
     importMaterials: 1
