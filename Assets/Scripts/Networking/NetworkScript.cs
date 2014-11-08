@@ -128,13 +128,10 @@ public class NetworkScript : Photon.MonoBehaviour
         MyPlayerGo.GetComponent<MouseLook>().enabled = true;
         MyPlayerGo.GetComponent<CharacterMotor>().enabled = true;
         MyPlayerGo.GetComponent<NetworkCharacter>().enabled = false;
-        // Avoids nullreference when Scout and Monster gets spawned
-        if (playerRole == "Eden" || playerRole == "Gunner") MyPlayerGo.GetComponent<ShootingScript>().enabled = true;
+        //// Avoids nullreference when Scout and Monster gets spawned
+        //if (playerRole == "Eden" || playerRole == "Gunner") MyPlayerGo.GetComponent<ShootingScript>().enabled = true;
+        MyPlayerGo.GetComponent<Player>().enabled = true;
         MyPlayerGo.transform.FindChild("MainCamera").gameObject.SetActive(true);
-        //// We should not search for PlayerRole, but the specific class name.
-        //MyPlayerGo.GetComponent<Player>().enabled = true;
-        //MyPlayerGo.GetComponent<Player>().UpdateRole(playerRole);
-        //print(playerRole);
     }
 
     void SpawnPlayer()

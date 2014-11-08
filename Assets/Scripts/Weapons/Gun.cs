@@ -1,8 +1,9 @@
 ﻿using System;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 [Serializable]
-public class Gun : MonoBehaviour {
+public class Gun {
     public int TotalAmmo;
     public int LoadedAmmo;             //Amount of bullets not currently in gun
     public int AmmoCap;                 //Ammo capacity
@@ -16,7 +17,7 @@ public class Gun : MonoBehaviour {
         LoadedAmmo -= 1;
         ShootSound.Play();
         //Shoot
-        Rigidbody bulletInstance = Instantiate(BulletPrefab, spawnPoint.position, spawnPoint.rotation) as Rigidbody;
+        Rigidbody bulletInstance = Object.Instantiate(BulletPrefab, spawnPoint.position, spawnPoint.rotation) as Rigidbody;
 
         if (bulletInstance != null)
             bulletInstance.AddForce(spawnPoint.forward * Time.deltaTime * Force * 1000f);

@@ -8,8 +8,10 @@ public class Player : MonoBehaviour {
     public Gun BulletGun;
 
 	// Use this for initialization
-	void Start () {
-	
+	void Start () 
+    {
+        LightGun = new Gun();
+        BulletGun = new Gun();
 	}
 	
 	// Update is called once per frame
