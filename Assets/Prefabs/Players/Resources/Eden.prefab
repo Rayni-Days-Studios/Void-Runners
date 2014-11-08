@@ -51,14 +51,13 @@ GameObject:
   - 4: {fileID: 400004}
   - 143: {fileID: 14300000}
   - 65: {fileID: 6500000}
+  - 114: {fileID: 11400014}
   - 114: {fileID: 11400016}
-  - 114: {fileID: 11400012}
   - 114: {fileID: 11400010}
   - 114: {fileID: 11400008}
   - 114: {fileID: 11400018}
   - 114: {fileID: 11400020}
   - 82: {fileID: 8200000}
-  - 114: {fileID: 11400014}
   m_Layer: 0
   m_Name: Eden
   m_TagString: Player
@@ -606,7 +605,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76809218b4962ad47965085549fa3738, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11400012
+--- !u!114 &11400014
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -614,9 +613,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 100004}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e1450c5831f7344c818ca0674b23f40, type: 3}
+  m_Script: {fileID: 11500000, guid: fc184b92948e7fe43bed8f2640f411f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxHitPoints: 100
   BarrelEnd: {fileID: 400006}
   UseLightGun: 1
   LightGun:
@@ -630,40 +630,11 @@ MonoBehaviour:
   BulletGun:
     TotalAmmo: 1
     LoadedAmmo: 1
-    AmmoCap: 1
-    Force: 1
+    AmmoCap: 0
+    Force: 0
     BulletPrefab: {fileID: 0}
     Bullet: {fileID: 0}
     ShootSound: {fileID: 0}
---- !u!114 &11400014
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc184b92948e7fe43bed8f2640f411f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BarrelEnd: {fileID: 400006}
-  UsePrimaryGun: 1
-  LightGun:
-    TotalAmmo: 100
-    LoadedAmmo: 20
-    AmmoCap: 20
-    Force: 9
-    BulletPrefab: {fileID: 5400000, guid: 0bba4c6b8ada82440a58440ff3002374, type: 2}
-    Bullet: {fileID: 100000, guid: 0bba4c6b8ada82440a58440ff3002374, type: 2}
-    ShootSound: {fileID: 8200000}
-  BulletGun:
-    TotalAmmo: 1
-    LoadedAmmo: 1
-    AmmoCap: 0
-    Force: 0
-    BulletPrefab: {fileID: 5400000, guid: 06aac4a6e4a03d7478d9f1d0407c56bb, type: 2}
-    Bullet: {fileID: 100000, guid: 06aac4a6e4a03d7478d9f1d0407c56bb, type: 2}
-    ShootSound: {fileID: 8200000}
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1
