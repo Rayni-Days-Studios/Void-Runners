@@ -15,12 +15,12 @@ public class AmmoGUI : MonoBehaviour
 
     private void OnGUI()
     {
-        if (shootingScript.WhichGun)
+        if (shootingScript.UsePrimaryGun)
         {
             GUILayout.Label("Total Ammo: " + shootingScript.LightGun.TotalAmmo, AmmoCount);
             GUILayout.Label("Loaded Ammo: " + shootingScript.LightGun.LoadedAmmo, AmmoCount);
         }
-        else if (!shootingScript.WhichGun)
+        else if (!shootingScript.UsePrimaryGun)
         {
             GUILayout.Label("Total Ammo: " + shootingScript.BulletGun.TotalAmmo, AmmoCount);
             GUILayout.Label("Loaded Ammo: " + shootingScript.BulletGun.LoadedAmmo, AmmoCount);
