@@ -106,7 +106,7 @@ GameObject:
   - 4: {fileID: 400010}
   - 95: {fileID: 9500002}
   m_Layer: 0
-  m_Name: Eden
+  m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -719,12 +719,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BarrelEnd: {fileID: 400006}
-  WhichGun: 0
+  UseLightGun: 0
   LightGun:
-    TotalAmmo: 0
-    LoadedAmmo: 0
-    AmmoCap: 0
-    Force: 0
+    TotalAmmo: 1
+    LoadedAmmo: 1
+    AmmoCap: 1
+    Force: 1
     BulletPrefab: {fileID: 0}
     Bullet: {fileID: 0}
     ShootSound: {fileID: 0}

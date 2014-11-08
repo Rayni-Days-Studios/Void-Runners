@@ -4,7 +4,7 @@ using UnityEngine;
 public class ShootingScript : MonoBehaviour 
 {
     public Transform BarrelEnd;
-    public bool UsePrimaryGun; // True = LightGun, False = BulletGun
+    public bool UseLightGun; // True = LightGun, False = BulletGun
     public Gun LightGun;
     public Gun BulletGun;
 
@@ -60,12 +60,12 @@ public class ShootingScript : MonoBehaviour
         //If left click
         if (Input.GetButtonDown("Fire1"))
         {
-            if(UsePrimaryGun && LightGun.LoadedAmmo > 0)
+            if(UseLightGun && LightGun.LoadedAmmo > 0)
                 LightGun.Shoot(BarrelEnd);
             else
                 print("No more energy left, reload!");
 
-            if (!UsePrimaryGun && BulletGun.LoadedAmmo > 0)
+            if (!UseLightGun && BulletGun.LoadedAmmo > 0)
                 BulletGun.Shoot(BarrelEnd);
             else
                 print("No more bullets, reload!");
@@ -73,7 +73,7 @@ public class ShootingScript : MonoBehaviour
 
         //If pressing R
         if (!Input.GetKeyDown(KeyCode.R)) return;
-            if (UsePrimaryGun)
+            if (UseLightGun)
                 LightGun.Reload();
             else
                 BulletGun.Reload();

@@ -108,7 +108,7 @@ GameObject:
   - 4: {fileID: 400010}
   - 95: {fileID: 9500000}
   m_Layer: 0
-  m_Name: Eden
+  m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -618,7 +618,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BarrelEnd: {fileID: 400006}
-  UsePrimaryGun: 1
+  UseLightGun: 1
   LightGun:
     TotalAmmo: 100
     LoadedAmmo: 20
