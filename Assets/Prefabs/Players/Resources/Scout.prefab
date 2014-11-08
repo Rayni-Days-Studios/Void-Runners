@@ -51,11 +51,11 @@ GameObject:
   - 143: {fileID: 14300000}
   - 65: {fileID: 6500000}
   - 114: {fileID: 11400016}
-  - 114: {fileID: 11400014}
   - 114: {fileID: 11400010}
   - 114: {fileID: 11400008}
   - 114: {fileID: 11400018}
   - 114: {fileID: 11400020}
+  - 114: {fileID: 11400014}
   m_Layer: 0
   m_Name: Scout
   m_TagString: Player
@@ -328,8 +328,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movement:
-    maxForwardSpeed: 8
-    maxSidewaysSpeed: 8
+    maxForwardSpeed: 7
+    maxSidewaysSpeed: 7
     maxBackwardsSpeed: 6
     slopeSpeedMultiplier:
       serializedVersion: 2
@@ -387,7 +387,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!114 &11400014
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}

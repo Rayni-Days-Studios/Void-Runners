@@ -928,11 +928,11 @@ GameObject:
   - 65: {fileID: 6500000}
   - 111: {fileID: 11100000}
   - 114: {fileID: 11400002}
-  - 114: {fileID: 11400004}
   - 114: {fileID: 11400008}
   - 114: {fileID: 11400010}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400020}
+  - 114: {fileID: 11400004}
   m_Layer: 0
   m_Name: Monster
   m_TagString: Player
@@ -1902,7 +1902,7 @@ MonoBehaviour:
   maximumY: 0
 --- !u!114 &11400004
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100124}
@@ -1946,8 +1946,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movement:
-    maxForwardSpeed: 8
-    maxSidewaysSpeed: 8
+    maxForwardSpeed: 7
+    maxSidewaysSpeed: 7
     maxBackwardsSpeed: 6
     slopeSpeedMultiplier:
       serializedVersion: 2
