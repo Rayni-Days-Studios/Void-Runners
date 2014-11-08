@@ -739,12 +739,12 @@ CharacterController:
   m_GameObject: {fileID: 100004}
   serializedVersion: 2
   m_Height: 2.20000005
-  m_Radius: .300000012
+  m_Radius: .400000006
   m_SlopeLimit: 45
   m_StepOffset: .400000006
   m_SkinWidth: .0500000007
   m_MinMoveDistance: 0
-  m_Center: {x: 0, y: 1.10000002, z: 0}
+  m_Center: {x: 0, y: 1.04999995, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
