@@ -21,7 +21,6 @@ public class ShootingScript : MonoBehaviour
 
         public void Shoot(Transform spawnPoint)
         {
-            print("shoot");
             LoadedAmmo -= 1;
             ShootSound.Play();
             //Shoot
