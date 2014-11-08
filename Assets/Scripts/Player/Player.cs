@@ -12,8 +12,10 @@ public class Player : MonoBehaviour {
     public Gun BulletGun;
 
 	// Use this for initialization
-	void Start () 
-    {
+	void Start ()
+	{
+	    currentHitPoints = MaxHitPoints;
+
         if(UseLightGun)
             LightGun = new Gun();
         else
@@ -46,4 +48,24 @@ public class Player : MonoBehaviour {
                 BulletGun.Reload();
         }
 	}
+
+    [RPC]
+    public void TakeDamage(float amt)
+    {
+        currentHitPoints -= amt;
+
+        if (currentHitPoints <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        if (GetComponent<PhotonView>().instantiationId == 0)
+            Destroy(gameObject);
+        else
+            if (GetComponent<PhotonView>().isMine)
+                PhotonNetwork.Destroy(gameObject);
+    }
 }

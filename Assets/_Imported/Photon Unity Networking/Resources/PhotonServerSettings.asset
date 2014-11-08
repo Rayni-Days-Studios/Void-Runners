@@ -32,4 +32,6 @@ MonoBehaviour:
   - RequestForPickupTimes
   - SetPosition
   - TaggedPlayer
+  - TakeDamage
+  - AddChatMessage_RPC
   DisableAutoOpenWizard: 0

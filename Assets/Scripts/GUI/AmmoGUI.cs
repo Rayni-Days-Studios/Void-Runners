@@ -4,13 +4,13 @@
 public class AmmoGUI : MonoBehaviour
 {
 
-    private ShootingScript shootingScript;
+    private Player shootingScript;
     public GUIStyle AmmoCount;
 
     private void Awake()
     {
         // Ensures that it's only the local player's shootingscript it finds
-        shootingScript = GameObject.Find("_GameManager").GetComponent<NetworkScript>().MyPlayerGo.GetComponent<ShootingScript>();
+        shootingScript = GameObject.Find("_GameManager").GetComponent<NetworkScript>().MyPlayerGo.GetComponent<Player>();
     }
 
     private void OnGUI()

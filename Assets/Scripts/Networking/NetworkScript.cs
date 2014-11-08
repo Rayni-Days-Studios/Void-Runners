@@ -10,70 +10,171 @@ public class NetworkScript : Photon.MonoBehaviour
      * Right now the spawn system is broken. If someone joins, they get the first role. 
      * Now say someone else joins, that person gets the second role. 
      * Now, the first player leaves, and another person joins. 
-     * What role does this third person get? 
-     * The third role?
-     * Nope. The second one.
+     * What role does this third person get? The third role? Nope. The second one.
      * Why? Because the roles are based on how many players are in the room.
-     * Work on fixing this instead.
-     * Also, don't use 4 tags for one thing. Bad move!
-     */
+     * Work on fixing this instead. */
 
     // This is used to set the build version
-    public string buildVersion = "1.0";
-
+    public string BuildVersion = "1.0";
     // Array to hold the spots that can be spawned in
     private List<SpawnSpot> spawnSpots;
+    public GameObject StandbyCamera;
 
-    public string[] PlayerRoles;
+    private List<string> chatMessages;
+    public int MaxChatMessages = 5;
+
+    private bool scoutSpawned;
+    private bool monsterSpawned;
+    private bool gunnerSpawned;
+    private bool edenSpawned;
+
+    private bool hasPickedRole;
+    private bool connecting;
 
     // Holds the local player gameobject
     [NonSerialized]
     public GameObject MyPlayerGo;
 
-    void Awake()
+    void Start()
     {
-        // Connects to the server with the settings from "PhotonServerSettings" and has the variable BuildVersion as the required string
-        PhotonNetwork.ConnectUsingSettings(buildVersion);
         // Finds gameobjects with the SpawnSpot script attached and adds them to the spawnspots array
         spawnSpots = FindObjectsOfType<SpawnSpot>().ToList();
+        PhotonNetwork.player.name = PlayerPrefs.GetString("Username", "Awesome Dude");
+        chatMessages = new List<string>();
     }
 
-    void OfflineMode()
+    void OnDestroy()
     {
-        // Call this function in Awake for offline mode
-        // Good for testing on local PC without latency
-        PhotonNetwork.offlineMode = true;
+        PlayerPrefs.SetString("Username", PhotonNetwork.player.name);
+    }
 
-        // ConnectUsingSettings won't work in offline mode
-        // So we're manually calling the JoinOrCreateRoom function
-        StartCoroutine(JoinOrCreateRoom());
+    public void AddChatMessage(string message)
+    {
+        GetComponent<PhotonView>().RPC("AddChatMessage_RPC", PhotonTargets.AllBuffered, message);
+    }
+
+    [RPC]
+    void AddChatMessage_RPC(string message)
+    {
+        while (chatMessages.Count >= MaxChatMessages)
+        {
+            chatMessages.RemoveAt(0);
+        }
+        chatMessages.Add(message);
+    }
+
+    void Connect()
+    {
+        PhotonNetwork.ConnectUsingSettings(BuildVersion);
     }
 
     void OnGUI()
     {
+        GUILayout.Label(PhotonNetwork.connectionStateDetailed.ToString());
+        
         // Check connection state..
         if (!PhotonNetwork.connected && !PhotonNetwork.connecting)
         {
+
+            GUILayout.BeginArea( new Rect(0, 0, Screen.width, Screen.height) );
+			GUILayout.BeginHorizontal();
+			GUILayout.FlexibleSpace();
+			GUILayout.BeginVertical();
+			GUILayout.FlexibleSpace();
+
+			GUILayout.BeginHorizontal();
+			GUILayout.Label("Username: ");
+			PhotonNetwork.player.name = GUILayout.TextField(PhotonNetwork.player.name);
+			GUILayout.EndHorizontal();
+
+			if( GUILayout.Button("Single Player") ) {
+				connecting = true;
+				PhotonNetwork.offlineMode = true;
+			    StartCoroutine(JoinOrCreateRoom());
+			}
+
+			if( GUILayout.Button("Multi Player") ) {
+				connecting = true;
+				Connect();
+			}
+
+			GUILayout.FlexibleSpace();
+			GUILayout.EndVertical();
+			GUILayout.FlexibleSpace();
+			GUILayout.EndHorizontal();
+			GUILayout.EndArea();
+
             // We are currently disconnected
             GUILayout.Label("Connection status: " + PhotonNetwork.connectionStateDetailed);
-
-            GUILayout.BeginVertical();
-            if (GUILayout.Button("Connect"))
-            {
-                // Connect using the PUN wizard settings (Self-hosted server or Photon cloud)
-                PhotonNetwork.ConnectUsingSettings(buildVersion);
-            }
-            GUILayout.EndVertical();
         }
         else
         {
+            if (PhotonNetwork.connected == true && connecting == false)
+            {
+
+                if (hasPickedRole)
+                {
+                    // We are fully connected, make sure to display the chat box.
+                    GUILayout.BeginArea(new Rect(0, 0, Screen.width, Screen.height));
+                    GUILayout.BeginVertical();
+                    GUILayout.FlexibleSpace();
+
+                    foreach (string msg in chatMessages)
+                    {
+                        GUILayout.Label(msg);
+                    }
+
+                    GUILayout.EndVertical();
+                    GUILayout.EndArea();
+                }
+                else
+                {
+                    // Player has not yet selected a role.
+
+                    GUILayout.BeginArea(new Rect(0, 0, Screen.width, Screen.height));
+                    GUILayout.BeginHorizontal();
+                    GUILayout.FlexibleSpace();
+                    GUILayout.BeginVertical();
+                    GUILayout.FlexibleSpace();
+
+                    if (!edenSpawned) 
+                        if(GUILayout.Button("Eden"))
+                        {
+                            SpawnPlayer("Eden", 0);
+                            edenSpawned = true;
+                        }
+                    if(!gunnerSpawned)
+                        if (GUILayout.Button("Gunner"))
+                        {
+                            SpawnPlayer("Gunner", 1);
+                            gunnerSpawned = true;
+                        }
+                    if(!scoutSpawned)
+                        if (GUILayout.Button("Scout"))
+                        {
+                            SpawnPlayer("Scout", 2);
+                            scoutSpawned = true;
+                        }
+                    if(!monsterSpawned)
+                        if (GUILayout.Button("Monster"))
+                        {
+                            SpawnPlayer("Monster", 3);
+                            monsterSpawned = true;
+                        }
+
+                    GUILayout.FlexibleSpace();
+                    GUILayout.EndVertical();
+                    GUILayout.FlexibleSpace();
+                    GUILayout.EndHorizontal();
+                    GUILayout.EndArea();
+                }
+            }
             // We're connected!
             GUILayout.Label("Connection status: " + PhotonNetwork.connectionStateDetailed);
             if (PhotonNetwork.room != null)
             {
                 GUILayout.Label("Room: " + PhotonNetwork.room.name);
                 GUILayout.Label("Players: " + PhotonNetwork.room.playerCount + "/" + PhotonNetwork.room.maxPlayers);
-
             }
             else
             {
@@ -84,7 +185,6 @@ public class NetworkScript : Photon.MonoBehaviour
 
         }
     }
-
     private bool receivedRoomList;
 
     void OnConnectedToPhoton()
@@ -116,43 +216,31 @@ public class NetworkScript : Photon.MonoBehaviour
 
     void OnJoinedRoom()
     {
-        // Calls the SpawnPlayer function
-        SpawnPlayer();
+        print("Joined room");
+        connecting = false;
     }
 
-    void PlayerRoleActivator(string playerRole, int playerSpawn)
+    void SpawnPlayer(string playerRole, int playerSpawn)
     {
+        hasPickedRole = true;
+        AddChatMessage("Spawning player: " + PhotonNetwork.player.name);
+        // This spawns the player, and gives it a role based on how many players are in the room
         // Instantiates player at relevant spawnspot
         MyPlayerGo = PhotonNetwork.Instantiate(playerRole, spawnSpots[playerSpawn].transform.position, spawnSpots[playerSpawn].transform.rotation, 0);
         MyPlayerGo.GetComponent<FPSInputController>().enabled = true;
         MyPlayerGo.GetComponent<MouseLook>().enabled = true;
         MyPlayerGo.GetComponent<CharacterMotor>().enabled = true;
         MyPlayerGo.GetComponent<NetworkCharacter>().enabled = false;
+
         // Avoids nullreference when Scout and Monster gets spawned
         if (playerRole == "Eden" || playerRole == "Gunner") MyPlayerGo.GetComponent<Player>().enabled = true;
-        MyPlayerGo.transform.FindChild("MainCamera").gameObject.SetActive(true);
+
         // Disable the local player model to boost performance
         MyPlayerGo.transform.FindChild("Model").gameObject.SetActive(false);
-    }
 
-    void SpawnPlayer()
-    {
-        // This spawns the player, and gives it a role based on how many players are in the room
-        switch (PhotonNetwork.countOfPlayers)
-        {
-            case (1):
-                PlayerRoleActivator(PlayerRoles[0], 0);
-                break;
-            case (2):
-                PlayerRoleActivator(PlayerRoles[1], 1);
-                break;
-            case (3):
-                PlayerRoleActivator(PlayerRoles[2], 2);
-                break;
-            case (4):
-                PlayerRoleActivator(PlayerRoles[3], 3);
-                break;
-        }
+        StandbyCamera.SetActive(false);
+        MyPlayerGo.transform.FindChild("MainCamera").gameObject.SetActive(true);
+
     }
 
     void OnReceivedRoomListUpdate()
