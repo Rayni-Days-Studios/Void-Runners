@@ -617,7 +617,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BarrelEnd: {fileID: 400006}
-  WhichGun: 1
+  UsePrimaryGun: 1
   LightGun:
     TotalAmmo: 100
     LoadedAmmo: 20
