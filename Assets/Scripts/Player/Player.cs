@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
-public class Player : MonoBehaviour {
-
+public class Player : MonoBehaviour 
+{
     private float cooldown;
     public bool UseLightGun; // True = LightGun, False = BulletGun
     public Gun LightGun;

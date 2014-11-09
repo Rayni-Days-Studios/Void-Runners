@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 [Serializable]
@@ -7,7 +8,7 @@ public class Gun
     public int TotalAmmo;
     public int LoadedAmmo;             //Amount of bullets not currently in gun
     public int AmmoCap;                 //Ammo capacity
-    public int Damage;
+    public float Damage;
     public float FireRate;
     public Transform spawnPoint;
     public GameObject Bullet;
@@ -45,7 +46,11 @@ public class Gun
                 if (pView == null)
                     Debug.LogError("PhotonView not found on object");
                 else
+                {
                     healthScript.GetComponent<PhotonView>().RPC("TakeDamage", PhotonTargets.AllBuffered, Damage);
+                    Debug.Log("TakeDAMAGE YO");
+                }
+
             }
 
             if (fxManager != null)

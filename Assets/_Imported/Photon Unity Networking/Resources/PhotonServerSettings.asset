@@ -36,4 +36,5 @@ MonoBehaviour:
   - AddChatMessage_RPC
   - SniperBulletFX
   - BulletFX
+  - UsedRole
   DisableAutoOpenWizard: 0

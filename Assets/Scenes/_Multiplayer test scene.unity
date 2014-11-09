@@ -9365,6 +9365,7 @@ MonoBehaviour:
     m_StretchWidth: 1
     m_StretchHeight: 0
   MaxChatMessages: 5
+  scoutSpawned: 0
 --- !u!114 &691223553
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,8 +13,13 @@ public class AmmoGUI : MonoBehaviour
         shootingScript = GameObject.Find("_GameManager").GetComponent<NetworkScript>().MyPlayerGo.GetComponent<Player>();
     }
 
+    [ExecuteInEditMode]
     private void OnGUI()
     {
+        GUILayout.BeginArea(new Rect(Screen.width - 124, 0, 124, Screen.height));
+        GUILayout.BeginVertical();
+        GUILayout.FlexibleSpace();
+
         if (shootingScript.UseLightGun)
         {
             GUILayout.Label(shootingScript.LightGun.TotalAmmo + " - Total Ammo", AmmoCount);
@@ -25,5 +30,8 @@ public class AmmoGUI : MonoBehaviour
             GUILayout.Label(shootingScript.BulletGun.TotalAmmo + " - Total Ammo", AmmoCount);
             GUILayout.Label(shootingScript.BulletGun.LoadedAmmo + " - Loaded Ammo", AmmoCount);
         }
+
+        GUILayout.EndVertical();
+        GUILayout.EndArea();
     }
 }
