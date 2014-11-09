@@ -23,9 +23,13 @@ public class Player : MonoBehaviour {
     {
         cooldown -= Time.deltaTime;
         //If left click
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButton("Fire1"))
         {
             if (cooldown > 0) return;
+                if (UseLightGun)
+                    cooldown = LightGun.FireRate;
+                else
+                    cooldown = BulletGun.FireRate;
                 if (UseLightGun && LightGun.LoadedAmmo > 0)
                     LightGun.Fire(fxManager);
                 else

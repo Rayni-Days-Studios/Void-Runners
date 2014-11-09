@@ -11,6 +11,9 @@ public class NetworkScript : Photon.MonoBehaviour
     // Array to hold the spots that can be spawned in
     private List<SpawnSpot> spawnSpots;
     public GameObject StandbyCamera;
+    public GUIStyle MyButtonStyle;
+    public GUIStyle MyTextStyle;
+    public GUIStyle MyTextFieldStyle;
 
     private List<string> chatMessages;
     public int MaxChatMessages = 5;
@@ -63,7 +66,7 @@ public class NetworkScript : Photon.MonoBehaviour
 
     void OnGUI()
     {
-        GUILayout.Label(PhotonNetwork.connectionStateDetailed.ToString());
+        GUILayout.Label(PhotonNetwork.connectionStateDetailed.ToString(), MyTextStyle);
         
         // Check connection state..
         if (!PhotonNetwork.connected && !PhotonNetwork.connecting)
@@ -76,17 +79,19 @@ public class NetworkScript : Photon.MonoBehaviour
 			GUILayout.FlexibleSpace();
 
 			GUILayout.BeginHorizontal();
-			GUILayout.Label("Username: ");
-			PhotonNetwork.player.name = GUILayout.TextField(PhotonNetwork.player.name);
+            GUILayout.Label("Username: ", MyTextFieldStyle);
+            PhotonNetwork.player.name = GUILayout.TextField(PhotonNetwork.player.name, MyTextFieldStyle);
 			GUILayout.EndHorizontal();
 
-			if( GUILayout.Button("Single Player") ) {
+            if (GUILayout.Button("Single Player", MyButtonStyle))
+            {
 				connecting = true;
 				PhotonNetwork.offlineMode = true;
 			    StartCoroutine(JoinOrCreateRoom());
 			}
 
-			if( GUILayout.Button("Multi Player") ) {
+            if (GUILayout.Button("Multi Player", MyButtonStyle))
+            {
 				connecting = true;
 				Connect();
 			}
@@ -98,7 +103,7 @@ public class NetworkScript : Photon.MonoBehaviour
 			GUILayout.EndArea();
 
             // We are currently disconnected
-            GUILayout.Label("Connection status: " + PhotonNetwork.connectionStateDetailed);
+            GUILayout.Label("Connection status: " + PhotonNetwork.connectionStateDetailed, MyTextStyle);
         }
         else
         {
@@ -114,7 +119,7 @@ public class NetworkScript : Photon.MonoBehaviour
 
                     foreach (string msg in chatMessages)
                     {
-                        GUILayout.Label(msg);
+                        GUILayout.Label(msg, MyTextStyle);
                     }
 
                     GUILayout.EndVertical();
@@ -131,25 +136,25 @@ public class NetworkScript : Photon.MonoBehaviour
                     GUILayout.FlexibleSpace();
 
                     if (!edenSpawned) 
-                        if(GUILayout.Button("Eden"))
+                        if(GUILayout.Button("Eden", MyButtonStyle))
                         {
                             SpawnPlayer("Eden", 0);
                             edenSpawned = true;
                         }
                     if(!gunnerSpawned)
-                        if (GUILayout.Button("Gunner"))
+                        if (GUILayout.Button("Gunner", MyButtonStyle))
                         {
                             SpawnPlayer("Gunner", 1);
                             gunnerSpawned = true;
                         }
                     if(!scoutSpawned)
-                        if (GUILayout.Button("Scout"))
+                        if (GUILayout.Button("Scout", MyButtonStyle))
                         {
                             SpawnPlayer("Scout", 2);
                             scoutSpawned = true;
                         }
                     if(!monsterSpawned)
-                        if (GUILayout.Button("Monster"))
+                        if (GUILayout.Button("Monster", MyButtonStyle))
                         {
                             SpawnPlayer("Monster", 3);
                             monsterSpawned = true;
@@ -163,18 +168,18 @@ public class NetworkScript : Photon.MonoBehaviour
                 }
             }
             // We're connected!
-            GUILayout.Label("Connection status: " + PhotonNetwork.connectionStateDetailed);
+            GUILayout.Label("Connection status: " + PhotonNetwork.connectionStateDetailed, MyTextStyle);
             if (PhotonNetwork.room != null)
             {
-                GUILayout.Label("Room: " + PhotonNetwork.room.name);
-                GUILayout.Label("Players: " + PhotonNetwork.room.playerCount + "/" + PhotonNetwork.room.maxPlayers);
+                GUILayout.Label("Room: " + PhotonNetwork.room.name, MyTextStyle);
+                GUILayout.Label("Players: " + PhotonNetwork.room.playerCount + "/" + PhotonNetwork.room.maxPlayers, MyTextStyle);
             }
             else
             {
-                GUILayout.Label("Not inside any room");
+                GUILayout.Label("Not inside any room", MyTextStyle);
             }
 
-            GUILayout.Label("Ping to server: " + PhotonNetwork.GetPing());
+            GUILayout.Label("Ping to server: " + PhotonNetwork.GetPing(), MyTextStyle);
 
         }
     }

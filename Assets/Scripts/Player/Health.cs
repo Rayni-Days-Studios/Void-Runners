@@ -12,6 +12,7 @@ public class Health : MonoBehaviour
 	    currentHitPoints = MaxHitPoints;
 	}
 
+    [RPC]
     void TakeDamage(float amount)
     {
         currentHitPoints -= amount;
