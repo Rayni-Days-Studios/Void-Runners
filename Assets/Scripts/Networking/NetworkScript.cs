@@ -66,12 +66,9 @@ public class NetworkScript : Photon.MonoBehaviour
 
     void OnGUI()
     {
-        GUILayout.Label(PhotonNetwork.connectionStateDetailed.ToString(), MyTextStyle);
-        
         // Check connection state..
         if (!PhotonNetwork.connected && !PhotonNetwork.connecting)
         {
-
             GUILayout.BeginArea( new Rect(0, 0, Screen.width, Screen.height) );
 			GUILayout.BeginHorizontal();
 			GUILayout.FlexibleSpace();

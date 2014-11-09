@@ -17,13 +17,13 @@ public class AmmoGUI : MonoBehaviour
     {
         if (shootingScript.UseLightGun)
         {
-            GUILayout.Label("Total Ammo: " + shootingScript.LightGun.TotalAmmo, AmmoCount);
-            GUILayout.Label("Loaded Ammo: " + shootingScript.LightGun.LoadedAmmo, AmmoCount);
+            GUILayout.Label(shootingScript.LightGun.TotalAmmo + " - Total Ammo", AmmoCount);
+            GUILayout.Label(shootingScript.LightGun.LoadedAmmo + " - Loaded Ammo", AmmoCount);
         }
         else if (!shootingScript.UseLightGun)
         {
-            GUILayout.Label("Total Ammo: " + shootingScript.BulletGun.TotalAmmo, AmmoCount);
-            GUILayout.Label("Loaded Ammo: " + shootingScript.BulletGun.LoadedAmmo, AmmoCount);
+            GUILayout.Label(shootingScript.BulletGun.TotalAmmo + " - Total Ammo", AmmoCount);
+            GUILayout.Label(shootingScript.BulletGun.LoadedAmmo + " - Loaded Ammo", AmmoCount);
         }
     }
 }

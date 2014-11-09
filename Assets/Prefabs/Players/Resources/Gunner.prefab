@@ -168,8 +168,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400000}
+  - {fileID: 400006}
   m_Father: {fileID: 400008}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!4 &400004
 Transform:
   m_ObjectHideFlags: 1
@@ -191,11 +192,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100008}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .334329993, y: -.0753799677, z: .748189986}
-  m_LocalScale: {x: 1.13290524, y: 1.02223265, z: 1.15655553}
+  m_LocalPosition: {x: -.000103090002, y: .0480079986, z: .374410003}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 400008}
-  m_RootOrder: 0
+  m_Father: {fileID: 400002}
+  m_RootOrder: 1
 --- !u!4 &400008
 Transform:
   m_ObjectHideFlags: 1
@@ -206,7 +207,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 1.90708351, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 400006}
   - {fileID: 400002}
   m_Father: {fileID: 400004}
   m_RootOrder: 0
@@ -546,9 +546,9 @@ MonoBehaviour:
     spawnPoint: {fileID: 0}
     Bullet: {fileID: 0}
   BulletGun:
-    TotalAmmo: 120
-    LoadedAmmo: 36
-    AmmoCap: 36
+    TotalAmmo: 1200
+    LoadedAmmo: 360
+    AmmoCap: 360
     Damage: 25
     FireRate: .100000001
     spawnPoint: {fileID: 400006}
@@ -642,7 +642,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 801b08a3f41bd8244a2dceb16d7dcf33, type: 3}
   m_Name: 
@@ -650,8 +650,8 @@ MonoBehaviour:
   AmmoCount:
     m_Name: 
     m_Normal:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 1, g: 0, b: 0, a: 1}
+      m_Background: {fileID: 2800000, guid: 446d534748302604181c9e6bcc225bb8, type: 3}
+      m_TextColor: {r: .784313738, g: 0, b: 0, a: 1}
     m_Hover:
       m_Background: {fileID: 0}
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
@@ -696,12 +696,12 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 5b692232692bfa144b59f8123a18d777, type: 3}
     m_FontSize: 16
     m_FontStyle: 0
-    m_Alignment: 0
+    m_Alignment: 2
     m_WordWrap: 0
     m_RichText: 1
     m_TextClipping: 0
     m_ImagePosition: 0
-    m_ContentOffset: {x: 0, y: 100}
+    m_ContentOffset: {x: 1072.5, y: 575}
     m_FixedWidth: 0
     m_FixedHeight: 0
     m_StretchWidth: 1
