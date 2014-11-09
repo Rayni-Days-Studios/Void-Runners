@@ -7,15 +7,18 @@ public class RemoveScript : MonoBehaviour
     public string triggerObject;
     public float removeTime;
     public bool removeAfterTime;
-    public float remountOfTime;
+    public float remountOfTime = 1;
     public bool instantToggle;
     public string instantRemoval;
 
     void Update()
     {
-        if (removeAfterTime)
+        remountOfTime -= Time.deltaTime;
+        removeTime -= Time.deltaTime;
+
+        if (removeAfterTime && remountOfTime <= 0)
         {
-            Destroy(gameObject, remountOfTime);
+            ObjectDestroy();
         }
     }
 
@@ -24,22 +27,39 @@ public class RemoveScript : MonoBehaviour
     {
         foreach (string str in collisionObject.Where(str => other.gameObject.tag == str))
         {
-            Destroy(gameObject, removeTime);
+            if (removeTime <= 0)
+            {
+                ObjectDestroy();
+            }
         }
 
         if (!instantToggle) return;
             if (other.gameObject.tag == instantRemoval)
             {
-                Destroy(gameObject);
+                ObjectDestroy();
             }
     }
 
     //Remove object on trigger
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == triggerObject)
+        if (other.gameObject.tag == triggerObject && removeTime <= 0)
         {
-            Destroy(gameObject, removeTime);
+            ObjectDestroy();
+        }
+    }
+
+    void ObjectDestroy()
+    {
+        PhotonView pv = GetComponent<PhotonView>();
+
+        if (pv != null && pv.instantiationId != 0)
+        {
+            PhotonNetwork.Destroy(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 }

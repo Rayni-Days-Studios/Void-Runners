@@ -6,14 +6,6 @@ using UnityEngine;
 
 public class NetworkScript : Photon.MonoBehaviour
 {
-    /* Work on a better spawn system instead, not just the spawnspots. 
-     * Right now the spawn system is broken. If someone joins, they get the first role. 
-     * Now say someone else joins, that person gets the second role. 
-     * Now, the first player leaves, and another person joins. 
-     * What role does this third person get? The third role? Nope. The second one.
-     * Why? Because the roles are based on how many players are in the room.
-     * Work on fixing this instead. */
-
     // This is used to set the build version
     public string BuildVersion = "1.0";
     // Array to hold the spots that can be spawned in
@@ -23,13 +15,14 @@ public class NetworkScript : Photon.MonoBehaviour
     private List<string> chatMessages;
     public int MaxChatMessages = 5;
 
+    private bool hasPickedRole;
+    private bool connecting;
+    private bool receivedRoomList;
+
     private bool scoutSpawned;
     private bool monsterSpawned;
     private bool gunnerSpawned;
     private bool edenSpawned;
-
-    private bool hasPickedRole;
-    private bool connecting;
 
     // Holds the local player gameobject
     [NonSerialized]
@@ -185,7 +178,6 @@ public class NetworkScript : Photon.MonoBehaviour
 
         }
     }
-    private bool receivedRoomList;
 
     void OnConnectedToPhoton()
     {
@@ -240,7 +232,6 @@ public class NetworkScript : Photon.MonoBehaviour
 
         StandbyCamera.SetActive(false);
         MyPlayerGo.transform.FindChild("MainCamera").gameObject.SetActive(true);
-
     }
 
     void OnReceivedRoomListUpdate()

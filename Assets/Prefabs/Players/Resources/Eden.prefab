@@ -512,7 +512,7 @@ MonoBehaviour:
     m_RichText: 1
     m_TextClipping: 0
     m_ImagePosition: 0
-    m_ContentOffset: {x: 0, y: 108}
+    m_ContentOffset: {x: 0, y: 128}
     m_FixedWidth: 0
     m_FixedHeight: 0
     m_StretchWidth: 1
@@ -616,25 +616,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc184b92948e7fe43bed8f2640f411f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHitPoints: 100
-  BarrelEnd: {fileID: 400006}
   UseLightGun: 1
   LightGun:
     TotalAmmo: 100
     LoadedAmmo: 20
     AmmoCap: 20
-    Force: 9
-    BulletPrefab: {fileID: 5400000, guid: 0bba4c6b8ada82440a58440ff3002374, type: 2}
+    Damage: 0
+    FireRate: 0
+    spawnPoint: {fileID: 0}
     Bullet: {fileID: 100000, guid: 0bba4c6b8ada82440a58440ff3002374, type: 2}
-    ShootSound: {fileID: 8200000}
   BulletGun:
     TotalAmmo: 1
     LoadedAmmo: 1
     AmmoCap: 0
-    Force: 0
-    BulletPrefab: {fileID: 0}
+    Damage: 0
+    FireRate: 0
+    spawnPoint: {fileID: 0}
     Bullet: {fileID: 0}
-    ShootSound: {fileID: 0}
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1

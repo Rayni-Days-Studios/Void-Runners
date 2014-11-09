@@ -32,7 +32,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &100004
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,7 +178,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.263909996, y: 2, z: -.862559974}
+  m_LocalPosition: {x: -.263909996, y: 0, z: -.862559974}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400008}
@@ -192,7 +192,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100008}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .00813924614, y: -.149557114, z: 1.10608685}
+  m_LocalPosition: {x: .334329993, y: -.0753799975, z: .748189986}
   m_LocalScale: {x: 1.13290524, y: 1.02223265, z: 1.15655553}
   m_Children: []
   m_Father: {fileID: 400008}
@@ -242,7 +242,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100014}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: -2.26409006, y: 0, z: -.016200006}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400012}
@@ -595,25 +595,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc184b92948e7fe43bed8f2640f411f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHitPoints: 100
-  BarrelEnd: {fileID: 400006}
   UseLightGun: 0
   LightGun:
     TotalAmmo: 1
     LoadedAmmo: 1
     AmmoCap: 0
-    Force: 0
-    BulletPrefab: {fileID: 0}
+    Damage: 0
+    FireRate: 0
+    spawnPoint: {fileID: 0}
     Bullet: {fileID: 0}
-    ShootSound: {fileID: 0}
   BulletGun:
     TotalAmmo: 120
     LoadedAmmo: 36
     AmmoCap: 36
-    Force: 20
-    BulletPrefab: {fileID: 5400000, guid: 06aac4a6e4a03d7478d9f1d0407c56bb, type: 2}
+    Damage: 25
+    FireRate: .200000003
+    spawnPoint: {fileID: 400006}
     Bullet: {fileID: 100000, guid: 06aac4a6e4a03d7478d9f1d0407c56bb, type: 2}
-    ShootSound: {fileID: 8200000}
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -703,7 +701,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 801b08a3f41bd8244a2dceb16d7dcf33, type: 3}
   m_Name: 
@@ -762,7 +760,7 @@ MonoBehaviour:
     m_RichText: 1
     m_TextClipping: 0
     m_ImagePosition: 0
-    m_ContentOffset: {x: 0, y: 108}
+    m_ContentOffset: {x: 0, y: 128}
     m_FixedWidth: 0
     m_FixedHeight: 0
     m_StretchWidth: 1

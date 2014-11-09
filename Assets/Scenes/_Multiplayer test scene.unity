@@ -9154,6 +9154,7 @@ GameObject:
   - 4: {fileID: 691223551}
   - 114: {fileID: 691223552}
   - 114: {fileID: 691223553}
+  - 114: {fileID: 691223554}
   m_Layer: 0
   m_Name: _GameManager
   m_TagString: Untagged
@@ -9198,7 +9199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  subId: 1
+  subId: 2
   ownerId: 0
   group: 0
   prefixBackup: -1
@@ -9207,6 +9208,19 @@ MonoBehaviour:
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   instantiationId: 0
+--- !u!114 &691223554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 691223550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39116b82152b0cb4bb4beea235ec9770, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AudioFX: {fileID: 8300000, guid: e130e368391e69e4488b81cdd4a162e5, type: 3}
+  BulletPrefab: {fileID: 100004, guid: 306597f725714bc4e927e88ca26d5b54, type: 2}
 --- !u!1 &711752236
 GameObject:
   m_ObjectHideFlags: 0

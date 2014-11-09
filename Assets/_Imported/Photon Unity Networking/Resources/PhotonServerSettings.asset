@@ -34,4 +34,6 @@ MonoBehaviour:
   - TaggedPlayer
   - TakeDamage
   - AddChatMessage_RPC
+  - SniperBulletFX
+  - BulletFX
   DisableAutoOpenWizard: 0
