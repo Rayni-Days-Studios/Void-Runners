@@ -3,15 +3,12 @@ using System.Collections;
 
 public class FXManager : MonoBehaviour
 {
-    public AudioClip ShootAudioFX;
 	public GameObject BulletPrefab;
 
     [RPC]
     private void BulletFX(Vector3 startPos, Vector3 endPos)
     {
         Debug.Log("BulletFX");
-
-        AudioSource.PlayClipAtPoint(ShootAudioFX, startPos);
 
         if (BulletPrefab != null)
         {

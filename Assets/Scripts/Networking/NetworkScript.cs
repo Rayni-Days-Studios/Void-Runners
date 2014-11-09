@@ -11,6 +11,7 @@ public class NetworkScript : Photon.MonoBehaviour
     // Array to hold the spots that can be spawned in
     private List<SpawnSpot> spawnSpots;
     public GameObject StandbyCamera;
+    public GameObject DirLight;
     public GUIStyle MyButtonStyle;
     public GUIStyle MyTextStyle;
     public GUIStyle MyTextFieldStyle;
@@ -22,7 +23,7 @@ public class NetworkScript : Photon.MonoBehaviour
     private bool connecting;
     private bool receivedRoomList;
 
-    public bool scoutSpawned;
+    private bool scoutSpawned;
     private bool monsterSpawned;
     private bool gunnerSpawned;
     private bool edenSpawned;
@@ -238,6 +239,7 @@ public class NetworkScript : Photon.MonoBehaviour
         MyPlayerGo.transform.FindChild("Model").gameObject.SetActive(false);
 
         StandbyCamera.SetActive(false);
+        DirLight.SetActive(false);
         MyPlayerGo.transform.FindChild("MainCamera").gameObject.SetActive(true);
     }
 
@@ -256,7 +258,7 @@ public class NetworkScript : Photon.MonoBehaviour
     }
 
     [RPC] 
-    public void UsedRole(string role)
+    public void UsedRole(string role) 
     {
         switch (role)
         {

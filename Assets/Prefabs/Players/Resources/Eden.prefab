@@ -562,18 +562,20 @@ MonoBehaviour:
     TotalAmmo: 100
     LoadedAmmo: 20
     AmmoCap: 20
-    Damage: 0
-    FireRate: 0
-    spawnPoint: {fileID: 0}
+    Damage: 5
+    FireRate: .25
+    spawnPoint: {fileID: 400006}
     Bullet: {fileID: 100000, guid: 0bba4c6b8ada82440a58440ff3002374, type: 2}
+    ShootAudio: {fileID: 0}
   BulletGun:
     TotalAmmo: 1
     LoadedAmmo: 1
-    AmmoCap: 0
+    AmmoCap: 1
     Damage: 0
     FireRate: 0
     spawnPoint: {fileID: 0}
     Bullet: {fileID: 0}
+    ShootAudio: {fileID: 0}
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1

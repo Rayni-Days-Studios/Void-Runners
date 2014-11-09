@@ -12,6 +12,7 @@ public class Gun
     public float FireRate;
     public Transform spawnPoint;
     public GameObject Bullet;
+    public AudioSource ShootAudio;
 
     public void Fire(FXManager fxManager)
     {
@@ -19,6 +20,7 @@ public class Gun
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         Vector3 hitPoint;
         Transform hitTransform = FindClosestHitObject(ray, out hitPoint);
+        ShootAudio.Play();
 
         if (hitTransform != null)
         {
