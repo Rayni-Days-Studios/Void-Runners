@@ -26,6 +26,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 400002}
   - 120: {fileID: 12000000}
+  - 114: {fileID: 11400002}
+  - 108: {fileID: 10800000}
   m_Layer: 0
   m_Name: LineFX
   m_TagString: Untagged
@@ -81,7 +83,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.58294964, y: 8.68639755, z: .753793716}
+  m_LocalPosition: {x: .0147089995, y: 2.00760007, z: 10.165}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -146,6 +148,41 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!108 &10800000
+Light:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Type: 2
+  m_Color: {r: 1, g: .637930989, b: .25, a: 1}
+  m_Intensity: 1.45000005
+  m_Range: 10
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: .0500000007
+    m_Softness: 4
+    m_SoftnessFade: 1
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_ActuallyLightmapped: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 1
+  m_ShadowSamples: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_IndirectIntensity: 1
+  m_AreaSize: {x: 1, y: 1}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -158,12 +195,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionObject: []
-  triggerObject: Player
-  removeTime: .100000001
+  triggerObject: 0
+  removeTime: 0
   removeAfterTime: 1
-  remountOfTime: .100000001
-  instantToggle: 1
-  instantRemoval: Walls
+  remountOfTime: .75
+  instantToggle: 0
+  instantRemoval: 0
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2febb7fe00ec52747be9bbec35ded23d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionObject: []
+  triggerObject: 0
+  removeTime: 0
+  removeAfterTime: 1
+  remountOfTime: .0500000007
+  instantToggle: 0
+  instantRemoval: 0
 --- !u!120 &12000000
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -188,8 +243,8 @@ LineRenderer:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 10}
   m_Parameters:
-    startWidth: .00100000005
-    endWidth: .150000006
+    startWidth: .00999999978
+    endWidth: .100000001
     m_StartColor:
       serializedVersion: 2
       rgba: 4294967295

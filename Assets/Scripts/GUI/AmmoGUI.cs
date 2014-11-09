@@ -3,7 +3,6 @@
 [ExecuteInEditMode]
 public class AmmoGUI : MonoBehaviour
 {
-
     private Player shootingScript;
     public GUIStyle AmmoCount;
 
@@ -16,7 +15,7 @@ public class AmmoGUI : MonoBehaviour
     [ExecuteInEditMode]
     private void OnGUI()
     {
-        GUILayout.BeginArea(new Rect(Screen.width - 124, 0, 124, Screen.height));
+        GUILayout.BeginArea(new Rect(Screen.width - 152, 0, 152, Screen.height));
         GUILayout.BeginVertical();
         GUILayout.FlexibleSpace();
 

@@ -403,7 +403,7 @@ MonoBehaviour:
     m_Name: 
     m_Normal:
       m_Background: {fileID: 2800000, guid: 446d534748302604181c9e6bcc225bb8, type: 3}
-      m_TextColor: {r: .784313738, g: 0, b: 0, a: 1}
+      m_TextColor: {r: .83088237, g: .83088237, b: .83088237, a: 1}
     m_Hover:
       m_Background: {fileID: 0}
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
@@ -446,7 +446,7 @@ MonoBehaviour:
       m_Top: 0
       m_Bottom: 0
     m_Font: {fileID: 12800000, guid: 5b692232692bfa144b59f8123a18d777, type: 3}
-    m_FontSize: 16
+    m_FontSize: 20
     m_FontStyle: 0
     m_Alignment: 2
     m_WordWrap: 0
