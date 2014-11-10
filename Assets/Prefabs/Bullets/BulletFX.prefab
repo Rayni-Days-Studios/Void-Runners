@@ -98,7 +98,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 3
   m_Type: 2
-  m_Color: {r: .617241263, g: .25, b: 1, a: 1}
+  m_Color: {r: .399999857, g: .25, b: 1, a: 1}
   m_Intensity: 1.45000005
   m_Range: 10
   m_SpotAngle: 30
@@ -139,7 +139,7 @@ MonoBehaviour:
   triggerObject: 0
   removeTime: 0
   removeAfterTime: 1
-  remountOfTime: .075000003
+  remountOfTime: .800000012
   instantToggle: 0
   instantRemoval: 0
 --- !u!114 &11400002
@@ -347,7 +347,7 @@ ParticleSystem:
         rgba: 4294967295
       maxColor:
         serializedVersion: 2
-        rgba: 2164199794
+        rgba: 2164199804
       minMaxState: 0
     startSize:
       scalar: 1

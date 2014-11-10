@@ -8,8 +8,6 @@ public class NetworkScript : Photon.MonoBehaviour
 {
     // This is used to set the build version
     public string BuildVersion = "1.0";
-    // Array to hold the spots that can be spawned in
-    private List<SpawnSpot> spawnSpots;
     public GameObject StandbyCamera;
     public GameObject DirLight;
     public GUIStyle MyButtonStyle;
@@ -23,6 +21,11 @@ public class NetworkScript : Photon.MonoBehaviour
     private bool connecting;
     private bool receivedRoomList;
 
+    private GameObject scoutSpawnspot;
+    private GameObject monsterSpawnspot;
+    private GameObject gunnerSpawnspot;
+    private GameObject edenSpawnspot;
+
     private bool scoutSpawned;
     private bool monsterSpawned;
     private bool gunnerSpawned;
@@ -34,9 +37,12 @@ public class NetworkScript : Photon.MonoBehaviour
 
     void Start()
     {
-        // Finds gameobjects with the SpawnSpot script attached and adds them to the spawnspots array
-        spawnSpots = FindObjectsOfType<SpawnSpot>().ToList();
-        PhotonNetwork.player.name = PlayerPrefs.GetString("Username", "Awesome Dude");
+        edenSpawnspot = GameObject.Find("EdenSpawn");
+        gunnerSpawnspot = GameObject.Find("GunnerSpawn");
+        scoutSpawnspot = GameObject.Find("ScoutSpawn");
+        monsterSpawnspot = GameObject.Find("MonsterSpawn");
+
+        PhotonNetwork.player.name = PlayerPrefs.GetString("Username", "DefaultName");
         chatMessages = new List<string>();
     }
 
@@ -136,25 +142,25 @@ public class NetworkScript : Photon.MonoBehaviour
                     if (!edenSpawned)
                         if(GUILayout.Button("Eden", MyButtonStyle))
                         {
-                            SpawnPlayer("Eden", 0);
+                            SpawnPlayer("Eden", edenSpawnspot);
                             GetComponent<PhotonView>().RPC("UsedRole", PhotonTargets.AllBuffered, "Eden");
                         }
                     if(!gunnerSpawned)
                         if (GUILayout.Button("Gunner", MyButtonStyle))
                         {
-                            SpawnPlayer("Gunner", 1);
+                            SpawnPlayer("Gunner", gunnerSpawnspot);
                             GetComponent<PhotonView>().RPC("UsedRole", PhotonTargets.AllBuffered, "Gunner");
                         }
                     if(!scoutSpawned)
                         if (GUILayout.Button("Scout", MyButtonStyle))
                         {
-                            SpawnPlayer("Scout", 2);
+                            SpawnPlayer("Scout", scoutSpawnspot);
                             GetComponent<PhotonView>().RPC("UsedRole", PhotonTargets.AllBuffered, "Scout");
                         }
                     if(!monsterSpawned)
                         if (GUILayout.Button("Monster", MyButtonStyle))
                         {
-                            SpawnPlayer("Monster", 3);
+                            SpawnPlayer("Monster", monsterSpawnspot);
                             GetComponent<PhotonView>().RPC("UsedRole", PhotonTargets.AllBuffered, "Monster");
                         }
 
@@ -220,13 +226,13 @@ public class NetworkScript : Photon.MonoBehaviour
         AddChatMessage(PhotonNetwork.player.name + " has disconnected");
     }
 
-    void SpawnPlayer(string playerRole, int playerSpawn)
+    void SpawnPlayer(string playerRole, GameObject playerSpawn)
     {
         hasPickedRole = true;
         AddChatMessage(PhotonNetwork.player.name + " has joined as " + playerRole);
         // This spawns the player, and gives it a role based on how many players are in the room
         // Instantiates player at relevant spawnspot
-        MyPlayerGo = PhotonNetwork.Instantiate(playerRole, spawnSpots[playerSpawn].transform.position, spawnSpots[playerSpawn].transform.rotation, 0);
+        MyPlayerGo = PhotonNetwork.Instantiate(playerRole, playerSpawn.transform.position, playerSpawn.transform.rotation, 0);
         MyPlayerGo.GetComponent<FPSInputController>().enabled = true;
         MyPlayerGo.GetComponent<MouseLook>().enabled = true;
         MyPlayerGo.GetComponent<CharacterMotor>().enabled = true;

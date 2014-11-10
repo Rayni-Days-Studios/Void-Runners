@@ -38,12 +38,12 @@ Material:
       data:
         first:
           name: _Shininess
-        second: 1
+        second: .897041678
     m_Colors:
       data:
         first:
           name: _Color
-        second: {r: .279411793, g: .279411793, b: .279411793, a: 1}
+        second: {r: .698529422, g: .698529422, b: .698529422, a: 1}
       data:
         first:
           name: _SpecColor
@@ -51,7 +51,7 @@ Material:
       data:
         first:
           name: _ReflectColor
-        second: {r: .495711714, g: .498802036, b: .514925361, a: .215686277}
+        second: {r: .304270834, g: .299253911, b: .33088237, a: .196078435}
 --- !u!1002 &2100001
 EditorExtensionImpl:
   serializedVersion: 6
