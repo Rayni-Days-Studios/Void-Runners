@@ -211,8 +211,8 @@ public class NetworkScript : Photon.MonoBehaviour
         }
         // We still didn't join any room: create one
         if (PhotonNetwork.room != null) yield break;
-        string roomName = "TestRoom" + Application.loadedLevelName;
-        PhotonNetwork.CreateRoom(roomName, new RoomOptions { maxPlayers = 4 }, null);
+            string roomName = "TestRoom" + Application.loadedLevelName;
+            PhotonNetwork.CreateRoom(roomName, new RoomOptions { maxPlayers = 4 }, null);
     }
 
     void OnJoinedRoom()
