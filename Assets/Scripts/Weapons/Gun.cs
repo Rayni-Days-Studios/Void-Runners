@@ -50,7 +50,6 @@ public class Gun
                 else
                 {
                     healthScript.GetComponent<PhotonView>().RPC("TakeDamage", PhotonTargets.AllBuffered, Damage);
-                    Debug.Log("TakeDAMAGE YO");
                 }
 
             }
