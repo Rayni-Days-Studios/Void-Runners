@@ -50,6 +50,7 @@ GameObject:
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400002}
   - 82: {fileID: 8200000}
+  - 114: {fileID: 11400022}
   m_Layer: 0
   m_Name: Gunner
   m_TagString: Player
@@ -2354,6 +2355,18 @@ MonoBehaviour:
   maximumX: 360
   minimumY: -60
   maximumY: 60
+--- !u!114 &11400022
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6e0756f13243d74aac2c73c7ccad97c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  role: 
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1

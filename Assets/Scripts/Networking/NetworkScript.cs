@@ -20,16 +20,15 @@ public class NetworkScript : Photon.MonoBehaviour
     private bool hasPickedRole;
     private bool connecting;
     private bool receivedRoomList;
-
-    private GameObject scoutSpawnspot;
-    private GameObject monsterSpawnspot;
-    private GameObject gunnerSpawnspot;
-    private GameObject edenSpawnspot;
-
+    private bool edenSpawned;
+    private bool gunnerSpawned;
     private bool scoutSpawned;
     private bool monsterSpawned;
-    private bool gunnerSpawned;
-    private bool edenSpawned;
+
+    private GameObject edenSpawnspot;
+    private GameObject gunnerSpawnspot;
+    private GameObject scoutSpawnspot;
+    private GameObject monsterSpawnspot;
 
     // Holds the local player gameobject
     [NonSerialized]
@@ -84,7 +83,7 @@ public class NetworkScript : Photon.MonoBehaviour
 
 			GUILayout.BeginHorizontal();
             GUILayout.Label("Username: ", MyTextFieldStyle);
-            PhotonNetwork.player.name = GUILayout.TextField(PhotonNetwork.player.name, MyTextFieldStyle);
+            PhotonNetwork.player.name = GUILayout.TextField("", MyTextFieldStyle);
 			GUILayout.EndHorizontal();
 
             if (GUILayout.Button("Single Player", MyButtonStyle))
@@ -142,26 +141,27 @@ public class NetworkScript : Photon.MonoBehaviour
                     if (!edenSpawned)
                         if(GUILayout.Button("Eden", MyButtonStyle))
                         {
+                            GetComponent<PhotonView>().RPC("UsedRole", PhotonTargets.AllBuffered, "Eden", true);
                             SpawnPlayer("Eden", edenSpawnspot);
-                            GetComponent<PhotonView>().RPC("UsedRole", PhotonTargets.AllBuffered, "Eden");
+
                         }
                     if(!gunnerSpawned)
                         if (GUILayout.Button("Gunner", MyButtonStyle))
                         {
+                            GetComponent<PhotonView>().RPC("UsedRole", PhotonTargets.AllBuffered, "Gunner", true);
                             SpawnPlayer("Gunner", gunnerSpawnspot);
-                            GetComponent<PhotonView>().RPC("UsedRole", PhotonTargets.AllBuffered, "Gunner");
                         }
                     if(!scoutSpawned)
                         if (GUILayout.Button("Scout", MyButtonStyle))
                         {
+                            GetComponent<PhotonView>().RPC("UsedRole", PhotonTargets.AllBuffered, "Scout", true);
                             SpawnPlayer("Scout", scoutSpawnspot);
-                            GetComponent<PhotonView>().RPC("UsedRole", PhotonTargets.AllBuffered, "Scout");
                         }
                     if(!monsterSpawned)
                         if (GUILayout.Button("Monster", MyButtonStyle))
                         {
+                            GetComponent<PhotonView>().RPC("UsedRole", PhotonTargets.AllBuffered, "Monster", true);
                             SpawnPlayer("Monster", monsterSpawnspot);
-                            GetComponent<PhotonView>().RPC("UsedRole", PhotonTargets.AllBuffered, "Monster");
                         }
 
                     GUILayout.FlexibleSpace();
@@ -223,14 +223,14 @@ public class NetworkScript : Photon.MonoBehaviour
 
     void OnPhotonPlayerDisconnected(PhotonPlayer other)
     {
-        AddChatMessage(PhotonNetwork.player.name + " has disconnected");
+        AddChatMessage(other.name + " has disconnected");
+        //GetComponent<PhotonView>().RPC("UsedRole", PhotonTargets.AllBuffered, ****************, false);
     }
 
     void SpawnPlayer(string playerRole, GameObject playerSpawn)
     {
         hasPickedRole = true;
         AddChatMessage(PhotonNetwork.player.name + " has joined as " + playerRole);
-        // This spawns the player, and gives it a role based on how many players are in the room
         // Instantiates player at relevant spawnspot
         MyPlayerGo = PhotonNetwork.Instantiate(playerRole, playerSpawn.transform.position, playerSpawn.transform.rotation, 0);
         MyPlayerGo.GetComponent<FPSInputController>().enabled = true;
@@ -245,15 +245,13 @@ public class NetworkScript : Photon.MonoBehaviour
         MyPlayerGo.transform.FindChild("Model").gameObject.SetActive(false);
 
         StandbyCamera.SetActive(false);
-        DirLight.SetActive(false);
+        //DirLight.SetActive(false);
         MyPlayerGo.transform.FindChild("MainCamera").gameObject.SetActive(true);
     }
 
     void OnReceivedRoomListUpdate()
     {
         print("We received a room list update, total rooms now: " + PhotonNetwork.GetRoomList().Length);
-
-
         string wantedRoomName = "TestRoom" + Application.loadedLevelName;
         foreach (RoomInfo room in PhotonNetwork.GetRoomList().Where(room => room.name == wantedRoomName))
         {
@@ -264,21 +262,21 @@ public class NetworkScript : Photon.MonoBehaviour
     }
 
     [RPC] 
-    public void UsedRole(string role) 
+    public void UsedRole(string role, bool state) 
     {
         switch (role)
         {
             case "Eden":
-                edenSpawned = true;
+                edenSpawned = state;
                 break;
             case "Gunner":
-                gunnerSpawned = true;
+                gunnerSpawned = state;
                 break;
             case "Scout":
-                scoutSpawned = true;
+                scoutSpawned = state;
                 break;
             case "Monster":
-                monsterSpawned = true;
+                monsterSpawned = state;
                 break;
             default:
                 Debug.LogError("UsedRole: Invalid role");

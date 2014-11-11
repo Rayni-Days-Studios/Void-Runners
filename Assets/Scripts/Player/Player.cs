@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Runtime.Serialization.Formatters;
+using UnityEngine;
 
-public class Player : MonoBehaviour 
+public class Player : MonoBehaviour
 {
     private float cooldown;
     public bool UseLightGun; // True = LightGun, False = BulletGun
@@ -17,7 +18,7 @@ public class Player : MonoBehaviour
 	    else
 	        cooldown = BulletGun.FireRate;
 	}
-	
+
 	// Update is called once per frame
 	void Update () 
     {
